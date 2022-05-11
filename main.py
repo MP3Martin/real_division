@@ -50,18 +50,18 @@ def changeError(string):
 
 def isZero(string1):
     string1 = string1.replace("\n","")
-    #THIS IS THE FASTEST WAY SO S*UT UP
+    #THIS IS THE FASTEST WAY :D
     if string1 == string1[0]*len(string1):
         #ALL CHARACTERS ARE SAME
         if "0" in string1:
             return True
             #ALL CHARACTERS ARE 0
         else:
-            #NO ZERO
+            #ALL CHARACTERS ARE SAME, BUT NOT 0
             return False
     else:
         #ALL CHARACTERS AREN'T SAME
-        False
+        return False
 
 def onModificationWidthChange(event):
     chars = len(event.widget.get("1.0", "end-1c"))
