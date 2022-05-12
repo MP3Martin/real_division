@@ -47,7 +47,7 @@ def changeError(string):
     #error_msg.pack_forget()
     error_msg.config(state="disabled")
     print(string)
-    print(inp1.get("1.0",END))
+    print(inp1.get("1.0",tk.END))
 
 def isZero(string1):
     string1 = string1.replace("\n","")
