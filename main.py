@@ -14,7 +14,7 @@ master.title("Realistic division generator  -  HexagonCore")
 width = master.winfo_screenwidth() #get your Windows width size 
 height = master.winfo_screenheight() #get your Windows height size 
 master.geometry("%dx%d" % (width / 2.8, height / 1.3))
-#master.resizable(False,False)
+master.resizable(False,False)
 
 def is_num(text):
     try:
