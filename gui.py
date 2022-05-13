@@ -4,10 +4,20 @@ import time
 global can_calculate
 global empty_content
 can_calculate = True
+
+# --- #
+debug_enabled = True
+# --- #
+
+
+def iprint(string):
+    if debug_enabled == True:
+        print(string)
+
 def focusText(event):
-   w.config(state='normal')
-   w.focus()
-   w.config(state='disabled')
+    w.config(state='normal')
+    w.focus()
+    w.config(state='disabled')
 
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
@@ -46,12 +56,7 @@ def changeError(string):
     error_msg.configure(width = chars)
     #error_msg.pack_forget()
     error_msg.config(state="disabled")
-    print(string)
-
-    # -- TESTING -- #
-    print(inp1.get("1.0", "end-1c"))
-    inp1.selection_get()
-    inp2.selection_get()
+    iprint(string)
 
 def isZero(string1):
     string1 = string1.replace("\n","")
@@ -102,7 +107,7 @@ def onModificationWidthChange(event):
         widget_name = event.widget
         widget_name = str(widget_name).replace(".!frame.!","")
         if chars < 21 and chars > 10:
-            print("[INFO]: Set widht of " + str(widget_name) + " to " + str(chars))
+            iprint("[INFO]: Set widht of " + str(widget_name) + " to " + str(chars))
         inp1.pack()
     else:
         event.widget.configure(width = 10)
@@ -199,6 +204,14 @@ def select_all(event):
 
 master.bind("<Control-Key-a>", select_all)
 master.bind("<Control-Key-A>", select_all)
+
+#CTRL+C FUNCTION
+def copy_selected(event):
+    iprint(event.widget.get("1.0", "end-1c"))
+    iprint(event.widget.selection_get("1.0", "end-1c"))
+
+master.bind("<Control-Key-c>", copy_selected)
+master.bind("<Control-Key-C>", copy_selected)
 
 #SELECT NEXT (tab) FUNCTION
 def focus_next_widget(event):
