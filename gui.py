@@ -209,6 +209,9 @@ master.bind("<Control-Key-A>", select_all)
 def copy_selected(event):
     iprint(event.widget.get("1.0", "end-1c"))
     selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
+    if selected_text.toString() == "None":
+        selected_text = ""
+    
     iprint(selected_text)
     master.clipboard_clear()
     master.clipboard_append(selected_text)
