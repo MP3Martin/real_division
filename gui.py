@@ -221,7 +221,7 @@ master.bind("<Control-Key-C>", copy_selected)
 
 #CTRL+X FUNCTION
 def cut_selected(event):
-    selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
+    selected_text = master.clipboard_get()
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
