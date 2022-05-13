@@ -207,7 +207,7 @@ master.bind("<Control-Key-A>", select_all)
 
 #CTRL+C FUNCTION
 def copy_selected(event):
-    iprint(event.widget.get("1.0", "end-1c"))
+    # iprint(event.widget.get("1.0", "end-1c"))
     selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
@@ -222,7 +222,7 @@ master.bind("<Control-Key-C>", copy_selected)
 
 #CTRL+X FUNCTION
 def cut_selected(event):
-    iprint(event.widget.get("1.0", "end-1c"))
+    # iprint(event.widget.get("1.0", "end-1c"))
     selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
