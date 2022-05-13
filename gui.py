@@ -214,6 +214,7 @@ def copy_selected(event):
     if selected_text == "None":
         # selected_text = ""
         iprint("Not copied")
+        master.clipboard_clear()
     else:
         master.clipboard_clear()
         master.clipboard_append(selected_text)
