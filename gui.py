@@ -212,13 +212,10 @@ def copy_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        # selected_text = ""
-        iprint("Not copied")
         master.clipboard_clear()
     else:
         master.clipboard_clear()
         master.clipboard_append(selected_text)
-        iprint("Copied")
 
 master.bind("<Control-Key-c>", copy_selected)
 master.bind("<Control-Key-C>", copy_selected)
@@ -230,14 +227,14 @@ def cut_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        selected_text = ""
+        master.clipboard_clear()
     else:
         master.clipboard_clear()
         master.clipboard_append(selected_text)
 
     first_sel = event.widget.index("sel.first").replace("1.", "")
     last_sel = event.widget.index("sel.last").replace("1.", "")
-    iprint(first_sel, last_sel)
+    iprint(first_sel + last_sel)
     
 
 master.bind("<Control-Key-x>", cut_selected)
