@@ -207,8 +207,8 @@ master.bind("<Control-Key-A>", select_all)
 
 #CTRL+C FUNCTION
 def copy_selected(event):
+    iprint(event.widget.get("1.0", "end-1c"))
     iprint(event.widget.get(tk.SEL_FIRST, tk.SEL_LAST))
-    iprint(event.widget.selection_get())
 
 master.bind("<Control-Key-c>", copy_selected)
 master.bind("<Control-Key-C>", copy_selected)
