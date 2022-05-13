@@ -19,6 +19,11 @@ def focusText(event):
     w.focus()
     w.config(state='disabled')
 
+def clipboard(string):
+    master.clipboard_clear()
+    if string != "":
+        master.clipboard_append(string)
+
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
 width = master.winfo_screenwidth() #get your Windows width size 
