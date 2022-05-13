@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import clipboard
 import time
 global can_calculate
 global empty_content
@@ -211,10 +212,10 @@ def copy_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        master.clipboard_clear()
+        clipboard.copy("")
     else:
-        master.clipboard_clear()
-        master.clipboard_append(selected_text)
+        clipboard.copy("")
+        clipboard.copy(selected_text)
 
 master.bind("<Control-Key-c>", copy_selected)
 master.bind("<Control-Key-C>", copy_selected)
@@ -225,10 +226,10 @@ def cut_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        master.clipboard_clear()
+        clipboard.copy("")
     else:
-        master.clipboard_clear()
-        master.clipboard_append(selected_text)
+        clipboard.copy("")
+        clipboard.copy(selected_text)
 
 master.bind("<Control-Key-x>", cut_selected)
 master.bind("<Control-Key-X>", cut_selected)
