@@ -232,8 +232,8 @@ def cut_selected(event):
         master.clipboard_clear()
         master.clipboard_append(selected_text)
 
-    first_sel = event.widget.index("sel.first").replace("1.", "")
-    last_sel = event.widget.index("sel.last").replace("1.", "")
+    first_sel = event.widget.index("sel.first")#.replace("1.", "")
+    last_sel = event.widget.index("sel.last")#.replace("1.", "")
     iprint(first_sel + last_sel)
     
 
