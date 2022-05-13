@@ -213,9 +213,11 @@ def copy_selected(event):
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
         selected_text = ""
+        iprint("Not copied")
     else:
         master.clipboard_clear()
         master.clipboard_append(selected_text)
+        iprint("Copied")
 
 master.bind("<Control-Key-c>", copy_selected)
 master.bind("<Control-Key-C>", copy_selected)
