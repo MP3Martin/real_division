@@ -210,6 +210,7 @@ def copy_selected(event):
     iprint(event.widget.get("1.0", "end-1c"))
     selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
     selected_text = str(selected_text)
+    selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
         selected_text = ""
     
