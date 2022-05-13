@@ -213,13 +213,32 @@ def copy_selected(event):
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
         selected_text = ""
-    
-    iprint(selected_text)
-    master.clipboard_clear()
-    master.clipboard_append(selected_text)
+    else:
+        master.clipboard_clear()
+        master.clipboard_append(selected_text)
 
 master.bind("<Control-Key-c>", copy_selected)
 master.bind("<Control-Key-C>", copy_selected)
+
+#CTRL+X FUNCTION
+def cut_selected(event):
+    iprint(event.widget.get("1.0", "end-1c"))
+    selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
+    selected_text = str(selected_text)
+    selected_text = selected_text.replace("\n", "")
+    if selected_text == "None":
+        selected_text = ""
+    else:
+        master.clipboard_clear()
+        master.clipboard_append(selected_text)
+
+    first_sel = event.widget.index("sel.first").replace("1.", "")
+    last_sel = event.widget.index("sel.last").replace("1.", "")
+    iprint(first_sel, last_sel)
+    
+
+master.bind("<Control-Key-x>", cut_selected)
+master.bind("<Control-Key-X>", cut_selected)
 
 #SELECT NEXT (tab) FUNCTION
 def focus_next_widget(event):
