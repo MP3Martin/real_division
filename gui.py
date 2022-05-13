@@ -23,6 +23,7 @@ def clipboard(string):
     master.clipboard_clear()
     if string != "":
         master.clipboard_append(string)
+        master.update()
 
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
@@ -216,10 +217,9 @@ def copy_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        master.clipboard_clear()
+        clipboard("")
     else:
-        master.clipboard_clear()
-        master.clipboard_append(selected_text)
+        clipboard(selected_text)
 
 master.bind("<Control-Key-c>", copy_selected)
 master.bind("<Control-Key-C>", copy_selected)
@@ -230,10 +230,9 @@ def cut_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        master.clipboard_clear()
+        clipboard("")
     else:
-        master.clipboard_clear()
-        master.clipboard_append(selected_text)
+        clipboard(selected_text)
 
 master.bind("<Control-Key-x>", cut_selected)
 master.bind("<Control-Key-X>", cut_selected)
