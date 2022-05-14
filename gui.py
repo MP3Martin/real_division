@@ -16,8 +16,6 @@ def iprint(string):
     if debug_enabled == True:
         print(string)
 
-iprint(rdc.calc())
-
 def focusText(event):
     w.config(state='normal')
     w.focus()
