@@ -6,7 +6,7 @@ import real_division_core as rdc
 global can_calculate
 global empty_content
 can_calculate = True
-default_output_text = "Please type in what you want to divide in the boxes above.\n\n"
+default_output_text = "Please type in what you want to divide into the boxes above.\n\n"
 # --- #
 debug_enabled = True
 # --- #
@@ -50,8 +50,8 @@ def calculate():
 
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
-width = master.winfo_screenwidth() #get your Windows width size 
-height = master.winfo_screenheight() #get your Windows height size 
+width = master.winfo_screenwidth()
+height = master.winfo_screenheight()
 master.geometry("%dx%d" % (width / 2.8, height / 1.3))
 master.resizable(False,False)
 
