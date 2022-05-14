@@ -7,8 +7,6 @@ global can_calculate
 global empty_content
 can_calculate = True
 
-iprint(rdc.calc())
-
 # --- #
 debug_enabled = True
 # --- #
@@ -17,6 +15,8 @@ debug_enabled = True
 def iprint(string):
     if debug_enabled == True:
         print(string)
+
+iprint(rdc.calc())
 
 def focusText(event):
     w.config(state='normal')
