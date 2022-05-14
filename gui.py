@@ -104,7 +104,10 @@ def onModificationWidthChange(event):
 
     content1 = str(inp1.get("1.0","end"))
     content2 = str(inp2.get("1.0","end"))
-    contents = [content1, content2]
+    if content2.replace("\n", "") == "":
+        contents = [content1]
+    else:
+        contents = [content1, content2]
 
     for content0 in contents:
         iprint(content0)
