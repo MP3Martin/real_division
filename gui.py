@@ -102,9 +102,12 @@ def onModificationWidthChange(event):
     chars = len(event.widget.get("1.0", "end-1c"))
     content = str(event.widget.get("1.0","end"))
 
-    if is_num(content) and " " not in str(content):
+    content1 = str(inp1.get("1.0","end"))
+    content2 = str(inp2.get("1.0","end"))
+
+    if is_num(content1) and " " not in str(content1) and is_num(content2) and " " not in str(content2):
         #IS NUMBERS ONLY
-        if isZero(str(content)):
+        if isZero(str(content1)) or isZero(str(content2)):
             #IS ZERO...
             changeError("[ERROR]: Just don't even try to use zero...")
             can_calculate = False
@@ -114,7 +117,7 @@ def onModificationWidthChange(event):
             error_msg.pack_forget()
     else:
         #ISN'T NUMBER
-        if content == "\n" or content == "":
+        if content1 == "\n" or content1 == "" or content2 == "\n" or content2 == "":
             #IS JUST EMPTY
             can_calculate = True
             error_msg.pack_forget()
