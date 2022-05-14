@@ -104,39 +104,41 @@ def onModificationWidthChange(event):
 
     content1 = str(inp1.get("1.0","end"))
     content2 = str(inp2.get("1.0","end"))
-    if content2.replace("\n", "") == "":
-        contents = [content1]
-    elif is_num(content2) == True:
-        contents = [content1, content2]
-    else:
-        contents = [content1]
+
+    contents = [content1, content2]
+
+    errored = 0
 
     for content0 in contents:
-        iprint(content0)
         if is_num(content0) and " " not in str(content0):
             #IS NUMBERS ONLY
             if isZero(str(content0)):
                 #IS ZERO...
                 changeError("[ERROR]: Just don't even try to use zero...")
+                errored = errored + 1
                 can_calculate = False
             else:
                 #ISN'T ZERO
                 can_calculate = True
-                error_msg.pack_forget()
+                # error_msg.pack_forget()
         else:
             #ISN'T NUMBER
             if content0 == "\n" or content0 == "":
                 #IS JUST EMPTY
                 can_calculate = True
-                error_msg.pack_forget()
+                # error_msg.pack_forget()
             else:
                 #IS NOT NUMBER
                 can_calculate = False
                 changeError("[ERROR]: Please enter numbers only")
+                errored = errored + 1
                 #event.widget.delete(1.0,"end")
                 #only_num = str ( ''.join(filter(str.isdigit, content) ) )
                 #print(only_num)
                 #event.widget.insert(1.0, only_num[: -1])
+    
+    if errored == 0:
+        error_msg.pack_forget()
 
     if chars > 10 and chars < 21:
         event.widget.configure(width = chars)
