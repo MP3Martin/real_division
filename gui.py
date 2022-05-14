@@ -11,6 +11,9 @@ default_output_text = "Please type in what you want to divide into the boxes abo
 debug_enabled = True
 # --- #
 
+def everySecond():
+    print ("Hey")
+    master.after(1000, everySecond)
 
 def iprint(string):
     if debug_enabled == True:
@@ -311,4 +314,5 @@ inp2.bind("<Tab>", focus_start)
 master.protocol("WM_DELETE_WINDOW", on_closing)
 error_msg.update()
 error_msg.pack_forget()
+everySecond()
 master.mainloop()
