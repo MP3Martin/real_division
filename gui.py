@@ -230,6 +230,7 @@ def cut_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
+        iprint("break")
         return "break"
     else:
         clipboard(selected_text)
