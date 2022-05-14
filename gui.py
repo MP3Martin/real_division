@@ -34,6 +34,16 @@ def on_closing():
     else:
         master.destroy()
 
+def calculate():
+    out = rdc.calc(3, 4)
+    if can_calculate == True:
+        w.config(state='normal')
+        w.delete(1.0,"end")
+        w.insert(1.0, out)
+        w.config(state='disabled')
+    else:
+        pass
+
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
 width = master.winfo_screenwidth() #get your Windows width size 
@@ -175,7 +185,7 @@ inp2.insert(tk.END, "")
 inp2.pack(side = tk.LEFT)
 inp2.bind("<<TextModified>>", onModificationWidthChange)
 
-equals_button = tk.Button(inp_frame,height = int("0.5"),width = 1)
+equals_button = tk.Button(inp_frame, height = 1, width = 1, padx = 2, pady = 2, command=calculate)
 equals_button.config(text = "=")
 # equals_button.configure(state="disabled")
 equals_button.pack(side = tk.LEFT)
