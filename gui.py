@@ -237,6 +237,15 @@ def cut_selected(event):
 master.bind("<Control-Key-x>", cut_selected)
 master.bind("<Control-Key-X>", cut_selected)
 
+#CTRL+V FUNCTION
+def copy_handler(event):
+    first_sel = event.widget.index("sel.first")#.replace("1.", "")
+    last_sel = event.widget.index("sel.last")#.replace("1.", "")
+    iprint(first_sel + last_sel)
+
+master.bind("<Control-Key-v>", copy_handler)
+master.bind("<Control-Key-V>", copy_handler)
+
 #SELECT NEXT (tab) FUNCTION
 def focus_next_widget(event):
     event.widget.tk_focusNext().focus()
