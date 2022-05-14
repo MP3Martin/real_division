@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import time
 global can_calculate
 global empty_content
@@ -26,7 +27,7 @@ def clipboard(string = ""):
         master.update()
 
 def on_closing():
-    if tk.messagebox.askokcancel("Quit", "Do you want to quit?"):
+    if messagebox.askokcancel("Quit", "Do you want to quit?"):
         master.destroy()
 
 master = tk.Tk()
