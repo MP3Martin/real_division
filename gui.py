@@ -105,7 +105,8 @@ def onModificationWidthChange(event):
     content1 = str(inp1.get("1.0","end"))
     content2 = str(inp2.get("1.0","end"))
 
-    if is_num(content1) and " " not in str(content1) and is_num(content2) and " " not in str(content2):
+    if is_num(content1) and is_num(content2):
+        iprint("Is num")
         #IS NUMBERS ONLY
         if isZero(str(content1)) or isZero(str(content2)):
             #IS ZERO...
@@ -117,14 +118,16 @@ def onModificationWidthChange(event):
             error_msg.pack_forget()
     else:
         #ISN'T NUMBER
-        if content1 == "\n" or content1 == "" or content2 == "\n" or content2 == "":
+        if content1 == "\n" or content1 == "" and content2 == "\n" or content2 == "":
             #IS JUST EMPTY
             can_calculate = True
             error_msg.pack_forget()
         else:
             #IS NOT NUMBER
             can_calculate = False
-            changeError("[ERROR]: Please enter numbers only")
+            if content1 != "\n" and content1 != "" and content2 != "\n" and content2 != "":
+                changeError("[ERROR]: Please enter numbers only")
+                
             #event.widget.delete(1.0,"end")
             #only_num = str ( ''.join(filter(str.isdigit, content) ) )
             #print(only_num)
