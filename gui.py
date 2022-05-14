@@ -254,7 +254,7 @@ def custom_paste(event):
         pass
     event.widget.insert("insert", event.widget.clipboard_get())
     return "break"
-master.bind_class("Entry", "<<Paste>>", custom_paste)
+master.bind_class("Text", "<<Paste>>", custom_paste)
 
 #SELECT NEXT (tab) FUNCTION
 def focus_next_widget(event):
