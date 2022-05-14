@@ -27,7 +27,7 @@ def clipboard(string = ""):
         master.update()
 
 def on_closing():
-    if inp1.get("1.0", "end-1c").replace("\n","") != "":
+    if inp1.get("1.0", "end-1c").replace("\n","") != "" or inp2.get("1.0", "end-1c").replace("\n","") != "":
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             master.destroy()
     else:
