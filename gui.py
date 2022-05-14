@@ -215,7 +215,7 @@ w = tk.Text(out_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,ys
 h_scrl.config(command=w.xview)
 v_scrl.config(command=w.yview)
 
-w.insert(1.0, "Hello, world!       dsd dsssssssssssss\nnsssssssssssssss\nsssdsfdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddsfshz\nhzgfdsgffsdgfgdv\ndghfdghfdhs\ngffdghfdsssssss\nnsssssssssssssss\nsssdsfdsfshz\nhzgfdsgffsdgfgdv\ndghfdghfdhs\ngffdghfdsssssss\nnsssssssssssssss\nsssdsfdsfshz\nhzgfdsgffsdgfgdv\ndghfdghfdhs\ngffdghfdsssssss\nnsssssssssssssss\nsssdsfdsfshz\nhzgfdsgffsdgfgdv\ndghfdghfdhs\ngffdghfdsssssss\nnsssssssssssssss\nsssdsfdsfshz\nhzgfdsgffsdgfgdv\ndghfdghfdhs\ngffdghfdsssssss\nnsssssssssssssss\nsssdsfdsfshz\nhzgfdsgffsdgfgdv\ndghfdghfdhs\ngffdghfdsg\nhdsgfhsdgfhdsgfhsfdgh\nfdsghghfghfds\ndsds\nghdsfghsfshgf\n")
+w.insert(1.0, "Please type in what you want to calculate in the boxes above.\n\n")
 w.pack(side = tk.LEFT)
 w.configure(state="disabled")
 w.bind('<Button-1>', focusText)
