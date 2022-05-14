@@ -11,8 +11,13 @@ default_output_text = "Please type in what you want to divide into the boxes abo
 debug_enabled = True
 # --- #
 
+def setWinSize():
+    width = master.winfo_screenwidth()
+    height = master.winfo_screenheight()
+    master.geometry("%dx%d" % (width / 2.8, height / 1.3))
+
 def everySecond():
-    print ("Hey")
+    setWinSize()
     master.after(1000, everySecond)
 
 def iprint(string):
@@ -53,9 +58,7 @@ def calculate():
 
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
-width = master.winfo_screenwidth()
-height = master.winfo_screenheight()
-master.geometry("%dx%d" % (width / 2.8, height / 1.3))
+setWinSize()
 master.resizable(False,False)
 
 def is_num(text):
