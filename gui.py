@@ -6,7 +6,7 @@ import real_division_core as rdc
 global can_calculate
 global empty_content
 can_calculate = True
-
+default_output_text = "Please type in what you want to divide in the boxes above.\n\n"
 # --- #
 debug_enabled = True
 # --- #
@@ -35,14 +35,18 @@ def on_closing():
         master.destroy()
 
 def calculate():
+    global default_output_text
     if is_num(inp1.get("1.0", "end-1c")) == True and is_num(inp2.get("1.0", "end-1c")) == True and isZero(inp1.get("1.0", "end-1c")) == False and isZero(inp2.get("1.0", "end-1c")) == False:
         out = rdc.calc(inp1.get("1.0", "end-1c"), inp2.get("1.0", "end-1c"))
         w.config(state='normal')
         w.delete(1.0,"end")
         w.insert(1.0, out)
         w.config(state='disabled')
-    else:
-        pass
+    elif inp1.get("1.0", "end-1c").replace("\n","") == "" and inp2.get("1.0", "end-1c").replace("\n","") == "":
+        w.config(state='normal')
+        w.delete(1.0,"end")
+        w.insert(1.0, default_output_text)
+        w.config(state='disabled')
 
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
@@ -228,7 +232,7 @@ w = tk.Text(out_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,ys
 h_scrl.config(command=w.xview)
 v_scrl.config(command=w.yview)
 
-w.insert(1.0, "Please type in what you want to divide in the boxes above.\n\n")
+w.insert(1.0, default_output_text)
 w.pack(side = tk.LEFT)
 w.configure(state="disabled")
 w.bind('<Button-1>', focusText)
