@@ -2,9 +2,12 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 import time
+import real_division_core as rdc
 global can_calculate
 global empty_content
 can_calculate = True
+
+rdc.calc()
 
 # --- #
 debug_enabled = True
