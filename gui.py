@@ -245,6 +245,12 @@ def cut_selected(event):
 master.bind("<Control-Key-x>", cut_selected)
 master.bind("<Control-Key-X>", cut_selected)
 
+#ESC HANDLER
+def deselect_selected(event):
+    event.widget.tag_remove(tk.SEL, "1.0", tk.END)
+
+master.bind("<Escape-Key>", deselect_selected)
+
 #PASTE HANDLER
 def custom_paste(event):
     try:
