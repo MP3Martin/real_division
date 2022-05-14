@@ -241,7 +241,7 @@ master.bind("<Control-Key-X>", cut_selected)
 def copy_handler(event):
     first_sel = event.widget.index("sel.first")#.replace("1.", "")
     last_sel = event.widget.index("sel.last")#.replace("1.", "")
-    iprint(first_sel + last_sel)
+    iprint(first_sel + " & " + last_sel)
 
 master.bind("<Control-Key-v>", copy_handler)
 master.bind("<Control-Key-V>", copy_handler)
