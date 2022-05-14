@@ -17,7 +17,7 @@ def setWinSize():
     master.geometry("%dx%d" % (width / 2.8, height / 1.3))
 
 def everySecond():
-    setWinSize()
+    # setWinSize()
     master.after(1000, everySecond)
 
 def iprint(string):
