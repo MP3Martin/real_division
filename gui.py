@@ -175,7 +175,7 @@ inp2.insert(tk.END, "")
 inp2.pack(side = tk.LEFT)
 inp2.bind("<<TextModified>>", onModificationWidthChange)
 
-equals_button = tk.Button(inp_frame,height = (0,1),width = 1)
+equals_button = tk.Button(inp_frame,height = (0.1),width = 1)
 equals_button.config(text = "=")
 # equals_button.configure(state="disabled")
 equals_button.pack(side = tk.LEFT)
