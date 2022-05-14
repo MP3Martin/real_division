@@ -237,14 +237,24 @@ def cut_selected(event):
 master.bind("<Control-Key-x>", cut_selected)
 master.bind("<Control-Key-X>", cut_selected)
 
-#CTRL+V FUNCTION
-def copy_handler(event):
-    first_sel = event.widget.index("sel.first")#.replace("1.", "")
-    last_sel = event.widget.index("sel.last")#.replace("1.", "")
-    iprint(first_sel + " & " + last_sel)
+# #CTRL+V FUNCTION
+# def copy_handler(event):
+#     first_sel = event.widget.index("sel.first")#.replace("1.", "")
+#     last_sel = event.widget.index("sel.last")#.replace("1.", "")
+#     iprint(first_sel + " & " + last_sel)
 
-master.bind("<Control-Key-v>", copy_handler)
-master.bind("<Control-Key-V>", copy_handler)
+# master.bind("<Control-Key-v>", copy_handler)
+# master.bind("<Control-Key-V>", copy_handler)
+
+#PASTE HANDLER
+def custom_paste(event):
+    try:
+        event.widget.delete("sel.first", "sel.last")
+    except:
+        pass
+    event.widget.insert("insert", event.widget.clipboard_get())
+    return "break"
+master.bind_class("Entry", "<<Paste>>", custom_paste)
 
 #SELECT NEXT (tab) FUNCTION
 def focus_next_widget(event):
