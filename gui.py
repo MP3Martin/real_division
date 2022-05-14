@@ -36,7 +36,7 @@ def on_closing():
 
 def calculate():
     out = rdc.calc(3, 4)
-    if can_calculate == True:
+    if is_num(inp1.get("1.0", "end-1c")) == True and is_num(inp2.get("1.0", "end-1c")) == True:
         w.config(state='normal')
         w.delete(1.0,"end")
         w.insert(1.0, out)
