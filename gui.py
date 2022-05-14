@@ -19,7 +19,7 @@ def focusText(event):
     w.focus()
     w.config(state='disabled')
 
-def clipboard(string):
+def clipboard(string = ""):
     master.clipboard_clear()
     if string != "":
         master.clipboard_append(string)
@@ -217,7 +217,7 @@ def copy_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        clipboard("")
+        return "break"
     else:
         clipboard(selected_text)
 
@@ -230,21 +230,12 @@ def cut_selected(event):
     selected_text = str(selected_text)
     selected_text = selected_text.replace("\n", "")
     if selected_text == "None":
-        clipboard("")
+        return "break"
     else:
         clipboard(selected_text)
 
 master.bind("<Control-Key-x>", cut_selected)
 master.bind("<Control-Key-X>", cut_selected)
-
-# #CTRL+V FUNCTION
-# def copy_handler(event):
-#     first_sel = event.widget.index("sel.first")#.replace("1.", "")
-#     last_sel = event.widget.index("sel.last")#.replace("1.", "")
-#     iprint(first_sel + " & " + last_sel)
-
-# master.bind("<Control-Key-v>", copy_handler)
-# master.bind("<Control-Key-V>", copy_handler)
 
 #PASTE HANDLER
 def custom_paste(event):
