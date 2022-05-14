@@ -30,6 +30,8 @@ def on_closing():
     if inp1.get("1.0", "end-1c").replace("\n","") != "":
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
             master.destroy()
+    else:
+        master.destroy()
 
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
