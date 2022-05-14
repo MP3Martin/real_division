@@ -7,7 +7,7 @@ global can_calculate
 global empty_content
 can_calculate = True
 
-rdc.calc()
+iprint(rdc.calc())
 
 # --- #
 debug_enabled = True
