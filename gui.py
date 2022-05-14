@@ -25,6 +25,10 @@ def clipboard(string = ""):
         master.clipboard_append(string)
         master.update()
 
+def on_closing():
+    if tk.messagebox.askokcancel("Quit", "Do you want to quit?"):
+        master.destroy()
+
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
 width = master.winfo_screenwidth() #get your Windows width size 
@@ -260,6 +264,7 @@ def focus_start(event):
 inp1.bind("<Tab>", focus_next_widget)
 inp2.bind("<Tab>", focus_start)
 
+master.protocol("WM_DELETE_WINDOW", on_closing)
 error_msg.update()
 error_msg.pack_forget()
 master.mainloop()
