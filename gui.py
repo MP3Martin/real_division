@@ -104,7 +104,7 @@ def onModificationWidthChange(event):
 
     content1 = str(inp1.get("1.0","end"))
     content2 = str(inp2.get("1.0","end"))
-    if content2.replace("\n", "") == "":
+    if content2.replace("\n", "") == "" and is_num(content2) == False:
         contents = [content1]
     else:
         contents = [content1, content2]
