@@ -27,9 +27,9 @@ def clipboard(string = ""):
         master.update()
 
 def on_closing():
-    iprint(inp1.get("1.0", "end-1c"))
-    if messagebox.askokcancel("Quit", "Do you want to quit?"):
-        master.destroy()
+    if inp1.get("1.0", "end-1c").replace("\n","") != "":
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+            master.destroy()
 
 master = tk.Tk()
 master.title("Realistic division generator  -  HexagonCore")
