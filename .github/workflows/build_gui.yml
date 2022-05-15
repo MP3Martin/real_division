@@ -20,42 +20,31 @@ jobs:
 
     - run: pip install -r requirements.txt pyinstaller
     - run: pyinstaller --onefile -w gui.py
-    - name: Publish linux
+    
+    - name: Publish Linux
       if: ${{ runner.os == 'Linux' }}
-      # Side note, I can run any Linux command here, not just 'echo'
       run: |
-        echo linux
-    - name: Publish windows
+        mv dist/* dist/real_division_GUI-Linux-x64
+        cd dist/
+        zip real_division_GUI-Linux-x64.zip *
+        cd ..
+        rm -r dist/real_division_GUI-Linux-x64
+        
+    - name: Publish Windows
       if: ${{ runner.os == 'Windows' }}
-      # Side note, I can run any Linux command here, not just 'echo'
       run: |
         echo windows
+        
     - name: Publish macOS
       if: ${{ runner.os == 'macOS' }}
-      # Side note, I can run any Linux command here, not just 'echo'
       run: |
-        echo macOS
+        cd dist/
+        mv gui.app real_division_GUI-macOS-x64.app
+        rm gui
+        zip real_division_GUI-macOS-x64.zip * -r
+        rm -r real_division_GUI-macOS-x64.app
+        cd ..
 
-#    - run:   |
-#         if [ "$RUNNER_OS" == "Linux" ]; then
-#              mv dist/* dist/real_division_GUI-Linux-x64
-#              cd dist/
-#              zip real_division_GUI-Linux-x64.zip *
-#              cd ..
-#              rm -r dist/real_division_GUI-Linux-x64
-#         elif [ "$RUNNER_OS" == "Windows" ]; then
-#              echo pass
-#         elif [ "$RUNNER_OS" == "macOS" ]; then
-#              cd dist/
-#              mv gui.app real_division_GUI-macOS-x64.app
-#              rm gui
-#              zip real_division_GUI-macOS-x64.zip * -r
-#              rm -r real_division_GUI-macOS-x64.app
-#              cd ..
-#         else
-#              echo "$RUNNER_OS not supported"
-#              exit 1
-#         fi
     - uses: softprops/action-gh-release@v1
       with:
         files: dist/*
