@@ -1,4 +1,4 @@
-name: Build executables for gui.py
+name: Build Tkinter GUI
 
 on:
   release:
