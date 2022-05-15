@@ -20,6 +20,7 @@ jobs:
 
     - run: pip install -r requirements.txt pyinstaller
     - run: pyinstaller --onefile -w gui.py
+    - run: dir
     - uses: softprops/action-gh-release@v1
       with:
         files: dist/*
