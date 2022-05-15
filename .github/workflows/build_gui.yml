@@ -35,7 +35,7 @@ jobs:
       run: |
         cd dist/
         ren gui.exe real_division_GUI-Windows-x64.exe
-        7za a -tzip real_division_GUI-Windows-x64.zip *
+        7z a -tzip real_division_GUI-Windows-x64.zip *
         del real_division_GUI-Windows-x64.exe
         cd ..
         
