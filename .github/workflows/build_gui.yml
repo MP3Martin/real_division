@@ -22,9 +22,9 @@ jobs:
     - run: pyinstaller --onefile -w gui.py
     - run:   |
          if [ "$RUNNER_OS" == "Linux" ]; then
-              mv dist/* dist/real_division_GUI-Linux-64-x64
-              zip dist/real_division_GUI-Linux-64-x64.zip dist/*
-              rm dist/real_division_GUI-Linux-64-x64
+              mv dist/* dist/real_division_GUI-Linux-x64
+              zip dist/real_division_GUI-Linux-x64.zip dist/*
+              rm dist/real_division_GUI-Linux-x64
          elif [ "$RUNNER_OS" == "Windows" ]; then
               echo pass
          elif [ "$RUNNER_OS" == "macOS" ]; then
