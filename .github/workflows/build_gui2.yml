@@ -1,4 +1,4 @@
-name: Build executables for gui.py (1)
+name: Build executables for gui.py (2)
 
 on:
   release:
