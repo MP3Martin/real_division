@@ -5,13 +5,10 @@ on:
     types: [created]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
+  disable-debug:
+    runs-on: 'ubuntu-latest'
     strategy:
       fail-fast: false
-      matrix:
-        os: [ 'windows-latest', 'ubuntu-latest', 'macos-latest' ]
-
     steps:
     - uses: actions/checkout@v2
     - name: Disable debug
@@ -22,6 +19,22 @@ jobs:
           debug_enabled = False
           print("Made by HexagonCore\nStarted by MP3Martin\nWorking thanks to Tkinter and PyInstaller")
         regex: false
+    - uses: actions/upload-artifact@v2
+      with:
+        name: gui-py-without-debug
+        path: gui.py
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ 'windows-latest', 'ubuntu-latest', 'macos-latest' ]
+
+    steps:
+    - uses: actions/checkout@v2    
+    - uses: actions/download-artifact@v2
+      with:
+        name: gui-py-without-debug
     - uses: actions/setup-python@v2
       with:
         python-version: 3.7
