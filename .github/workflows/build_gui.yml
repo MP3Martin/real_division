@@ -30,8 +30,8 @@ jobs:
          elif [ "$RUNNER_OS" == "Windows" ]; then
               echo pass
          elif [ "$RUNNER_OS" == "macOS" ]; then
-              mv dist/* dist/real_division_GUI-macOS-x64
               cd dist/
+              mv * real_division_GUI-macOS-x64
               zip real_division_GUI-macOS-x64.zip * -r
               cd ..
               rm -r dist/real_division_GUI-macOS-x64
