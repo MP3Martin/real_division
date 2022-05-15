@@ -26,7 +26,7 @@ jobs:
               cd dist/
               zip real_division_GUI-Linux-x64.zip *
               cd ..
-              rm dist/real_division_GUI-Linux-x64
+              rm -r dist/real_division_GUI-Linux-x64
          elif [ "$RUNNER_OS" == "Windows" ]; then
               echo pass
          elif [ "$RUNNER_OS" == "macOS" ]; then
@@ -34,7 +34,7 @@ jobs:
               cd dist/
               zip real_division_GUI-macOS-x64.zip * -r
               cd ..
-              rm dist/real_division_GUI-macOS-x64
+              rm -r dist/real_division_GUI-macOS-x64
          else
               echo "$RUNNER_OS not supported"
               exit 1
