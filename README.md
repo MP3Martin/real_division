@@ -14,6 +14,6 @@
 Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script | Web API
 :------------ | :-------------| :-------------| :-------------| :-------------| :-------------| :-------------
 State | :white_check_mark: |  :x: | :x: | :x: | :x: | :x:
-Automated build workflow | :heavy_check_mark: |  :x: | :x: | :x: | :x: | :x:
+Automated build workflow | :heavy_check_mark: |  :x: | :x: | :x: | *Not needed* | :x:
 
 (:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
