@@ -34,7 +34,7 @@ jobs:
               mv gui.app real_division_GUI-macOS-x64.app
               zip real_division_GUI-macOS-x64.zip * -r
               cd ..
-              rm -r dist/real_division_GUI-macOS-x64
+              rm -r dist/gui.app
          else
               echo "$RUNNER_OS not supported"
               exit 1
