@@ -24,6 +24,7 @@ jobs:
         name: gui-py-without-debug
         path: gui.py
   build:
+    needs: [disable-debug]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
