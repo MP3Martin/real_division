@@ -47,7 +47,6 @@ jobs:
       if: ${{ runner.os == 'Linux' }}
       run: |
         mv dist/* dist/real_division_GUI-Linux-x64
-        dir
         cd dist/
         zip real_division_GUI-Linux-x64.zip *
         cd ..
