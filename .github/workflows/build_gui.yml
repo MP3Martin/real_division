@@ -34,7 +34,7 @@ jobs:
       if: ${{ runner.os == 'Windows' }}
       run: |
         cd dist/
-        rename gui.exe real_division_GUI-Windows-x64.exe
+        ren gui.exe real_division_GUI-Windows-x64.exe
         zip real_division_GUI-Windows-x64.zip * -r
         del real_division_GUI-Windows-x64.exe
         cd ..
