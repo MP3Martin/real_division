@@ -47,6 +47,7 @@ jobs:
       if: ${{ runner.os == 'Linux' }}
       run: |
         mv dist/* dist/real_division_GUI-Linux-x64
+        dir
         cd dist/
         zip real_division_GUI-Linux-x64.zip *
         cd ..
@@ -74,3 +75,6 @@ jobs:
     - uses: softprops/action-gh-release@v1
       with:
         files: dist/*
+    - uses: geekyeggo/delete-artifact@v1
+      with:
+        name: gui-py-without-debug
