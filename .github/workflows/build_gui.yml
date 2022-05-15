@@ -74,6 +74,13 @@ jobs:
     - uses: softprops/action-gh-release@v1
       with:
         files: dist/*
-    - uses: geekyeggo/delete-artifact@v1
-      with:
-        name: gui-py-without-debug
+  cleanup:
+    needs: [disable-debug, build]
+    runs-on: 'ubuntu-latest'
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: gui-py-without-debug
