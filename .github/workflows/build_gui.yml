@@ -1,4 +1,4 @@
-name: Build executables for gui.py (2)
+name: Build executables for gui.py
 
 on:
   release:
@@ -20,7 +20,17 @@ jobs:
 
     - run: pip install -r requirements.txt pyinstaller
     - run: pyinstaller --onefile -w gui.py
-    - run: echo ${{ os }}
+    - run:   |
+         if [ "$RUNNER_OS" == "Linux" ]; then
+              mv dist/* dist/real_division-gui-linux-64
+         elif [ "$RUNNER_OS" == "Windows" ]; then
+              echo "pass"
+         elif [ "$RUNNER_OS" == "macOS" ]; then
+              echo "pass"
+         else
+              echo "$RUNNER_OS not supported"
+              exit 1
+         fi
     - uses: softprops/action-gh-release@v1
       with:
         files: dist/*
