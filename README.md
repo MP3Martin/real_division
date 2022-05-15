@@ -11,8 +11,8 @@
  <p><span style="color: #666699;"><em>Image source <a href="https://publi.cz/books/12/video/10_pisemne_deleni_jednocifernym_se_zbytkem.png"><strong>here</strong></a></em></span></p>
 
 # Projects
-Project | Tkinter GUI | Web UI | Core calculation script | Web API
-:------------ | :-------------| :-------------| :-------------| :-------------
-State | :white_check_mark: |  :x: | :x: | :x:
+Project | Tkinter GUI | Web UI | PyPI package | Core calculation script | Web API
+:------------ | :-------------| :-------------| :-------------| :-------------| :-------------
+State | :white_check_mark: |  :x: | :x: | :x: | :x:
 
 (:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
