@@ -10,6 +10,9 @@
  <a href="#/"><img src="https://user-images.githubusercontent.com/60501493/168463031-6f2a3da7-543f-4f3c-9cdf-245c8510b9c0.png" height="250" /></a>
  <p><span style="color: #666699;"><em>Image source <a href="https://publi.cz/books/12/video/10_pisemne_deleni_jednocifernym_se_zbytkem.png"><strong>here</strong></a></em></span></p>
 
-Function | MySQL / MariaDB | PostgreSQL | SQLite
+# Projects
+Project | Tkinter GUI | Core calculation script | Web UI
 :------------ | :-------------| :-------------| :-------------
-substr | :heavy_check_mark: |  :white_check_mark: | :heavy_check_mark:
+State | :white_check_mark: |  :x: | :x:
+
+(:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
