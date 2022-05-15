@@ -31,7 +31,6 @@ jobs:
               echo pass
          elif [ "$RUNNER_OS" == "macOS" ]; then
               cd dist/
-              dir
               mv gui.app real_division_GUI-macOS-x64.app
               zip real_division_GUI-macOS-x64.zip * -r
               cd ..
