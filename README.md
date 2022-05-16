@@ -15,9 +15,9 @@
 # Projects
 Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script | Web API
 :------------ | :-------------| :-------------| :-------------| :-------------| :-------------| :-------------
-State | :white_check_mark: |  :x: | :x: | :x: | :x: | Cancelled - not needed
-Automated build workflow | :heavy_check_mark: |  :x: | :x: | :x: | *Not needed* | :x:
-Programming language | Python |  :x: | :x: | Python | Python | :x:
-Framework | Tkinter |  :x: | :x: | *None* | *None* | :x:
+State | :white_check_mark: |  :x: | :x: | :x: | :x:
+Automated build workflow | :heavy_check_mark: |  :x: | :x: | :x: | *Not needed*
+Programming language | Python |  :x: | :x: | Python | Python
+Framework | Tkinter |  :x: | :x: | *None* | *None*
 
 (:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
