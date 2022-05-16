@@ -24,9 +24,14 @@ def calc(one, two):
     #The calculation
     result = one // two
     remainder = one % two
-    lines.append(f"test")
-    lines.append(f"testdsds")
-    lines.append(f"testdfdfdsfdsfdsfdsg")
+    
+    def firstRemainder(i):
+        if howManyTimesDoesItFit(two, int(getFirstXChars(str(one), i))) != 0:
+            print("yes")
+        else:
+            print("no")
+
+    firstRemainder(1)
 
     # Put everything together
     out = str(firstLine) + str(result)
