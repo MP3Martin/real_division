@@ -2,7 +2,7 @@ def calc(one, two):
     one = int(one)
     two = int(two)
 
-    out = one / two
+    lines = []
 
     return out
 

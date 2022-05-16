@@ -2,7 +2,8 @@
 [<img src="https://github.com/HexagonCore/real_division/workflows/Build%20Tkinter%20GUI/badge.svg">](#/)
 [<img src="https://img.shields.io/github/license/HexagonCore/real_division">](#/)
 [<img src="https://img.shields.io/github/stars/HexagonCore/real_division">](#/)
-[<img src="https://img.shields.io/github/forks/HexagonCore/real_division">](#/)
+[<img src="https://img.shields.io/github/forks/HexagonCore/real_division">](#/)martin@MP3Martin:/media/martin/windows/Users/admin/Documents/GitHub/real_division$ ls
+
 [<img src="https://img.shields.io/github/issues/HexagonCore/real_division">](#/)
 
 # real_division
@@ -14,7 +15,7 @@
 # Projects
 Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script | Web API
 :------------ | :-------------| :-------------| :-------------| :-------------| :-------------| :-------------
-State | :white_check_mark: |  :x: | :x: | :x: | :x: | :x:
+State | :white_check_mark: |  :x: | :x: | :x: | :x: | Cancelled - not needed
 Automated build workflow | :heavy_check_mark: |  :x: | :x: | :x: | *Not needed* | :x:
 Programming language | Python |  :x: | :x: | Python | Python | :x:
 Framework | Tkinter |  :x: | :x: | *None* | *None* | :x:
