@@ -22,12 +22,13 @@ def calc(one, two):
         return string[:x]
 
     #The calculation
-    while numbersUsed < one:
-        if howManyTimesDoesItFit(two, int(getFirstXChars(str(one), 1))) != 0:
-            print("yes")
+    result = one // two
 
     # Put everything together
-    out = firstLine + result + " " + "(" + remainder + ")"
+    out = firstLine + result 
+    if remainder != "" and remainder != "0":
+        out = out + " " + "(" + remainder + ")"
+
     for line in lines:
         out = f"{out}\n{line}"
 
