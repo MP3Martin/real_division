@@ -13,8 +13,8 @@
  <p><span style="color: #666699;"><em>Image source <a href="https://publi.cz/books/12/video/10_pisemne_deleni_jednocifernym_se_zbytkem.png"><strong>here</strong></a></em></span></p>
 
 # Projects
-Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script | Web API
-:------------ | :-------------| :-------------| :-------------| :-------------| :-------------| :-------------
+Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script
+:------------ | :-------------| :-------------| :-------------| :-------------| :-------------|
 State | :white_check_mark: |  :x: | :x: | :x: | :x:
 Automated build workflow | :heavy_check_mark: |  :x: | :x: | :x: | *Not needed*
 Programming language | Python |  :x: | :x: | Python | Python
