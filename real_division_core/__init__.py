@@ -23,11 +23,12 @@ def calc(one, two):
 
     #The calculation
     result = one // two
+    remainder = one % two
 
     # Put everything together
-    out = firstLine + result 
+    out = str(firstLine) + str(result)
     if remainder != "" and remainder != "0":
-        out = out + " " + "(" + remainder + ")"
+        out = str(out) + " " + "(" + str(remainder) + ")"
 
     for line in lines:
         out = f"{out}\n{line}"
