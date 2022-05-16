@@ -25,6 +25,8 @@ def calc(one, two):
     result = one // two
     remainder = one % two
     lines.append(f"test")
+    lines.append(f"testdsds")
+    lines.append(f"testdfdfdsfdsfdsfdsg")
 
     # Put everything together
     out = str(firstLine) + str(result)
