@@ -4,7 +4,7 @@ def calc(one, two):
     two = int(two)
 
     #Setup
-    firstLine = f"{one} : {two} = "
+    firstLine = f"{one}:{two} = "
     result = ""
     remainder = ""
     lines = []
@@ -24,10 +24,11 @@ def calc(one, two):
     #The calculation
     result = one // two
     remainder = one % two
+    lines.append(f"test")
 
     # Put everything together
     out = str(firstLine) + str(result)
-    if remainder != "" and remainder != "0":
+    if remainder != "" and str(remainder) != "0":
         out = str(out) + " " + "(" + str(remainder) + ")"
 
     for line in lines:
