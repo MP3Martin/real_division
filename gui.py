@@ -44,7 +44,7 @@ def on_closing():
 
 def calculate():
     global default_output_text
-    if is_num(inp1.get("1.0", "end-1c")) == True and is_num(inp2.get("1.0", "end-1c")) == True and isZero(inp1.get("1.0", "end-1c")) == False and isZero(inp2.get("1.0", "end-1c")) == False:
+    if is_num(inp1.get("1.0", "end-1c")) == True and is_num(inp2.get("1.0", "end-1c")) == True and isZero(inp1.get("1.0", "end-1c")) == False and isZero(inp2.get("1.0", "end-1c")) == False and int(str(inp1.get("1.0","end"))) > int(str(inp2.get("1.0","end"))):
         out = rdc.calc(inp1.get("1.0", "end-1c"), inp2.get("1.0", "end-1c"))
         w.config(state='normal')
         w.delete(1.0,"end")
@@ -146,6 +146,17 @@ def onModificationWidthChange(event):
                 #only_num = str ( ''.join(filter(str.isdigit, content) ) )
                 #print(only_num)
                 #event.widget.insert(1.0, only_num[: -1])
+    
+    if errored == 0:
+        try:
+            if int(content1) < int(content2):
+                changeError("[ERROR]: First number should be bigger")
+                errored = errored + 1
+                can_calculate = False
+            else:
+                can_calculate = True
+        except ValueError:
+            can_calculate = True
     
     if errored == 0:
         error_msg.pack_forget()

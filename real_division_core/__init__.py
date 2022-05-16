@@ -8,7 +8,6 @@ def calc(one, two):
     result = ""
     remainder = ""
     lines = []
-    numbersUsed = 0
 
     #Functions
     def howManyTimesDoesItFit(one1: int, two1: int):
@@ -26,9 +25,11 @@ def calc(one, two):
     remainder = one % two
     
     def firstRemainder(i):
+        global firstRemainderNumsUsed
         chars = getFirstXChars(str(one), i)
         if int(chars) > two:
             lines.append(str(int(chars) % two))
+            firstRemainderNumsUsed = len(str(chars))
             return
         else:
             firstRemainder(i + 1)
@@ -44,7 +45,6 @@ def calc(one, two):
     for line in lines:
         out = f"{out}\n{add_spaces}{line}"
         add_spaces = add_spaces + " "
-
     return out
 
 if __name__ == '__main__':
