@@ -26,10 +26,12 @@ def calc(one, two):
     remainder = one % two
     
     def firstRemainder(i):
-        if howManyTimesDoesItFit(two, int(getFirstXChars(str(one), i))) != 0:
-            print("yes")
+        chars = getFirstXChars(str(one), i)
+        if int(chars) > two:
+            lines.append(str(int(chars) % two))
+            return
         else:
-            print("no")
+            firstRemainder(i + 1)
 
     firstRemainder(1)
 
