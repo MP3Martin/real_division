@@ -1,10 +1,21 @@
+import math
 def calc(one, two):
     one = int(one)
     two = int(two)
 
-    firstLine = f"${one} : ${two}"
+    #Setup
+    firstLine = f"{one} : {two} = "
     lines = []
 
+    #Functions
+    def howManyTimesDoesItFit(one1, two1):
+        temp_one = one1
+        temp_two = two1
+        one1 = temp_two
+        two1 = temp_one
+        return math.floor(one1 / two1)
+
+    print(howManyTimesDoesItFit(3,25))
 
     # Put everything together
     out = firstLine
