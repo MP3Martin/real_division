@@ -6,6 +6,7 @@ def calc(one, two):
     #Setup
     firstLine = f"{one} : {two} = "
     result = ""
+    remainder = ""
     lines = []
     numbersUsed = 0
 
@@ -15,17 +16,18 @@ def calc(one, two):
         temp_two = two1
         one1 = temp_two
         two1 = temp_one
-        return math.floor(one1 / two1)
+        return int(math.floor(one1 / two1))
 
     def getFirstXChars(string: str, x: int):
         return string[:x]
 
     #The calculation
     while numbersUsed < one:
-        if 
+        if howManyTimesDoesItFit(two, int(getFirstXChars(str(one), 1))) != 0:
+            print("yes")
 
     # Put everything together
-    out = firstLine + result
+    out = firstLine + result + " " + "(" + remainder + ")"
     for line in lines:
         out = f"{out}\n{line}"
 
