@@ -22,4 +22,4 @@ Framework | Tkinter |  :x: | :x: | *None* | *None*
 (:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
 
 # Usability
-Currently you can only check out how the Tkinter UI looks
+Currently you can only check out how the Tkinter UI looks. Everything else is in progress / not finished.
