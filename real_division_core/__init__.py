@@ -27,15 +27,23 @@ def calc(one, two):
     def firstRemainder(i):
         global firstRemainderNumsUsed
         chars = getFirstXChars(str(one), i)
-        if int(chars) > two:
-            lines.append(str(int(chars) % two))
+        if int(chars) >= two:
+            for i in range (0, int(len(str(chars)))):
+                additionalSpaces = additionalSpaces + " "
+            lines.append(additionalSpaces + str(int(chars) % two))
             firstRemainderNumsUsed = len(str(chars))
             return
         else:
             firstRemainder(i + 1)
 
     firstRemainder(1)
+
     print(firstRemainderNumsUsed)
+
+    nextNumbers = list(str(one)[firstRemainderNumsUsed:])
+
+    print(nextNumbers)
+
 
     # Put everything together
     out = str(firstLine) + str(result)
