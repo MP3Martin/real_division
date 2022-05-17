@@ -35,6 +35,7 @@ def calc(one, two):
             firstRemainder(i + 1)
 
     firstRemainder(1)
+    print(firstRemainderNumsUsed)
 
     # Put everything together
     out = str(firstLine) + str(result)
