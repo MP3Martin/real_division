@@ -42,7 +42,7 @@ jobs:
 
     - run: pip install -r requirements.txt pyinstaller
     - run: pyinstaller --onefile -w gui.py
-    
+
     - name: ZIP Linux
       if: ${{ runner.os == 'Linux' }}
       run: |
@@ -51,7 +51,7 @@ jobs:
         zip real_division_GUI-Linux-x64.zip *
         cd ..
         rm -r dist/real_division_GUI-Linux-x64
-        
+
     - name: ZIP Windows
       if: ${{ runner.os == 'Windows' }}
       run: |
@@ -60,7 +60,7 @@ jobs:
         7z a -tzip real_division_GUI-Windows-x64.zip *
         del real_division_GUI-Windows-x64.exe
         cd ..
-        
+
     - name: ZIP macOS
       if: ${{ runner.os == 'macOS' }}
       run: |
