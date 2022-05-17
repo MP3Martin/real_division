@@ -47,16 +47,12 @@ def calculate():
 
     #Remove leading spaces
     out1 = inp1.get("1.0", "end-1c").lstrip("0")
-    inp1.config(state='normal')
     inp1.delete(1.0,"end")
     inp1.insert(1.0, out1)
-    inp1.config(state='disabled')
 
     out2 = inp2.get("1.0", "end-1c").lstrip("0")
-    inp2.config(state='normal')
     inp2.delete(1.0,"end")
     inp2.insert(1.0, out2)
-    inp2.config(state='disabled')
 
     if is_num(inp1.get("1.0", "end-1c")) == True and is_num(inp2.get("1.0", "end-1c")) == True and isZero(inp1.get("1.0", "end-1c")) == False and isZero(inp2.get("1.0", "end-1c")) == False and int(str(inp1.get("1.0","end"))) > int(str(inp2.get("1.0","end"))):
         out = rdc.calc(inp1.get("1.0", "end-1c"), inp2.get("1.0", "end-1c"))
