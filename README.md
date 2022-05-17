@@ -18,6 +18,5 @@ State | :white_check_mark: |  :x: | :x: | :x: | :x:
 Automated build workflow | :heavy_check_mark: |  :x: | :x: | :x: | *Not needed*
 Programming language | Python |  :x: | :x: | Python | Python
 Framework | Tkinter |  :x: | :x: | *None* | *None*
-Usability | Only the UI part |  :x: | :x: | :x: | :x:
 
 (:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
