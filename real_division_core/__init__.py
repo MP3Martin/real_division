@@ -29,8 +29,8 @@ def calc(one, two):
         chars = getFirstXChars(str(one), i)
         if int(chars) >= two:
             additionalSpaces = ""
-            for i in range (0, int(len(str(chars)))):
-                additionalSpaces = additionalSpaces + " "
+            # for i in range (2, int(len(str(chars)))):
+            #     additionalSpaces = additionalSpaces + " "
             lines.append(additionalSpaces + str(int(chars) % two))
             firstRemainderNumsUsed = len(str(chars))
             return
