@@ -9,6 +9,7 @@ def calc(one, two):
     result = ""
     remainder = ""
     lines = []
+    global additionalSpaces
 
     #Functions
     def howManyTimesDoesItFit(one1: int, two1: int):
@@ -33,19 +34,21 @@ def calc(one, two):
             additionalSpaces = ""
             for i in range (2, int(len(str(chars)))):
                 additionalSpaces = additionalSpaces + " "
-            lines.append(additionalSpaces + str(int(chars) % two))
+                print("amo")
+            lines.append(str(int(chars) % two))
             firstRemainderNumsUsed = len(str(chars))
+            print(str(len(str(additionalSpaces))))
             return
         else:
             firstRemainder(i + 1)
 
     firstRemainder(1)
 
-    print(firstRemainderNumsUsed)
+    # print(firstRemainderNumsUsed)
 
     nextNumbers = list(str(one)[firstRemainderNumsUsed:])
 
-    print(nextNumbers)
+    # print(nextNumbers)
 
 
     # Put everything together
@@ -53,10 +56,12 @@ def calc(one, two):
     if remainder != "" and str(remainder) != "0":
         out = str(out) + " " + "(" + str(remainder) + ")"
 
-    # if int(len(str(one))) != 1:
-    #     add_spaces = " "
-    # else:
-    #     add_spaces = ""
+    if str(len(str(additionalSpaces))) == "0" and str(len(str(one))) != "1":
+        additionalSpaces = " "
+    else:
+        additionalSpaces = additionalSpaces + " "
+
+    print(len(str(additionalSpaces)))
 
     for line in lines:
         out = f"{out}\n{additionalSpaces}{line}"
