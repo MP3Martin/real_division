@@ -11,13 +11,21 @@ default_output_text = "Please type in what you want to divide into the boxes abo
 debug_enabled = True
 # --- #
 
-def new():
+def new(confirm: bool = False):
+    if confirm == True:
+        if messagebox.askokcancel("New file", "Do you want to reset the app state?\n\nAll changes will be lost"):
+            new_sys()
+    else:
+        new_sys()
+
+def new_sys():
     inp1.delete(1.0,"end")
     inp2.delete(1.0,"end")
     w.config(state='normal')
     w.delete(1.0,"end")
     w.insert(1.0, default_output_text)
     w.config(state='disabled')
+    inp1.focus_set()
 
 def donothing():
     pass
