@@ -26,27 +26,16 @@ def calc(one, two):
     
     def firstRemainder(i):
         global firstRemainderNumsUsed
-        global add_spaces
         chars = getFirstXChars(str(one), i)
         if int(chars) >= two:
             additionalSpaces = ""
             for i in range (2, int(len(str(chars)))):
                 additionalSpaces = additionalSpaces + " "
-                try:
-                    add_spaces
-                except NameError:
-                    add_spaces = " "
-                add_spaces = add_spaces + additionalSpaces
-            lines.append(str(int(chars) % two))
+            lines.append(additionalSpaces + str(int(chars) % two))
             firstRemainderNumsUsed = len(str(chars))
             return
         else:
             firstRemainder(i + 1)
-
-    try:
-        add_spaces
-    except NameError:
-        add_spaces = " "
 
     firstRemainder(1)
 
@@ -62,13 +51,8 @@ def calc(one, two):
     if remainder != "" and str(remainder) != "0":
         out = str(out) + " " + "(" + str(remainder) + ")"
 
-    try:
-        add_spaces
-    except NameError:
-        add_spaces = " "
-
     if int(len(str(one))) != 1:
-        pass
+        add_spaces = " "
     else:
         add_spaces = ""
     
