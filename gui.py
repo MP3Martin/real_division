@@ -276,7 +276,7 @@ filemenu.add_command(label="New", command=donothing)
 filemenu.add_command(label="Open", command=donothing)
 filemenu.add_command(label="Save", command=donothing)
 filemenu.add_separator()
-filemenu.add_command(label="Exit", command=master.quit)
+filemenu.add_command(label="Exit", command=on_closing)
 menubar.add_cascade(label="File", menu=filemenu)
 
 helpmenu = tk.Menu(menubar, tearoff=0)
