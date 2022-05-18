@@ -1,4 +1,5 @@
 import math
+
 def calc(one, two):
     one = int(one)
     two = int(two)
@@ -26,6 +27,7 @@ def calc(one, two):
     
     def firstRemainder(i):
         global firstRemainderNumsUsed
+        global additionalSpaces
         chars = getFirstXChars(str(one), i)
         if int(chars) >= two:
             additionalSpaces = ""
@@ -51,14 +53,14 @@ def calc(one, two):
     if remainder != "" and str(remainder) != "0":
         out = str(out) + " " + "(" + str(remainder) + ")"
 
-    if int(len(str(one))) != 1:
-        add_spaces = " "
-    else:
-        add_spaces = ""
-    
+    # if int(len(str(one))) != 1:
+    #     add_spaces = " "
+    # else:
+    #     add_spaces = ""
+
     for line in lines:
-        out = f"{out}\n{add_spaces}{line}"
-        add_spaces = add_spaces + " "
+        out = f"{out}\n{additionalSpaces}{line}"
+        additionalSpaces = additionalSpaces + " "
     return out
 
 if __name__ == '__main__':
