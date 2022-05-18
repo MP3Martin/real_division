@@ -190,7 +190,7 @@ def onModificationWidthChange(event):
 class CustomText(tk.Text):
     def __init__(self, *args, **kwargs):
         """A text widget that report on internal widget commands"""
-        tk.Text.__init__(self, *args, **kwargs)
+        ttk.Text.__init__(self, *args, **kwargs)
 
         # create a proxy for the underlying widget
         self._orig = self._w + "_orig"
@@ -210,16 +210,30 @@ class CustomText(tk.Text):
 
         return result
 
-inp_frame = tk.Frame(master)
+def change_theme(theme1: str = "light"):
+    # NOTE: The theme's real name is azure-<mode>
+    if theme1 == "light":
+        # Set light theme
+        master.tk.call("set_theme", "light")
+    elif theme1 == "dark":
+        # Set dark theme
+        master.tk.call("set_theme", "dark")
+
+bg = ttk.Frame(master)
+bg.pack(fill="both", expand=True)
+master.tk.call("source", "tkinter_themes/azure.tcl")
+master.tk.call("set_theme", "light")
+
+inp_frame = ttk.Frame(master)
 inp_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(20,0))
 
-inp1=CustomText(inp_frame, width=10, height=1)
+inp1=ttk.CustomText(inp_frame, width=10, height=1)
 inp1.insert(tk.END, "")
 inp1.pack(side = tk.LEFT)
 inp1.bind("<<TextModified>>", onModificationWidthChange)
 inp1.focus_set()
 
-divide_symbol = tk.Text(inp_frame,height=1,width=1)
+divide_symbol = ttk.Text(inp_frame,height=1,width=1)
 divide_symbol.insert(0.0,":")
 divide_symbol.configure(state="disabled")
 divide_symbol.pack(side = tk.LEFT)
@@ -229,15 +243,15 @@ inp2.insert(tk.END, "")
 inp2.pack(side = tk.LEFT)
 inp2.bind("<<TextModified>>", onModificationWidthChange)
 
-equals_button = tk.Button(inp_frame, height = 1, width = 1, padx = 2, pady = 2, command=calculate)
+equals_button = ttk.Button(inp_frame, height = 1, width = 1, padx = 2, pady = 2, command=calculate)
 equals_button.config(text = "=")
 # equals_button.configure(state="disabled")
 equals_button.pack(side = tk.LEFT)
 
-error_frame = tk.Frame(master)
+error_frame = ttk.Frame(master)
 error_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(5,20))
 
-error_msg = tk.Text(error_frame,borderwidth=0,height=1,width=32)
+error_msg = ttk.Text(error_frame,borderwidth=0,height=1,width=32)
 error_msg.insert(0.0,"Error: Please enter numbers only")
 error_msg.config(fg='#cd1313')
 error_msg.bindtags((str(error_msg), str(master), "all"))
@@ -246,15 +260,15 @@ error_msg.pack(side= tk.LEFT)
 
 
 #OUTPUT
-h_scrl = tk.Scrollbar(master, orient = 'horizontal')
+h_scrl = ttk.Scrollbar(master, orient = 'horizontal')
 h_scrl.pack(side = tk.BOTTOM, fill = tk.X)
-v_scrl = tk.Scrollbar(master)
+v_scrl = ttk.Scrollbar(master)
 v_scrl.pack(side = tk.RIGHT, fill = tk.Y)
 
-out_frame = tk.Frame(master)
+out_frame = ttk.Frame(master)
 out_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(1,1))
 
-w = tk.Text(out_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
+w = ttk.Text(out_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
 
 h_scrl.config(command=w.xview)
 v_scrl.config(command=w.yview)
