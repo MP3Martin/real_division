@@ -210,20 +210,6 @@ class CustomText(tk.Text):
 
         return result
 
-def change_theme(theme1: str = "light"):
-    # NOTE: The theme's real name is azure-<mode>
-    if theme1 == "light":
-        # Set light theme
-        master.tk.call("set_theme", "light")
-    elif theme1 == "dark":
-        # Set dark theme
-        master.tk.call("set_theme", "dark")
-
-bg = ttk.Frame(master)
-bg.pack(fill="both", expand=True)
-master.tk.call("source", "tkinter_themes/azure.tcl")
-master.tk.call("set_theme", "light")
-
 inp_frame = tk.Frame(master)
 inp_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(20,0))
 
