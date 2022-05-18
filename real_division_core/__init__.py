@@ -58,7 +58,8 @@ def calc(one, two):
 
     if str(len(str(additionalSpaces))) == "0" and str(len(str(one))) != "1":
         additionalSpaces = " "
-    else:
+        
+    if str(len(str(one))) == "1":
         additionalSpaces = additionalSpaces + " "
 
     print(len(str(additionalSpaces)))
