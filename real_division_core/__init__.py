@@ -56,13 +56,13 @@ def calc(one, two):
     if remainder != "" and str(remainder) != "0":
         out = str(out) + " " + "(" + str(remainder) + ")"
 
-    if str(len(str(additionalSpaces))) == "0" and str(len(str(one))) != "1":
-        additionalSpaces = " "
-        
-    if str(len(str(one))) == "1":
+    # if str(len(str(additionalSpaces))) == "0" and str(len(str(one))) != "1":
+    #     additionalSpaces = " "
+
+    if str(len(str(one))) != "1":
         additionalSpaces = additionalSpaces + " "
 
-    print(len(str(additionalSpaces)))
+    lines.append("test")
 
     for line in lines:
         out = f"{out}\n{additionalSpaces}{line}"
