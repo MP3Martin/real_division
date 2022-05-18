@@ -11,6 +11,9 @@ default_output_text = "Please type in what you want to divide into the boxes abo
 debug_enabled = True
 # --- #
 
+def donothing():
+    pass
+
 def setWinSize():
     width = master.winfo_screenwidth()
     height = master.winfo_screenheight()
@@ -101,7 +104,7 @@ def changeError(string):
     error_msg.configure(width = chars)
     #error_msg.pack_forget()
     error_msg.config(state="disabled")
-    iprint(string)
+    iprint(string.replace("[ERROR]","[HANDLED ERROR]"))
 
 def isZero(string1):
     string1 = string1.replace("\n","")
@@ -265,6 +268,23 @@ w.insert(1.0, default_output_text)
 w.pack(side = tk.LEFT)
 w.configure(state="disabled")
 w.bind('<Button-1>', focusText)
+
+#MENU
+menubar = tk.Menu(master)
+filemenu = tk.Menu(menubar, tearoff=0)
+filemenu.add_command(label="New", command=donothing)
+filemenu.add_command(label="Open", command=donothing)
+filemenu.add_command(label="Save", command=donothing)
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command=master.quit)
+menubar.add_cascade(label="File", menu=filemenu)
+
+helpmenu = tk.Menu(menubar, tearoff=0)
+helpmenu.add_command(label="Help Index", command=donothing)
+helpmenu.add_command(label="About...", command=donothing)
+menubar.add_cascade(label="Help", menu=helpmenu)
+
+master.config(menu=menubar)
         
 
 #CTRL+A FUNCTION
