@@ -51,7 +51,11 @@ def calc(one, two):
     if remainder != "" and str(remainder) != "0":
         out = str(out) + " " + "(" + str(remainder) + ")"
 
-    add_spaces = " "
+    if int(len(str(one))) != 1:
+        add_spaces = " "
+    else:
+        add_spaces = ""
+    
     for line in lines:
         out = f"{out}\n{add_spaces}{line}"
         add_spaces = add_spaces + " "
