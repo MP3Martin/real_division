@@ -37,7 +37,6 @@ def calc(one, two):
                 print("amo")
             lines.append(str(int(chars) % two))
             firstRemainderNumsUsed = len(str(chars))
-            print(str(len(str(additionalSpaces))))
             return
         else:
             firstRemainder(i + 1)
@@ -61,8 +60,6 @@ def calc(one, two):
 
     if str(len(str(one))) != "1":
         additionalSpaces = additionalSpaces + " "
-
-    lines.append("test")
 
     for line in lines:
         out = f"{out}\n{additionalSpaces}{line}"
