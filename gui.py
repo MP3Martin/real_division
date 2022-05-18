@@ -210,6 +210,8 @@ class CustomText(tk.Text):
 
         return result
 
+ttk.Style().theme_use('yaru')
+
 inp_frame = tk.Frame(master)
 inp_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(20,0))
 
