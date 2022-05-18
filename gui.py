@@ -210,7 +210,7 @@ class CustomText(tk.Text):
 
         return result
 
-ttk.Style().theme_use('yaru')
+# ttk.Style().theme_use('clam')
 
 inp_frame = tk.Frame(master)
 inp_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(20,0))
