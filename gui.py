@@ -14,7 +14,7 @@ debug_enabled = True
 def new(confirm: bool = True):
     if confirm == True:
         if inp1.get("1.0", "end-1c").replace("\n","") != "" or inp2.get("1.0", "end-1c").replace("\n","") != "":
-            if messagebox.askokcancel("New file", "Do you want to reset the app state?\n\nAll changes will be lost"):
+            if messagebox.askokcancel("New file", "Do you want to reset the changes?\n\nAll changes will be lost"):
                 new_sys()
         else:
             new_sys()
