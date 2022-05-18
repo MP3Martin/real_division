@@ -26,6 +26,7 @@ def calc(one, two):
     
     def firstRemainder(i):
         global firstRemainderNumsUsed
+        global add_spaces
         chars = getFirstXChars(str(one), i)
         if int(chars) >= two:
             additionalSpaces = ""
@@ -41,6 +42,11 @@ def calc(one, two):
             return
         else:
             firstRemainder(i + 1)
+
+    try:
+        add_spaces
+    except NameError:
+        add_spaces = " "
 
     firstRemainder(1)
 
