@@ -46,7 +46,7 @@ jobs:
     - name: ZIP Linux
       if: ${{ runner.os == 'Linux' }}
       run: |
-        mv dist/* dist/real_division_GUI-Linux-x64
+        mv dist/* dist/real_division_Tkinter-GUI-Linux-x64
         cd dist/
         zip real_division_GUI-Linux-x64.zip *
         cd ..
@@ -56,7 +56,7 @@ jobs:
       if: ${{ runner.os == 'Windows' }}
       run: |
         cd dist/
-        ren gui.exe real_division_GUI-Windows-x64.exe
+        ren gui.exe real_division_Tkinter-GUI-Windows-x64.exe
         7z a -tzip real_division_GUI-Windows-x64.zip *
         del real_division_GUI-Windows-x64.exe
         cd ..
@@ -65,7 +65,7 @@ jobs:
       if: ${{ runner.os == 'macOS' }}
       run: |
         cd dist/
-        mv gui.app real_division_GUI-macOS-x64.app
+        mv gui.app real_division_Tkinter-GUI-macOS-x64.app
         rm gui
         zip real_division_GUI-macOS-x64.zip * -r
         rm -r real_division_GUI-macOS-x64.app
