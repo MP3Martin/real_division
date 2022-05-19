@@ -50,7 +50,7 @@ jobs:
         cd dist/
         zip real_division_Tkinter-GUI-Linux-x64.zip *
         cd ..
-#        rm -r dist/real_division_Tkinter-GUI-Linux-x64
+        # rm -r dist/real_division_Tkinter-GUI-Linux-x64
 
     - name: ZIP Windows
       if: ${{ runner.os == 'Windows' }}
@@ -58,7 +58,7 @@ jobs:
         cd dist/
         ren gui.exe real_division_Tkinter-GUI-Windows-x64.exe
         7z a -tzip real_division_Tkinter-GUI-Windows-x64.zip *
-#        del real_division_Tkinter-GUI-Windows-x64.exe
+        # del real_division_Tkinter-GUI-Windows-x64.exe
         cd ..
 
     - name: ZIP macOS
