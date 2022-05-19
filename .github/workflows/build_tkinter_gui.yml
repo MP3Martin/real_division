@@ -46,29 +46,29 @@ jobs:
     - name: ZIP Linux
       if: ${{ runner.os == 'Linux' }}
       run: |
-        mv dist/* dist/real_division_GUI-Linux-x64
+        mv dist/* dist/real_division_Tkinter-GUI-Linux-x64
         cd dist/
-        zip real_division_GUI-Linux-x64.zip *
+        zip real_division_Tkinter-GUI-Linux-x64.zip *
         cd ..
-        rm -r dist/real_division_GUI-Linux-x64
+        rm -r dist/real_division_Tkinter-GUI-Linux-x64
 
     - name: ZIP Windows
       if: ${{ runner.os == 'Windows' }}
       run: |
         cd dist/
-        ren gui.exe real_division_GUI-Windows-x64.exe
-        7z a -tzip real_division_GUI-Windows-x64.zip *
-        del real_division_GUI-Windows-x64.exe
+        ren gui.exe real_division_Tkinter-GUI-Windows-x64.exe
+        7z a -tzip real_division_Tkinter-GUI-Windows-x64.zip *
+        del real_division_Tkinter-GUI-Windows-x64.exe
         cd ..
 
     - name: ZIP macOS
       if: ${{ runner.os == 'macOS' }}
       run: |
         cd dist/
-        mv gui.app real_division_GUI-macOS-x64.app
+        mv gui.app real_division_Tkinter-GUI-macOS-x64.app
         rm gui
-        zip real_division_GUI-macOS-x64.zip * -r
-        rm -r real_division_GUI-macOS-x64.app
+        zip real_division_Tkinter-GUI-macOS-x64.zip * -r
+        rm -r real_division_Tkinter-GUI-macOS-x64.app
         cd ..
 
     - uses: softprops/action-gh-release@v1
