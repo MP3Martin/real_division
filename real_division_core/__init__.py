@@ -61,10 +61,8 @@ def calc(one, two):
     if str(len(str(one))) != "1":
         additionalSpaces = additionalSpaces + " "
     
-    print(howManyTimesDoesItFit(two, int(str(one)[0])))
     if howManyTimesDoesItFit(two, int(str(one)[0])) != 0:
-        # additionalSpaces = additionalSpaces[:-1]
-        print("yea")
+        additionalSpaces = additionalSpaces[:-1]
 
     for line in lines:
         out = f"{out}\n{additionalSpaces}{line}"
