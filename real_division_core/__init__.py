@@ -22,51 +22,8 @@ def calc(one, two):
     def getFirstXChars(string: str, x: int):
         return string[:x]
 
-    #The calculation
-    result = one // two
-    remainder = one % two
-    
-    def firstRemainder(i):
-        global firstRemainderNumsUsed
-        global additionalSpaces
-        chars = getFirstXChars(str(one), i)
-        if int(chars) >= two:
-            additionalSpaces = ""
-            for i in range (2, int(len(str(chars)))):
-                additionalSpaces = additionalSpaces + " "
-                print("amo")
-            lines.append(str(int(chars) % two))
-            firstRemainderNumsUsed = len(str(chars))
-            return
-        else:
-            firstRemainder(i + 1)
-
-    firstRemainder(1)
-
-    # print(firstRemainderNumsUsed)
-
-    nextNumbers = list(str(one)[firstRemainderNumsUsed:])
-
-    # print(nextNumbers)
-
-
-    # Put everything together
-    out = str(firstLine) + str(result)
-    if remainder != "" and str(remainder) != "0":
-        out = str(out) + " " + "(" + str(remainder) + ")"
-
-    # if str(len(str(additionalSpaces))) == "0" and str(len(str(one))) != "1":
-    #     additionalSpaces = " "
-
-    if str(len(str(one))) != "1":
-        additionalSpaces = additionalSpaces + " "
-    
-    if howManyTimesDoesItFit(two, int(str(one)[0])) != 0:
-        additionalSpaces = additionalSpaces[:-1]
-
-    for line in lines:
-        out = f"{out}\n{additionalSpaces}{line}"
-        additionalSpaces = additionalSpaces + " "
+    #Calc
+    out = "ez"
     return out
 
 if __name__ == '__main__':
