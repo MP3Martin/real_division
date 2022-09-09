@@ -17,7 +17,7 @@ jobs:
         find: "debug_enabled = True"
         replace: |
           debug_enabled = False
-          print("Made by HexagonCore\nStarted by MP3Martin\nWorking thanks to Tkinter and PyInstaller")
+          print("Made by HexagonCore\nFounded by MP3Martin\nWorking thanks to Tkinter and PyInstaller")
         regex: false
     - uses: actions/upload-artifact@v2
       with:
