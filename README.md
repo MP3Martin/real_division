@@ -1,9 +1,9 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/hexagoncore/real_division/badge)](#/)
-[<img src="https://github.com/HexagonCore/real_division/workflows/Build%20Tkinter%20GUI/badge.svg">](#/)
-[<img src="https://img.shields.io/github/license/HexagonCore/real_division">](#/)
-[<img src="https://img.shields.io/github/stars/HexagonCore/real_division">](#/)
-[<img src="https://img.shields.io/github/forks/HexagonCore/real_division">](#/)
-[<img src="https://img.shields.io/github/issues/HexagonCore/real_division">](#/)
+[![CodeFactor](https://www.codefactor.io/repository/github/MP3Martin/real_division/badge)](#/)
+[<img src="https://github.com/MP3Martin/real_division/workflows/Build%20Tkinter%20GUI/badge.svg">](#/)
+[<img src="https://img.shields.io/github/license/MP3Martin/real_division">](#/)
+[<img src="https://img.shields.io/github/stars/MP3Martin/real_division">](#/)
+[<img src="https://img.shields.io/github/forks/MP3Martin/real_division">](#/)
+[<img src="https://img.shields.io/github/issues/MP3Martin/real_division">](#/)
 
 # real_division
  Generates division using method "division with a remainder" like this:
