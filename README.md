@@ -6,7 +6,7 @@
 [<img src="https://img.shields.io/github/issues/HexagonCore/real_division">](#/)
 
 # real_division
- Generates division using method "below each other" like this:
+ Generates division using method "division with a remainder" like this:
  
  <a href="#/"><img src="https://user-images.githubusercontent.com/60501493/168464768-5902695f-7c1f-4581-869c-78b0b82c14e6.png" width="610" /></a>
  <p><span style="color: #666699;"><em>Image source <a href="https://publi.cz/books/12/video/10_pisemne_deleni_jednocifernym_se_zbytkem.png"><strong>here</strong></a></em></span></p>
