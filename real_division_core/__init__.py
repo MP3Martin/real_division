@@ -4,13 +4,6 @@ def calc(one, two):
     one = int(one)
     two = int(two)
 
-    #Setup
-    firstLine = f"{one}:{two} = "
-    result = ""
-    remainder = ""
-    lines = []
-    global additionalSpaces
-
     #Functions
     def howManyTimesDoesItFit(one1: int, two1: int):
         temp_one = one1
@@ -50,25 +43,42 @@ def calc(one, two):
         except IndexError:
             newLeftNum = remains
         
-        leftNums.append(int(newLeftNum))
+        leftNums.append(str(newLeftNum))
 
         if str(result) == str(one // two) and str(leftNums[-1]) == str(one % two):
             break
 
     #Generate output
+    remainder = int(leftNums[-1])
     leftNums.pop(0)
     leftNums = [str(i) for i in leftNums]
 
     tempLeftNums = leftNums
+    my_i_251541 = 0
+    for item in tempLeftNums:
+        if item == "0":
+            tempLeftNums[my_i_251541] = "00"
+        my_i_251541 += 1
+    
     tempLeftNums.pop()
-    tempLeftNums = list(map(lambda x: x.replace('0', '00'), tempLeftNums))
-
-    tempLeftNums.append(leftNums[-1])
+    tempLeftNums.append(str(one % two))
     leftNums = tempLeftNums
 
-    #TODO: Replace all inbetween strings in leftNums with replace("0", "00")
+    firstLine = f"{one} : {two} = {result}"
+    if remainder != 0:
+        firstLine += f" ({remainder})"
 
-    return result + f"\n{leftNums}"
+    spaceOffset = len(str(firstLeftNum)) - 1
+
+    remainders = ""
+    for i in range(len(leftNums)):
+        string = f"{i*' '}{spaceOffset*' '}{leftNums[i]}\n"
+        if len(str(leftNums[i])) >= 3:
+            string = string[(len(str(leftNums[i])) - 2):]
+        
+        remainders += string
+
+    return f"{firstLine}\n{remainders}"
 
 if __name__ == '__main__':
     print("This program is not meant to be used standalone")

@@ -5,6 +5,8 @@ import time
 import real_division_core as rdc
 global can_calculate
 global empty_content
+MAX_CHARS = 28
+ALLOWED_CHARS = list("0123456789,.")
 can_calculate = True
 default_output_text = "Please type in what you want to divide into the boxes above.\n\n"
 # --- #
@@ -64,6 +66,11 @@ def on_closing():
     else:
         master.destroy()
 
+def copy_output():
+    string = w.get("1.0", "end-1c")[:-1]
+    if not default_output_text[:10] in string:
+        clipboard(string)
+
 def calculate():
     global default_output_text
     
@@ -107,7 +114,7 @@ def delete(event):
     string = str(event.widget.get("1.0","end"))
     string_before = string
     event.widget.delete(1.0,"end")
-    how_many = chars - 19
+    how_many = chars - (MAX_CHARS - 1)
     string = string[: -how_many]
     #print("\n\nBefore: " + string_before + "\nAfter: " + str(string))
     event.widget.insert(1.0, string)
@@ -193,18 +200,18 @@ def onModificationWidthChange(event):
     if errored == 0:
         error_msg.pack_forget()
 
-    if chars > 10 and chars < 21:
+    if chars > 10 and chars < (MAX_CHARS + 1):
         event.widget.configure(width = chars)
         widget_name = event.widget
         widget_name = str(widget_name).replace(".!frame.!","")
-        if chars < 21 and chars > 10:
+        if chars < (MAX_CHARS + 1) and chars > 10:
             iprint("[INFO]: Set widht of " + str(widget_name) + " to " + str(chars))
         inp1.pack()
     else:
         event.widget.configure(width = 10)
         inp1.pack()
 
-    if chars > 20:
+    if chars > MAX_CHARS:
         #print("is now max lenght ("+ str(chars) + ")")
         delete(event)
         inp1.pack()
@@ -232,7 +239,7 @@ class CustomText(tk.Text):
 
         return result
 
-# ttk.Style().theme_use('clam')
+ttk.Style().theme_use('default')
 
 inp_frame = tk.Frame(master)
 inp_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(20,0))
@@ -278,7 +285,10 @@ v_scrl.pack(side = tk.RIGHT, fill = tk.Y)
 out_frame = tk.Frame(master)
 out_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(1,1))
 
-w = tk.Text(out_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
+out_frame_frame = tk.Frame(out_frame)
+out_frame_frame.pack()
+
+w = tk.Text(out_frame_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
 
 h_scrl.config(command=w.xview)
 v_scrl.config(command=w.yview)
@@ -287,6 +297,11 @@ w.insert(1.0, default_output_text)
 w.pack(side = tk.LEFT)
 w.configure(state="disabled")
 w.bind('<Button-1>', focusText)
+
+copy_button = tk.Button(out_frame, height = 1, width = 4, padx = 8, pady = 4, command=copy_output)
+copy_button.config(text = "COPY")
+# equals_button.configure(state="disabled")
+copy_button.pack(side = tk.LEFT, pady = (10, 0))
 
 #MENU
 menubar = tk.Menu(master)
@@ -317,9 +332,16 @@ master.bind("<Control-Key-A>", select_all)
 
 #CTRL+C FUNCTION
 def copy_selected(event):
-    selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
+    try:
+        selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
+    except:
+        selected_text = "None"
     selected_text = str(selected_text)
-    selected_text = selected_text.replace("\n", "")
+    widget = str(event.widget).replace(".!frame.!","")
+    if "customtext" in widget:
+        selected_text = ''.join(filter(lambda i: i in ALLOWED_CHARS, selected_text))
+    if selected_text[-1] == "\n":
+        selected_text = selected_text[:-2] + selected_text[-2:].replace("\n", "").replace("\r", "")
     if selected_text == "None":
         clipboard()
     else:
