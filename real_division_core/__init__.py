@@ -59,11 +59,12 @@ def calc(one, two):
     leftNums.pop(0)
     leftNums = [str(i) for i in leftNums]
 
-    # tempLeftNums = leftNums
-    # tempLeftNums.pop()
-    # for i in range(len(tempLeftNums)):
-    #     tempLeftNums[i] = tempLeftNums[i].replace("0", "00")
-    # leftNums = tempLeftNums.append(leftNums[-1])
+    tempLeftNums = leftNums
+    tempLeftNums.pop()
+    tempLeftNums = list(map(lambda x: x.replace('0', '00'), tempLeftNums))
+
+    tempLeftNums.append(leftNums[-1])
+    leftNums = tempLeftNums
 
     #TODO: Replace all inbetween strings in leftNums with replace("0", "00")
 
