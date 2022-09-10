@@ -1,7 +1,0 @@
-.vscode
-build/
-dist/
-__pycache__/
-*.manifest
-*.spec
-.fuse_hidden*
