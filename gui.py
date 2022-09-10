@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
+from ttkthemes import ThemedTk
 import time
 import real_division_core as rdc
 global can_calculate
@@ -95,7 +96,13 @@ def calculate():
         w.insert(1.0, default_output_text)
         w.config(state='disabled')
 
-master = tk.Tk()
+# master = ThemedTk(theme="elegance")
+# master = ThemedTk(theme="breeze")
+# master = ThemedTk(theme="clearlooks")
+master = ThemedTk(theme="plastik")
+# master = ThemedTk(theme="winxpblue")
+# master = ThemedTk(theme="yaru")
+master.configure(background='grey')
 master.title("Realistic division generator  -  HexagonCore")
 setWinSize()
 master.resizable(False,False)
@@ -239,9 +246,13 @@ class CustomText(tk.Text):
 
         return result
 
-ttk.Style().theme_use('default')
+s = ttk.Style()
+s.configure('TFrame', background='lightgrey')
 
-inp_frame = tk.Frame(master)
+master_wrapper = ttk.Frame(master)
+master_wrapper.pack(fill=tk.BOTH,side = tk.TOP,expand=True)
+
+inp_frame = ttk.Frame(master_wrapper)
 inp_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(20,0))
 
 inp1=CustomText(inp_frame, width=10, height=1)
@@ -260,32 +271,32 @@ inp2.insert(tk.END, "")
 inp2.pack(side = tk.LEFT)
 inp2.bind("<<TextModified>>", onModificationWidthChange)
 
-equals_button = tk.Button(inp_frame, height = 1, width = 1, padx = 2, pady = 2, command=calculate)
+equals_button = ttk.Button(inp_frame, width = 1, command=calculate)
 equals_button.config(text = "=")
 # equals_button.configure(state="disabled")
 equals_button.pack(side = tk.LEFT)
 
-error_frame = tk.Frame(master)
+error_frame = ttk.Frame(master_wrapper)
 error_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(5,20))
 
 error_msg = tk.Text(error_frame,borderwidth=0,height=1,width=32)
 error_msg.insert(0.0,"Error: Please enter numbers only")
 error_msg.config(fg='#cd1313')
-error_msg.bindtags((str(error_msg), str(master), "all"))
+error_msg.bindtags((str(error_msg), str(master_wrapper), "all"))
 error_msg.configure(state="disabled")
 error_msg.pack(side= tk.LEFT)
 
 
 #OUTPUT
-h_scrl = tk.Scrollbar(master, orient = 'horizontal')
+h_scrl = ttk.Scrollbar(master_wrapper, orient = 'horizontal')
 h_scrl.pack(side = tk.BOTTOM, fill = tk.X)
-v_scrl = tk.Scrollbar(master)
+v_scrl = ttk.Scrollbar(master_wrapper)
 v_scrl.pack(side = tk.RIGHT, fill = tk.Y)
 
-out_frame = tk.Frame(master)
+out_frame = ttk.Frame(master_wrapper)
 out_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(1,1))
 
-out_frame_frame = tk.Frame(out_frame)
+out_frame_frame = ttk.Frame(out_frame)
 out_frame_frame.pack()
 
 w = tk.Text(out_frame_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
@@ -298,13 +309,13 @@ w.pack(side = tk.LEFT)
 w.configure(state="disabled")
 w.bind('<Button-1>', focusText)
 
-copy_button = tk.Button(out_frame, height = 1, width = 4, padx = 8, pady = 4, command=copy_output)
+copy_button = ttk.Button(out_frame, width = 7, command=copy_output)
 copy_button.config(text = "COPY")
 # equals_button.configure(state="disabled")
 copy_button.pack(side = tk.LEFT, pady = (10, 0))
 
 #MENU
-menubar = tk.Menu(master)
+menubar = tk.Menu(master_wrapper)
 filemenu = tk.Menu(menubar, tearoff=0)
 filemenu.add_command(label="New", command=new)
 # filemenu.add_command(label="Open", command=donothing)
