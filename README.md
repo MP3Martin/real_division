@@ -8,7 +8,7 @@
 # real_division
  Generates division using method "division with a remainder" like this:
  
- <a href="#/"><img src="https://user-images.githubusercontent.com/60501493/189485378-a223b9cc-0a46-40b1-b19d-f8d4997df342.png" width="40%" /></a>
+ <a href="#/"><img src="https://user-images.githubusercontent.com/60501493/189485454-df9cec40-8195-49ec-b836-078146240fa5.png" width="40%" /></a>
  <p><span style="color: #666699;"></span></p>
  
 <h3><strong>❕ Example video of the method: <a href="https://mp3martin.github.io/real_division/video-example?id=DiJu5VeubWs" target="_blank">www.youtube.com/watch?v=...</a> ❕</strong></h3>
