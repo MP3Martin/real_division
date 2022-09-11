@@ -2,10 +2,10 @@ import string
 import tkinter as tk
 from tkinter import ttk, messagebox
 import tkinter.font as tkFont
-from ttkthemes import ThemedTk
 import real_division_core as rdc
 import webbrowser
 import re
+# import sv_ttk
 global can_calculate
 global empty_content
 MAX_CHARS = 28
@@ -43,10 +43,10 @@ class HyperlinkMessageBox(tk.Toplevel):
         tk.Toplevel.__init__(self, master)
         self.geometry("240x100")
         self.title(title or master.title())
-        self.s = ttk.Style()
-        self.s.configure('TFrame', background='lightgrey')
-        self.configure(background='lightgrey')
-        self.text = tk.Text(self, wrap=tk.WORD, bg="lightgrey", bd=0, padx=5, pady=5, font=('20'),
+        # self.s = ttk.Style()
+        # self.s.configure('TFrame', background='lightgrey')
+        # self.configure(background='lightgrey')
+        self.text = tk.Text(self, wrap=tk.WORD, bd=0, padx=5, pady=5, font=('20'),
             height=self.cget('height'))
         self.text.tag_configure("center", justify='center')
         self._formatHyperLink(message)
@@ -137,11 +137,13 @@ def copy_output():
 def floatToIntForDivision(f1: string, f2: string):
     f1 = str(float(f1))
     f2 = str(float(f2))
-    while True:
-        if str(f1).endswith(".0") and str(f2).endswith(".0"):
-            break
-        f1 = str(float(f1) * 10)
-        f2 = str(float(f2) * 10)
+    if not str(f1).endswith(".0") and not str(f2).endswith(".0"):
+        while True:
+            if str(f1).endswith(".0") and str(f2).endswith(".0"):
+                break
+            else:
+                f1 = str(float(f1) * 10)
+                f2 = str(float(f2) * 10)
     
     return [str(int(float(f1))), str(int(float(f2)))]
 
@@ -179,10 +181,16 @@ def calculate():
 # master = ThemedTk(theme="elegance")
 # master = ThemedTk(theme="breeze")
 # master = ThemedTk(theme="clearlooks")
-master = ThemedTk(theme="plastik")
 # master = ThemedTk(theme="winxpblue")
 # master = ThemedTk(theme="yaru")
-master.configure(background='grey')
+
+# master = ThemedTk(theme="plastik")
+
+master = tk.Tk()
+master.tk.call("source", "azure.tcl")
+master.tk.call("set_theme", "dark")
+
+# master.configure(background='grey')
 master.title("Realistic division generator  -  MP3Martin")
 setWinSize()
 master.resizable(False,False)
@@ -365,8 +373,8 @@ class CustomText(tk.Text):
 
         return result
 
-s = ttk.Style()
-s.configure('TFrame', background='lightgrey')
+# s = ttk.Style()
+# s.configure('TFrame', background='lightgrey')
 
 master_wrapper = ttk.Frame(master)
 master_wrapper.pack(fill=tk.BOTH,side = tk.TOP,expand=True)
@@ -390,10 +398,10 @@ inp2.insert(tk.END, "")
 inp2.pack(side = tk.LEFT)
 inp2.bind("<<TextModified>>", onModificationWidthChange)
 
-equals_button = ttk.Button(inp_frame, width = 1, command=calculate)
+equals_button = ttk.Button(inp_frame, width = 1, command=calculate, style='Accent.TButton')
 equals_button.config(text = "=")
 # equals_button.configure(state="disabled")
-equals_button.pack(side = tk.LEFT)
+equals_button.pack(side = tk.LEFT, padx=(3, 0))
 
 error_frame = ttk.Frame(master_wrapper)
 error_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(5,20))
@@ -418,7 +426,7 @@ out_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(1,1))
 out_frame_frame = ttk.Frame(out_frame)
 out_frame_frame.pack()
 
-w = tk.Text(out_frame_frame, borderwidth=1,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
+w = tk.Text(out_frame_frame, borderwidth=2,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
 
 h_scrl.config(command=w.xview)
 v_scrl.config(command=w.yview)
@@ -428,7 +436,7 @@ w.pack(side = tk.LEFT)
 w.configure(state="disabled")
 w.bind('<Button-1>', focusText)
 
-copy_button = ttk.Button(out_frame, width = 7, command=copy_output)
+copy_button = ttk.Button(out_frame, width = 7, command=copy_output, style='Accent.TButton')
 copy_button.config(text = "COPY")
 # equals_button.configure(state="disabled")
 copy_button.pack(side = tk.LEFT, pady = (10, 0))
