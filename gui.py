@@ -1,10 +1,11 @@
 import string
 import tkinter as tk
-from tkinter import ttk
-from tkinter import messagebox
+from tkinter import ttk, messagebox
+import tkinter.font as tkFont
 from ttkthemes import ThemedTk
-import time
 import real_division_core as rdc
+import webbrowser
+import re
 global can_calculate
 global empty_content
 MAX_CHARS = 28
@@ -34,8 +35,68 @@ def new_sys():
     w.config(state='disabled')
     inp1.focus_set()
 
+# ---- Start of code by https://stackoverflow.com/users/1142167/joel-cornett ---- #
+class HyperlinkMessageBox(tk.Toplevel):
+    hyperlinkPattern = re.compile(r'<a href="(?P<address>.*?)">(?P<title>.*?)'
+                                  '</a>')
+    def __init__(self, master, title=None, message=None, **options):
+        tk.Toplevel.__init__(self, master)
+        self.geometry("240x100")
+        self.title(title or master.title())
+        self.s = ttk.Style()
+        self.s.configure('TFrame', background='lightgrey')
+        self.configure(background='lightgrey')
+        self.text = tk.Text(self, wrap=tk.WORD, bg="lightgrey", bd=0, padx=5, pady=5, font=('20'),
+            height=self.cget('height'))
+        self.text.tag_configure("center", justify='center')
+        self._formatHyperLink(message)
+        self.text.tag_add("center", "1.0", "end")
+        self.text.config(state=tk.DISABLED)
+        self.text.pack(side=tk.TOP, fill=tk.X)
+        self.low_frame = ttk.Frame(self)
+        self.low_frame.pack(side=tk.BOTTOM, pady=(0, 10))
+        self.button = ttk.Button(self.low_frame, text="Ok",
+            command=lambda *a, **k: self.destroy()).pack()
+ 
+    def _formatHyperLink(self, message):
+        text = self.text
+        start = 0
+        for index, match in enumerate(self.hyperlinkPattern.finditer(message)):
+            groups = match.groupdict()
+            text.insert("end", message[start: match.start()])
+            #insert hyperlink tag here
+            text.insert("end", groups['title'])
+            text.tag_add(str(index),
+                "end-%dc" % (len(groups['title']) + 1),
+                "end",)
+            text.tag_config(str(index),
+                foreground="blue",
+                underline=1)
+            text.tag_bind(str(index),
+                "<Enter>",
+                lambda *a, **k: text.config(cursor="hand2"))
+            text.tag_bind(str(index),
+                "<Leave>",
+                lambda *a, **k: text.config(cursor="arrow"))
+            text.tag_bind(str(index),
+                "<Button-1>",
+                self._callbackFactory(groups['address']))
+            start = match.end()
+        else:
+            text.insert("end", message[start:])
+ 
+    def _callbackFactory(self, url):
+        return lambda *args, **kwargs: webbrowser.open(url)
+# ---- End of code by https://stackoverflow.com/users/1142167/joel-cornett ---- #
+
 def donothing():
     pass
+
+def helpmenu_about():
+    HyperlinkMessageBox(master, title="About...", message='Made by <a href="http://mp3martin.xyz">©MP3Martin</a>')
+
+def helpmenu_github():
+    webbrowser.open("https://github.com/MP3Martin/real_division")
 
 def setWinSize():
     width = master.winfo_screenwidth()
@@ -125,6 +186,10 @@ master.configure(background='grey')
 master.title("Realistic division generator  -  MP3Martin")
 setWinSize()
 master.resizable(False,False)
+
+default_font = tkFont.nametofont("TkDefaultFont")
+default_font.configure(family="Verdana")
+master.option_add("*Font", default_font)
 
 def is_num(text):
     try:
@@ -249,7 +314,7 @@ def onModificationWidthChange(event):
     
     if errored == 0:
         try:
-            if int(content1) < int(content2):
+            if float(content1) < float(content2):
                 changeError("[ERROR]: First number should be bigger")
                 errored = errored + 1
                 can_calculate = False
@@ -379,8 +444,8 @@ filemenu.add_command(label="Exit", command=on_closing)
 menubar.add_cascade(label="File", menu=filemenu)
 
 helpmenu = tk.Menu(menubar, tearoff=0)
-helpmenu.add_command(label="Wiki", command=donothing)
-helpmenu.add_command(label="About...", command=donothing)
+helpmenu.add_command(label="GitHub", command=helpmenu_github)
+helpmenu.add_command(label="About...", command=helpmenu_about)
 menubar.add_cascade(label="Help", menu=helpmenu)
 
 master.config(menu=menubar)
