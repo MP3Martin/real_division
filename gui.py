@@ -1,3 +1,4 @@
+import string
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -7,7 +8,7 @@ import real_division_core as rdc
 global can_calculate
 global empty_content
 MAX_CHARS = 28
-ALLOWED_CHARS = list("0123456789,.")
+ALLOWED_CHARS = set(string.digits + ',.╣') #the last one is for temporary stuff
 can_calculate = True
 default_output_text = "Please type in what you want to divide into the boxes above.\n\n"
 # --- #
@@ -72,20 +73,38 @@ def copy_output():
     if not default_output_text[:10] in string:
         clipboard(string)
 
+def floatToIntForDivision(f1: string, f2: string):
+    f1 = str(float(f1))
+    f2 = str(float(f2))
+    while True:
+        if str(f1).endswith(".0") and str(f2).endswith(".0"):
+            break
+        f1 = str(float(f1) * 10)
+        f2 = str(float(f2) * 10)
+    
+    return [str(int(float(f1))), str(int(float(f2)))]
+
 def calculate():
     global default_output_text
+
+    def addFirstZero(input):
+        if input.startswith("."):
+            return f"0{input}"
+        else:
+            return f"{input}"
     
     #Remove leading spaces
-    out1 = inp1.get("1.0", "end-1c").lstrip("0")
+    out1 = addFirstZero(inp1.get("1.0", "end-1c").lstrip("0"))
     inp1.delete(1.0,"end")
     inp1.insert(1.0, out1)
 
-    out2 = inp2.get("1.0", "end-1c").lstrip("0")
+    out2 = addFirstZero(inp2.get("1.0", "end-1c").lstrip("0"))
     inp2.delete(1.0,"end")
     inp2.insert(1.0, out2)
 
-    if is_num(inp1.get("1.0", "end-1c")) == True and is_num(inp2.get("1.0", "end-1c")) == True and isZero(inp1.get("1.0", "end-1c")) == False and isZero(inp2.get("1.0", "end-1c")) == False and int(str(inp1.get("1.0","end"))) >= int(str(inp2.get("1.0","end"))):
-        out = rdc.calc(inp1.get("1.0", "end-1c"), inp2.get("1.0", "end-1c"))
+    if is_num_second(inp1.get("1.0", "end-1c")) == True and is_num_second(inp2.get("1.0", "end-1c")) == True and isZero(inp1.get("1.0", "end-1c")) == False and isZero(inp2.get("1.0", "end-1c")) == False and float(str(inp1.get("1.0","end"))) >= float(str(inp2.get("1.0","end"))):
+        parsedNums = floatToIntForDivision(str(inp1.get("1.0", "end-1c")), str(inp2.get("1.0", "end-1c")))
+        out = rdc.calc(parsedNums[0], parsedNums[1])
         w.config(state='normal')
         w.delete(1.0,"end")
         w.insert(1.0, out)
@@ -103,7 +122,7 @@ master = ThemedTk(theme="plastik")
 # master = ThemedTk(theme="winxpblue")
 # master = ThemedTk(theme="yaru")
 master.configure(background='grey')
-master.title("Realistic division generator  -  HexagonCore")
+master.title("Realistic division generator  -  MP3Martin")
 setWinSize()
 master.resizable(False,False)
 
@@ -113,6 +132,12 @@ def is_num(text):
         return True
     except:
         return False
+
+def is_num_second(test_str):
+    test_str = test_str.replace("\n", "").replace("\r", "")
+    if test_str == "":
+        return False
+    return set(test_str) <= ALLOWED_CHARS
 
 
 #INPUT
@@ -155,6 +180,12 @@ def isZero(string1):
         return False
 
 def onModificationWidthChange(event):
+    def setText(text, widget = event.widget, offset = 0):
+        cur_pos = int(str(event.widget.index(tk.INSERT))[2:])
+        widget.delete(1.0,"end")
+        widget.insert(1.0, text.replace("\n", "").replace("\r", ""))
+        widget.mark_set("insert", "%d.%d" % (1, cur_pos + (offset)))
+
     chars = len(event.widget.get("1.0", "end-1c"))
     content = str(event.widget.get("1.0","end"))
 
@@ -165,8 +196,31 @@ def onModificationWidthChange(event):
 
     errored = 0
 
+    if "customtext" in str(event.widget):
+        customtext_content = content.replace(",", ".")
+        if customtext_content.count(".") > 1:
+            temp_char = "╣"
+            cur_pos = int(str(event.widget.index(tk.INSERT))[2:])
+            modified_content = customtext_content[:cur_pos-1] + temp_char + customtext_content[cur_pos-1:]
+            modified_content = modified_content.replace(".", "")
+            setText(modified_content)
+            modified_content = event.widget.get("1.0","end")
+            # print(modified_content)
+            event.widget.mark_set("insert", "%d.%d" % (1, (modified_content.find(temp_char) + 1)))
+            setText(modified_content.replace(temp_char, "."))
+        else:
+            if "," in content:
+                setText(content.replace(",", "."))
+
+
+        # i = content.find('.')
+        # modified_content = content[:i+1] + content[i+1:].replace('.', '')
+        # if content != modified_content:
+        #     setText(modified_content, offset = -1)
+
+
     for content0 in contents:
-        if is_num(content0) and " " not in str(content0):
+        if is_num_second(content0) and " " not in str(content0):
             #IS NUMBERS ONLY
             if isZero(str(content0)):
                 #IS ZERO...
