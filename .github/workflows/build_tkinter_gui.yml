@@ -41,7 +41,7 @@ jobs:
         python-version: 3.7
 
     - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller --onefile --add-data="theme/*;." -w gui.py
+    - run: pyinstaller --onefile -w gui.spec
 
     - name: ZIP Linux
       if: ${{ runner.os == 'Linux' }}
