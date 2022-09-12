@@ -65,6 +65,7 @@ jobs:
       if: ${{ runner.os == 'macOS' }}
       run: |
         cd dist/
+        ls
         mv gui.app real_division_Tkinter-GUI-macOS-x64.app
         rm gui
         zip real_division_Tkinter-GUI-macOS-x64.zip * -r
