@@ -334,13 +334,23 @@ namespace eval ttk::theme::azure-dark {
 
         # Scrollbar
         ttk::style element create Horizontal.Scrollbar.trough image $I(scrollbar-trough-hor) -sticky ew -border 6
-        ttk::style element create Horizontal.Scrollbar.thumb image $I(scrollbar-thumb-hor) -sticky ew -border 3
+        ttk::style element create Horizontal.Scrollbar.thumb \
+             image [list $I(scrollbar-thumb-hor) \
+                disabled $I(scrollbar-thumb-hor) \
+                pressed $I(scrollbar-thumb-hor-hover) \
+                active $I(scrollbar-thumb-hor-hover) \
+            ] -sticky ew -border 3
 
         ttk::style element create Horizontal.Scrollbar.rightarrow image $I(scrollbar-right) -sticky e -width 13
         ttk::style element create Horizontal.Scrollbar.leftarrow image $I(scrollbar-left) -sticky w -width 13
 
         ttk::style element create Vertical.Scrollbar.trough image $I(scrollbar-trough-vert) -sticky ns -border 6
-        ttk::style element create Vertical.Scrollbar.thumb image $I(scrollbar-thumb-vert) -sticky ns -border 3
+        ttk::style element create Vertical.Scrollbar.thumb \
+            image [list $I(scrollbar-thumb-vert) \
+                disabled  $I(scrollbar-thumb-vert) \
+                pressed $I(scrollbar-thumb-vert-hover) \
+                active $I(scrollbar-thumb-vert-hover) \
+            ] -sticky ns -border 3
 
         ttk::style element create Vertical.Scrollbar.uparrow image $I(scrollbar-up) -sticky n -height 13
         ttk::style element create Vertical.Scrollbar.downarrow image $I(scrollbar-down) -sticky s -height 13

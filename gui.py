@@ -42,6 +42,7 @@ class HyperlinkMessageBox(tk.Toplevel):
     def __init__(self, master, title=None, message=None, **options):
         tk.Toplevel.__init__(self, master)
         self.geometry("240x100")
+        self.resizable(False, False)
         self.title(title or master.title())
         # self.s = ttk.Style()
         # self.s.configure('TFrame', background='lightgrey')
@@ -97,6 +98,14 @@ def helpmenu_about():
 
 def helpmenu_github():
     webbrowser.open("https://github.com/MP3Martin/real_division")
+
+def optionsmenu_font_size():
+    if str(bigger_output_font_size.get()) == "1":
+        w.configure(font=("Courier New",20))
+        w.configure(height=15)
+    else:
+        w.configure(font=("Courier New",10))
+        w.configure(height=30)
 
 def setWinSize():
     width = master.winfo_screenwidth()
@@ -190,10 +199,18 @@ master = tk.Tk()
 master.tk.call("source", "azure.tcl")
 master.tk.call("set_theme", "dark")
 
+#VARS
+bigger_output_font_size = tk.StringVar()
+#End of VARS
+
 # master.configure(background='grey')
 master.title("Realistic division generator  -  MP3Martin")
 setWinSize()
-master.resizable(False,False)
+# master.resizable(False,False)
+width = master.winfo_screenwidth()
+height = master.winfo_screenheight()
+master.minsize(width=int(width / 3.1), height=int(height / 1.3))
+master.maxsize(width=int(width / 2.6), height=int(height / 1.2))
 
 default_font = tkFont.nametofont("TkDefaultFont")
 default_font.configure(family="Verdana")
@@ -426,7 +443,7 @@ out_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(1,1))
 out_frame_frame = ttk.Frame(out_frame)
 out_frame_frame.pack()
 
-w = tk.Text(out_frame_frame, borderwidth=2,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set)
+w = tk.Text(out_frame_frame, borderwidth=2,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set, height=30, font=("Courier New",10))
 
 h_scrl.config(command=w.xview)
 v_scrl.config(command=w.yview)
@@ -450,6 +467,10 @@ filemenu.add_command(label="New", command=new)
 filemenu.add_separator()
 filemenu.add_command(label="Exit", command=on_closing)
 menubar.add_cascade(label="File", menu=filemenu)
+
+optionsmenu = tk.Menu(menubar, tearoff=0)
+optionsmenu.add_checkbutton(label="Bigger output font size", variable=bigger_output_font_size, command=optionsmenu_font_size)
+menubar.add_cascade(label="Options", menu=optionsmenu)
 
 helpmenu = tk.Menu(menubar, tearoff=0)
 helpmenu.add_command(label="GitHub", command=helpmenu_github)
