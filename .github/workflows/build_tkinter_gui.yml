@@ -17,7 +17,7 @@ jobs:
         find: "debug_enabled = True"
         replace: |
           debug_enabled = False
-          print("Made by HexagonCore\nFounded by MP3Martin\nWorking thanks to Tkinter and PyInstaller")
+          print("Made by MP3Martin\nWorking thanks to Tkinter and PyInstaller")
         regex: false
     - uses: actions/upload-artifact@v2
       with:
@@ -41,7 +41,7 @@ jobs:
         python-version: 3.7
 
     - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller --onefile -w gui.py
+    - run: pyinstaller --onefile --add-data="theme/*;." -w gui.py
 
     - name: ZIP Linux
       if: ${{ runner.os == 'Linux' }}
