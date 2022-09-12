@@ -4,6 +4,8 @@ def calc(one, two):
     one = int(one)
     two = int(two)
 
+    # print([one, two])
+
     #Functions
     def howManyTimesDoesItFit(one1: int, two1: int):
         temp_one = one1
