@@ -41,7 +41,7 @@ jobs:
         python-version: 3.7
 
     - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller --onefile -w gui.spec
+    - run: pyinstaller gui.spec
 
     - name: ZIP Linux
       if: ${{ runner.os == 'Linux' }}
