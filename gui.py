@@ -5,16 +5,31 @@ import tkinter.font as tkFont
 import real_division_core as rdc
 import webbrowser
 import re
+from pathlib import Path
+import os
+import sys
 # import sv_ttk
 global can_calculate
 global empty_content
 MAX_CHARS = 28
 ALLOWED_CHARS = set(string.digits + ',.╣') #the last one is for temporary stuff
+fileNames = {"theme": "azure.tcl"}
 can_calculate = True
 default_output_text = "Please type in what you want to divide into the boxes above.\n\n"
 # --- #
 debug_enabled = True
 # --- #
+
+
+#check if its a compiled exe
+if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    themePath = os.path.join(sys._MEIPASS, fileNames["theme"])
+#otherwise it must be a script 
+else:
+    scriptPath = os.path.realpath(os.path.dirname(sys.argv[0]))
+    themePath = os.path.join(scriptPath, fileNames["theme"])
+
+themePath = Path(themePath).resolve()
 
 def new(confirm: bool = True):
     if confirm == True:
@@ -224,7 +239,7 @@ def calculate():
 
 master = tk.Tk()
 try:
-    master.tk.call("source", "azure.tcl")
+    master.tk.call("source", str(themePath))
     master.tk.call("set_theme", "dark")
 except:
     print("Could not load theme :/")
