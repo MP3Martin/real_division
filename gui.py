@@ -223,8 +223,11 @@ def calculate():
 # master = ThemedTk(theme="plastik")
 
 master = tk.Tk()
-master.tk.call("source", "azure.tcl")
-master.tk.call("set_theme", "dark")
+try:
+    master.tk.call("source", "azure.tcl")
+    master.tk.call("set_theme", "dark")
+except:
+    print("Could not load theme :/")
 
 #VARS
 bigger_output_font_size = tk.StringVar()

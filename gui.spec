@@ -9,7 +9,7 @@ spec_root = os.path.abspath(SPECPATH)
 a = Analysis(['gui.py'],
              pathex=[spec_root],
              binaries=[],
-             datas=[ ( 'azure.tcl', '.' )],
+             datas=[ ( 'azure.tcl', '.' ), ('./theme/*.*', 'theme'), ('./theme/dark/*.*', 'theme/dark'), ('./theme/light/*.*', 'theme/light')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -35,20 +35,20 @@ exe = EXE(pyz,
           runtime_tmpdir=None,
           console=False )
 
-def extra_datas(mydir):
-    def rec_glob(p, files):
-        import os
-        import glob
-        for d in glob.glob(p):
-            if os.path.isfile(d):
-                files.append(d)
-            rec_glob("%s/*" % d, files)
-    files = []
-    rec_glob("%s/*" % mydir, files)
-    extra_datas = []
-    for f in files:
-        extra_datas.append((f, f, 'DATA'))
-
-    return extra_datas
-
-a.datas += extra_datas('theme')
+#   def extra_datas(mydir):
+#       def rec_glob(p, files):
+#           import os
+#           import glob
+#           for d in glob.glob(p):
+#               if os.path.isfile(d):
+#                   files.append(d)
+#               rec_glob("%s/*" % d, files)
+#       files = []
+#       rec_glob("%s/*" % mydir, files)
+#       extra_datas = []
+#       for f in files:
+#           extra_datas.append((f, f, 'DATA'))
+#   
+#       return extra_datas
+#   
+#   a.datas += extra_datas('theme')
