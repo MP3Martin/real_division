@@ -243,6 +243,8 @@ try:
     master.tk.call("set_theme", "dark")
 except:
     print("Could not load theme :/")
+    master.after(500, lambda: messagebox.showerror("Error", "Could not load the theme :(\nYou can still use this program."))
+
 
 #VARS
 bigger_output_font_size = tk.StringVar()
