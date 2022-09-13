@@ -122,6 +122,47 @@ def optionsmenu_font_size():
         w.configure(font=("Courier New",10))
         w.configure(height=30)
 
+def optionsmenu_extreme_mode():
+    global MAX_CHARS
+    if str(extreme_mode.get()) == "1":
+        inp1_frame.pack_forget()
+        inp1.pack_forget()
+        divide_symbol.pack_forget()
+        inp2.pack_forget()
+        equals_button.pack_forget()
+
+        inp1_frame.pack(anchor = tk.W)
+        inp1.pack(side = tk.LEFT)
+        divide_symbol.pack(side = tk.LEFT)
+        inp2.pack(side=tk.LEFT)
+        equals_button.pack(side = tk.LEFT, padx=(3, 0))
+
+        MAX_CHARS = int(MAX_CHARS * 2)
+    else:
+        inp1_frame.pack_forget()
+        inp1.pack_forget()
+        divide_symbol.pack_forget()
+        inp2.pack_forget()
+        equals_button.pack_forget()
+
+        inp1_frame.pack(side = tk.LEFT)
+        inp1.pack(side = tk.LEFT)
+        divide_symbol.pack(side = tk.LEFT)
+        inp2.pack(side=tk.LEFT)
+        equals_button.pack(side = tk.LEFT, padx=(3, 0))
+
+        MAX_CHARS = int(MAX_CHARS / 2)
+
+        val = inp1.get("1.0", "end-1c")
+        val = val[:int(MAX_CHARS)]
+        inp1.delete(1.0,"end")
+        inp1.insert(1.0, val)
+
+        val = inp2.get("1.0", "end-1c")
+        val = val[:int(MAX_CHARS)]
+        inp2.delete(1.0,"end")
+        inp2.insert(1.0, val)
+
 def setWinSize():
     width = master.winfo_screenwidth()
     height = master.winfo_screenheight()
@@ -248,6 +289,7 @@ except:
 
 #VARS
 bigger_output_font_size = tk.StringVar()
+extreme_mode = tk.StringVar()
 #End of VARS
 
 # master.configure(background='grey')
@@ -257,7 +299,7 @@ setWinSize()
 width = master.winfo_screenwidth()
 height = master.winfo_screenheight()
 master.minsize(width=int(width / 3.1), height=int(height / 1.3))
-master.maxsize(width=int(width / 2.6), height=int(height / 1.2))
+master.maxsize(width=int(width / 1.4), height=int(height / 1.2))
 
 default_font = tkFont.nametofont("TkDefaultFont")
 default_font.configure(family="Verdana")
@@ -446,20 +488,23 @@ master_wrapper.pack(fill=tk.BOTH,side = tk.TOP,expand=True)
 inp_frame = ttk.Frame(master_wrapper)
 inp_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(20,0))
 
-inp1=CustomText(inp_frame, width=10, height=1)
+inp1_frame = ttk.Frame(inp_frame)
+inp1_frame.pack(side = tk.LEFT)
+
+inp1=CustomText(inp1_frame, width=10, height=1)
 inp1.insert(tk.END, "")
 inp1.pack(side = tk.LEFT)
 inp1.bind("<<TextModified>>", onModificationWidthChange)
 inp1.focus_set()
 
-divide_symbol = tk.Text(inp_frame,height=1,width=1)
+divide_symbol = tk.Text(inp1_frame,height=1,width=1)
 divide_symbol.insert(0.0,":")
 divide_symbol.configure(state="disabled")
 divide_symbol.pack(side = tk.LEFT)
 
 inp2=CustomText(inp_frame, width=10, height=1)
 inp2.insert(tk.END, "")
-inp2.pack(side = tk.LEFT)
+inp2.pack(side=tk.LEFT)
 inp2.bind("<<TextModified>>", onModificationWidthChange)
 
 equals_button = ttk.Button(inp_frame, width = 1, command=calculate, style='Accent.TButton')
@@ -488,7 +533,7 @@ out_frame = ttk.Frame(master_wrapper)
 out_frame.pack(fill=tk.BOTH,side = tk.TOP,padx=20, pady=(1,1))
 
 out_frame_frame = ttk.Frame(out_frame)
-out_frame_frame.pack()
+out_frame_frame.pack(expand=True, fill=tk.X)
 
 w = tk.Text(out_frame_frame, borderwidth=2,wrap=tk.NONE,xscrollcommand = h_scrl.set,yscrollcommand = v_scrl.set, height=30, font=("Courier New",10))
 
@@ -496,7 +541,7 @@ h_scrl.config(command=w.xview)
 v_scrl.config(command=w.yview)
 
 w.insert(1.0, default_output_text)
-w.pack(side = tk.LEFT)
+w.pack(side = tk.LEFT, expand=True, fill=tk.X)
 w.configure(state="disabled")
 w.bind('<Button-1>', focusText)
 
@@ -517,6 +562,7 @@ menubar.add_cascade(label="File", menu=filemenu)
 
 optionsmenu = tk.Menu(menubar, tearoff=0)
 optionsmenu.add_checkbutton(label="Bigger output font size", variable=bigger_output_font_size, command=optionsmenu_font_size)
+optionsmenu.add_checkbutton(label="Extreme mode (bigger input fields)", variable=extreme_mode, command=optionsmenu_extreme_mode)
 menubar.add_cascade(label="Options", menu=optionsmenu)
 
 helpmenu = tk.Menu(menubar, tearoff=0)
