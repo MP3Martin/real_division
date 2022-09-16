@@ -199,46 +199,6 @@ def copy_output():
     if not default_output_text[:10] in string:
         clipboard(string)
 
-def floatToIntForDivision(f1: string, f2: string):
-    #stringToStringFLoat
-    def stsf(string):
-        string = str(string)
-        if "." in string:
-            return "" + string
-        else:
-            return string + ".0"
-
-    def moveDotRight(arg_string):
-        string = stsf(arg_string)
-        if string.endswith(".0"):
-            string = string[:-2]
-            string = string + "0.0"
-            return string
-        pos = string.find(".")
-        pos += 1
-        string = string.replace(".", "")
-        string = string[:pos] + "." + string[pos:]
-        if string.endswith("."):
-            string += "0"
-        string = string.lstrip("0")
-        if string.startswith("."):
-            string = "0" + string
-        return string
-
-    f1_ = stsf(f1)
-    f2_ = stsf(f2)
-    # print([f1_, f2_])
-    if f1_.endswith(".0") == False or f2_.endswith(".0") == False:
-        # print("is not full number")
-        while True:
-            if str(f1_).endswith(".0") and str(f2_).endswith(".0"):
-                break
-            else:
-                f1_ = moveDotRight(f1_)
-                f2_ = moveDotRight(f2_)
-    
-    return [f1_[:-2], f2_[:-2]]
-
 def calculate():
     global default_output_text
 
@@ -258,8 +218,7 @@ def calculate():
     inp2.insert(1.0, out2)
 
     if is_num_second(inp1.get("1.0", "end-1c")) == True and is_num_second(inp2.get("1.0", "end-1c")) == True and isZero(inp1.get("1.0", "end-1c")) == False and isZero(inp2.get("1.0", "end-1c")) == False and float(str(inp1.get("1.0","end"))) >= float(str(inp2.get("1.0","end"))):
-        parsedNums = floatToIntForDivision(str(inp1.get("1.0", "end-1c")), str(inp2.get("1.0", "end-1c")))
-        out = rdc.calc(parsedNums[0], parsedNums[1])
+        out = rdc.calc(str(inp1.get("1.0", "end-1c")), str(inp2.get("1.0", "end-1c")))
         w.config(state='normal')
         w.delete(1.0,"end")
         w.insert(1.0, out)

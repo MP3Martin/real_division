@@ -1,8 +1,56 @@
 import math
 
 def calc(one, two):
-    one = int(one)
-    two = int(two)
+
+    one = str(one)
+    two = str(two)
+
+    def floatToIntForDivision(f1: str, f2: str):
+        #stringToStringFLoat
+        def stsf(string):
+            string = str(string)
+            if "." in string:
+                return "" + string
+            else:
+                return string + ".0"
+
+        def moveDotRight(arg_string):
+            string = stsf(arg_string)
+            if string.endswith(".0"):
+                string = string[:-2]
+                string = string + "0.0"
+                return string
+            pos = string.find(".")
+            pos += 1
+            string = string.replace(".", "")
+            string = string[:pos] + "." + string[pos:]
+            if string.endswith("."):
+                string += "0"
+            string = string.lstrip("0")
+            if string.startswith("."):
+                string = "0" + string
+            return string
+
+        f1_ = stsf(f1)
+        f2_ = stsf(f2)
+        # print([f1_, f2_])
+        if f1_.endswith(".0") == False or f2_.endswith(".0") == False:
+            # print("is not full number")
+            while True:
+                if str(f1_).endswith(".0") and str(f2_).endswith(".0"):
+                    break
+                else:
+                    f1_ = moveDotRight(f1_)
+                    f2_ = moveDotRight(f2_)
+        
+        return [f1_[:-2], f2_[:-2]]
+
+    temp = floatToIntForDivision(one, two)
+
+    one = int(temp[0])
+    two = int(temp[1])
+
+    temp = None
 
     # print([one, two])
 
