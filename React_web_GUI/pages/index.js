@@ -1,11 +1,13 @@
-import Head from 'next/head'
-import {Accordion} from 'react-bootstrap'
+import Head from 'next/head';
+import {Accordion} from 'react-bootstrap';
 
 export default function Home() {
+
   return (
     <div>
       <Head>
         <title>NextJS app with react-bootstrap</title>
+        <script src="/lib/brython-runner.bundle.js"></script>
       </Head>
 
       <main>
