@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Cd into nextjs
+        run: cd React_web_GUI
       - name: Install packages
         run: yarn install --immutable
       - name: Build project
