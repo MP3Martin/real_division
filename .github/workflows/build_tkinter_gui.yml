@@ -22,7 +22,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: gui-py-without-debug
-        path: gui.py
+        path: Tkinter_GUI/gui.py
   build:
     needs: [disable-debug]
     runs-on: ${{ matrix.os }}
@@ -40,39 +40,49 @@ jobs:
       with:
         python-version: 3.7
 
-    - run: pip install -r requirements.txt pyinstaller
-    - run: pyinstaller gui.spec
+    - run: pip install -r Tkinter_GUI/requirements.txt pyinstaller
+    - name: Build using pyinstaller
+      run: |
+        cd Tkinter_GUI
+        pyinstaller gui.spec
+        cd ..
 
     - name: ZIP Linux
       if: ${{ runner.os == 'Linux' }}
       run: |
+        cd Tkinter_GUI
         mv dist/* dist/real_division_Tkinter-GUI-Linux-x64
         cd dist/
         zip real_division_Tkinter-GUI-Linux-x64.zip *
+        cd ..
         cd ..
         # rm -r dist/real_division_Tkinter-GUI-Linux-x64
 
     - name: ZIP Windows
       if: ${{ runner.os == 'Windows' }}
       run: |
+        cd Tkinter_GUI
         cd dist/
         ren gui.exe real_division_Tkinter-GUI-Windows-x64.exe
         7z a -tzip real_division_Tkinter-GUI-Windows-x64.zip *
         # del real_division_Tkinter-GUI-Windows-x64.exe
         cd ..
+        cd ..
 
     - name: ZIP macOS
       if: ${{ runner.os == 'macOS' }}
       run: |
+        cd Tkinter_GUI
         cd dist/
         mv gui real_division_Tkinter-GUI-macOS-x64.app
         zip real_division_Tkinter-GUI-macOS-x64.zip * -r
         rm -r real_division_Tkinter-GUI-macOS-x64.app
         cd ..
+        cd ..
 
     - uses: softprops/action-gh-release@v1
       with:
-        files: dist/*
+        files: Tkinter_GUI/dist/*
   cleanup:
     needs: [disable-debug, build]
     runs-on: 'ubuntu-latest'

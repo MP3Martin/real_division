@@ -2,12 +2,25 @@ import string
 import tkinter as tk
 from tkinter import ttk, messagebox
 import tkinter.font as tkFont
-import real_division_core as rdc
+import sys
+import os
+
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    import real_division_core as rdc
+except:
+    #import failed
+    sys.path.pop()
+    import real_division_core as rdc
+else:
+    #import suceeded
+    sys.path.pop()
+
+
 import webbrowser
 import re
 from pathlib import Path
-import os
-import sys
 # import sv_ttk
 global can_calculate
 global empty_content
@@ -242,7 +255,7 @@ try:
     master.tk.call("source", str(themePath))
     master.tk.call("set_theme", "dark")
 except:
-    print("Could not load theme :/")
+    print("Could not load the theme :/")
     master.after(500, lambda: messagebox.showerror("Error", "Could not load the theme :(\nYou can still use this program."))
 
 
