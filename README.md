@@ -11,7 +11,7 @@
  <a href="#/"><img src="https://user-images.githubusercontent.com/60501493/189485454-df9cec40-8195-49ec-b836-078146240fa5.png" width="40%" /></a>
  <p><span style="color: #666699;"></span></p>
  
-<h3><strong>❕ Example video of the method: <a href="https://mp3martin.github.io/real_division/video-example?id=DiJu5VeubWs" target="_blank">www.youtube.com/watch?v=...</a> ❕</strong></h3>
+<h3><strong>❕ Example video of the method: <a href="https://mp3martin.github.io/misc_gh_pages/video-example?id=DiJu5VeubWs" target="_blank">www.youtube.com/watch?v=...</a> ❕</strong></h3>
 
 # Projects
 Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script
