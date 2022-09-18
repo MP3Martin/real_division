@@ -7,7 +7,15 @@ export default function Home() {
     <div>
       <Head>
         <title>NextJS app with react-bootstrap</title>
-        <script src="/lib/brython-runner.bundle.js"></script>
+        {/* <script src="/lib/brython-runner.bundle.js"></script> */}
+        <script src="/lib/brython.js"></script>
+        <script src="/lib/brython_stdlib.js"></script>
+        <script src="/lib/run_python.js"></script>
+        <script type="text/javascript" dangerouslySetInnerHTML={{__html: `
+          void(0)
+          brython({pythonpath: ["/lib/"], indexedDB: false});
+          `}}>
+        </script>
       </Head>
 
       <main>
