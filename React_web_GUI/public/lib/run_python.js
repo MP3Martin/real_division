@@ -1,3 +1,9 @@
+/* --- TODO ---
+- wrap all the python code in a function
+- create some variable and set it's value to the function
+- return the variable in js promise
+   --- TODO --- */
+
 runconsole_scripts = __BRYTHON__.parser._run_scripts
 function check_all_old_brython()
 {

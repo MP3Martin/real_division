@@ -1,8 +1,19 @@
 import Head from 'next/head';
 import Script from 'next/script';
 import {Accordion} from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+
+  const [brLibsLoaded, setBrLibsLoaded] = useState([]);
+  useEffect(() => {
+    if (brLibsLoaded.join("") == "abc") {
+      // All Brython scripts have loaded
+      setBrLibsLoaded([])
+      void(0)
+      brython({pythonpath: ["/lib/"], indexedDB: false});
+    }
+  })
 
   return (
     <div>
@@ -11,25 +22,20 @@ export default function Home() {
         {/* <script src="/lib/brython-runner.bundle.js"></script> */}
       </Head>
 
-      <Script type="text/javascript" dangerouslySetInnerHTML={{__html: `
-        window.brythonLoadedNumber = 0;
+      {/* <Script type="text/javascript" dangerouslySetInnerHTML={{__html: `
+        window.brythonLoadedString = "";
         window.brythonReallyLoaded = function(){}
-        window.brythonLoaded = function() {
-          window.brythonLoadedNumber =  window.brythonLoadedNumber + 1
-          if (window.brythonLoadedNumber > 2) {
+        window.brythonLoaded = function(ss) {
+          console.log("s")
+          window.brythonLoadedString = window.brythonLoadedString + ss
+          if ((Array.from(new Set(window.brythonLoadedString)).join("")).length > 2) {
             window.brythonReallyLoaded()
           }
         }
-        `}} strategy="beforeInteractive"/>
-      <Script src="/lib/brython.js" strategy="beforeInteractive" onLoad={() => {window.brythonLoaded()}}/>
-      <Script src="/lib/brython_stdlib.js" strategy="beforeInteractive" onLoad={() => {window.brythonLoaded()}}/>
-      <Script src="/lib/run_python.js" strategy="beforeInteractive" onLoad={() => {window.brythonLoaded()}}/>
-      <Script type="text/javascript" dangerouslySetInnerHTML={{__html: `
-        window.brythonReallyLoaded = function() {
-          void(0)
-          brython({pythonpath: ["/lib/"], indexedDB: false});
-        }
-        `}} strategy="beforeInteractive"/>
+        `}} strategy="beforeInteractive"/> */}
+      <Script src="/lib/brython.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."a"])}}/>
+      <Script src="/lib/brython_stdlib.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."b"])}}/>
+      <Script src="/lib/run_python.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>
 
       <main>
         <h1>

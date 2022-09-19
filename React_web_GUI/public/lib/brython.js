@@ -4659,7 +4659,7 @@ store.onsuccess=loop}
 idb_cx.onversionchanged=function(){console.log("version changed")}
 idb_cx.onsuccess=function(){console.log("db opened",idb_cx)
 var db=idb_cx.result,store=db.createObjectStore("modules",{"keyPath": "name"})
-store.onsuccess=loop}}else{console.log("using indexedDB for stdlib modules cache")
+store.onsuccess=loop}}else{void(0)
 loop()}}
 idb_cx.onupgradeneeded=function(){console.log("upgrade needed")
 var db=idb_cx.result,store=db.createObjectStore("modules",{"keyPath": "name"})
