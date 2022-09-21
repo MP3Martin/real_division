@@ -7,11 +7,10 @@ export default function Home() {
 
   const [brLibsLoaded, setBrLibsLoaded] = useState([]);
   useEffect(() => {
-    if (brLibsLoaded.join("") == "abc") {
+    if (brLibsLoaded.join("").length == 3) {
       // All Brython scripts have loaded
       setBrLibsLoaded([])
       void(0)
-      brython({pythonpath: ["/lib/"], indexedDB: false});
     }
   })
 
