@@ -7,7 +7,7 @@ export default function Home() {
 
   const [brLibsLoaded, setBrLibsLoaded] = useState([]);
   useEffect(() => {
-    if (brLibsLoaded.join("").length == 3) {
+    if (brLibsLoaded.join("").length == 1) {
       // All Brython scripts have loaded
       setBrLibsLoaded([])
       void(0)
@@ -32,9 +32,9 @@ export default function Home() {
           }
         }
         `}} strategy="beforeInteractive"/> */}
-      <Script src="/lib/brython.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."a"])}}/>
-      <Script src="/lib/brython_stdlib.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."b"])}}/>
-      <Script src="/lib/run_python.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>
+      {/* <Script src="/lib/brython.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."a"])}}/> */}
+      {/* <Script src="/lib/brython_stdlib.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."b"])}}/> */}
+      <Script src="/lib/jsRUNpy.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>
 
       <main>
         <h1>
