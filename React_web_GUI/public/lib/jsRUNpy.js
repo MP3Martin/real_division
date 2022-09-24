@@ -118,7 +118,9 @@ window.jsRUNpy = {
     }
 }
 
-window.jsRUNpy.run = async function(code) {
+window.jsRUNpy.run = async function(code, variables = {}) {
+    code = code.replace(/"[^"]*(?:""[^"]*)*"/g, function(m) { return m.replace(/\n/g, '\\\n'); }) // replace all newline characters in a string with \\\n
+
     runconsole_scripts = __BRYTHON__.parser._run_scripts
 
     function check_all_old_brython() {
@@ -144,6 +146,13 @@ window.jsRUNpy.run = async function(code) {
         return new Promise(resolve => setTimeout(resolve, ms));
     };
 
+    function my_reject(id, err) {
+        setTimeout(() => {
+            window.jsRUNpy["$utils"].delete_var(`window.jsRUNpy['$runners']['p' + ${id}]`)
+        }, 300)
+        return window.jsRUNpy.$runners["p" + id].promise.reject(err);
+    }
+
     async function run_exec(code) {
         brython(jsRUNpy.config.br_config);
 
@@ -152,28 +161,48 @@ window.jsRUNpy.run = async function(code) {
         check_all_old_brython();
 
         // window.jsRUNpy.$runners["p" + uniqueID] = uniqueID
-        window.jsRUNpy.$runners["p" + uniqueID] = jsRUNpy.$utils.createDeferredPromise()
+        window.jsRUNpy.$runners["p" + uniqueID] = {}
+        window.jsRUNpy.$runners["p" + uniqueID].promise = jsRUNpy.$utils.createDeferredPromise()
+
+        if (Object.prototype.toString.call(variables) === '[object Object]') {
+            //
+        } else {
+            my_reject(uniqueID, "Error: 'variables' argument must be a dictionary!")
+        }
+
+        window.jsRUNpy.$runners["p" + uniqueID].vars = variables
+
+        varImports = ""
+
+        for (const [key, value] of Object.entries(window.jsRUNpy.$runners["p" + uniqueID].vars)) {
+            varImports += `${key} = thisVars["${key}"]\n`
+            if (key.match(/^\d/)) {
+                // key starts with a number
+                my_reject(uniqueID, `Error: Variable name in 'variables' argument can't start with a number! (${key})`)
+            }
+        }
 
         modifiedCode = code
         modifiedCode = jsRUNpy.$utils.tabWholeString(modifiedCode)
         modifiedCode =
         `
-        import sys
-        from browser import window
+import sys
+from browser import window
 
-        thisRunner = window.jsRUNpy["$runners"].p${uniqueID}
-        
-        code = """def main():\n${modifiedCode.replaceAll('"""', '\\"""')}\n"""
+thisRunner = window.jsRUNpy["$runners"].p${uniqueID}.promise
+thisVars = window.jsRUNpy["$runners"].p${uniqueID}.vars
 
-        try:
-            exec(code)
-            L${uniqueID}L = main()
-        except Exception as e:
-            window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + ${uniqueID}]")
-            thisRunner.reject(f"{type(e).__name__}: {e}")
-        else:
-            window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + ${uniqueID}]")
-            thisRunner.resolve(L${uniqueID}L)`
+code = """${varImports}def main():\n${modifiedCode.replaceAll('"""', '\\"""')}\n"""
+
+try:
+    exec(code)
+    L${uniqueID}L = main()
+except Exception as e:
+    window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + ${uniqueID}]")
+    thisRunner.reject(f"{type(e).__name__}: {e}")
+else:
+    window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + ${uniqueID}]")
+    thisRunner.resolve(L${uniqueID}L)`
 
         // console.log(modifiedCode)
 
@@ -189,7 +218,7 @@ window.jsRUNpy.run = async function(code) {
         uncheck_all_old_brython();
 
         // return window.jsRUNpy.$runners["p" + uniqueID]
-        return window.jsRUNpy.$runners["p" + uniqueID]
+        return window.jsRUNpy.$runners["p" + uniqueID].promise
     };
 
     return await run_exec(code);
