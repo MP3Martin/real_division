@@ -25,22 +25,22 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: Install packages
         run: |
-          cd React_web_GUI
+          cd NextJS_web_GUI
           yarn install --immutable
       - name: Build project
         run: |
-          cd React_web_GUI
+          cd NextJS_web_GUI
           yarn build
       - name: Export static files
         run: |
-          cd React_web_GUI
+          cd NextJS_web_GUI
           yarn export
       - name: Add .nojekyll file
         run: |
-          cd React_web_GUI
+          cd NextJS_web_GUI
           touch ./out/.nojekyll
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.1
         with:
           branch: gh-pages
-          folder: React_web_GUI/out
+          folder: NextJS_web_GUI/out
