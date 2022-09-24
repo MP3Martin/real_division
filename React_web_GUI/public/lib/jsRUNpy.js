@@ -1,5 +1,5 @@
 /*
-    - Made by https://github.com/MP3Martin with original code
+    - Made by https://github.com/MP3Martin with original idea
     from https://stackoverflow.com/users/19235932/ahmad-fijr @ https://stackoverflow.com/a/72442845/10518428
 
     - Can be used anywhere with optional credit
