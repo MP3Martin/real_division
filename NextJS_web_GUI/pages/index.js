@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import {Accordion} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import {inDevEnvironment} from '../public/lib/DevEnv';
 
 export default function Home() {
 
@@ -34,7 +35,10 @@ export default function Home() {
         `}} strategy="beforeInteractive"/> */}
       {/* <Script src="/lib/brython.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."a"])}}/> */}
       {/* <Script src="/lib/brython_stdlib.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."b"])}}/> */}
-      <Script src="https://cdn.jsdelivr.net/gh/MP3Martin/jsRUNpy.js@1/jsRUNpy.min.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>
+
+      {inDevEnvironment || <Script src="https://cdn.jsdelivr.net/gh/MP3Martin/jsRUNpy.js@1/jsRUNpy.min.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>} {/* prod */}
+      {inDevEnvironment && <Script src="/lib/jsRUNpy.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>} {/* dev */}
+      
 
       <main>
         <h1>

@@ -1,5 +1,5 @@
 /*
-    - Made by https://github.com/MP3Martin with original idea
+    - Made by https://github.com/MP3Martin with original code
     from https://stackoverflow.com/users/19235932/ahmad-fijr @ https://stackoverflow.com/a/72442845/10518428
 
     - Can be used anywhere with optional credit
@@ -103,10 +103,15 @@ window.jsRUNpy = {
             return Object.assign(promise, {resolve, reject})
         },
 
-        delete_var: function(variable) {
-            eval("delete " + variable)
+        delete_var: function(variable, delay = 0) {
+            setTimeout(function(){
+                try {
+                    eval("delete " + variable)
+                } catch (e) {
+                    eval("delete p" + variable)
+                }
+            }, delay)
         }
-
     },
 
     $runners: {
@@ -118,7 +123,7 @@ window.jsRUNpy = {
     }
 }
 
-window.jsRUNpy.run = async function(code, variables = {}) {
+window.jsRUNpy.$sysRun = async function(code, variables = {}) {
     code = code.replace(/"[^"]*(?:""[^"]*)*"/g, function(m) { return m.replace(/\n/g, '\\\n'); }) // replace all newline characters in a string with \\\n
 
     runconsole_scripts = __BRYTHON__.parser._run_scripts
@@ -156,7 +161,8 @@ window.jsRUNpy.run = async function(code, variables = {}) {
     async function run_exec(code) {
         brython(jsRUNpy.config.br_config);
 
-        uniqueID = Date.now().toString()
+        // uniqueID = Math.floor(((Date.now() * Math.floor(Math.random() * 1000)) + Math.floor(Math.random() * 10) + 1)/2).toString()
+        uniqueID = "e" + String(Date.now().toString(32)+Math.random().toString(16)).replace(/\./g,"")
 
         check_all_old_brython();
 
@@ -198,10 +204,10 @@ try:
     exec(code)
     L${uniqueID}L = main()
 except Exception as e:
-    window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + ${uniqueID}]")
+    window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + '${uniqueID}']")
     thisRunner.reject(f"{type(e).__name__}: {e}")
 else:
-    window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + ${uniqueID}]")
+    window.jsRUNpy["$utils"].delete_var("window.jsRUNpy['$runners']['p' + '${uniqueID}']", 200)
     thisRunner.resolve(L${uniqueID}L)`
 
         // console.log(modifiedCode)
@@ -223,3 +229,19 @@ else:
 
     return await run_exec(code);
 }
+
+window.jsRUNpy.run = (() => {
+    // We can use the run() function in synchronous functions thanks to https://stackoverflow.com/users/351705/yury-tarabanko @ https://stackoverflow.com/a/53540586/10518428 ♥
+    let pending = Promise.resolve();
+    
+    run = async (...args) => {
+      try {
+        await pending;
+      } finally {
+        return await window.jsRUNpy.$sysRun(...args);
+      }
+    }
+  
+    // update pending promise so that next task could await for it
+    return (...args) => (pending = run(...args))
+})();
