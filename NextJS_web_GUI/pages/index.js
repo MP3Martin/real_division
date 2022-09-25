@@ -34,7 +34,7 @@ export default function Home() {
         `}} strategy="beforeInteractive"/> */}
       {/* <Script src="/lib/brython.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."a"])}}/> */}
       {/* <Script src="/lib/brython_stdlib.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."b"])}}/> */}
-      <Script src="https://cdn.jsdelivr.net/gh/MP3Martin/jsRUNpy.js@latest/jsRUNpy.min.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>
+      <Script src="https://cdn.jsdelivr.net/gh/MP3Martin/jsRUNpy.js@1/jsRUNpy.min.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>
 
       <main>
         <h1>
