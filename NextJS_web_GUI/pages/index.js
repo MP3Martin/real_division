@@ -19,22 +19,7 @@ export default function Home() {
     <div>
       <Head>
         <title>NextJS app with react-bootstrap</title>
-        {/* <script src="/lib/brython-runner.bundle.js"></script> */}
       </Head>
-
-      {/* <Script type="text/javascript" dangerouslySetInnerHTML={{__html: `
-        window.brythonLoadedString = "";
-        window.brythonReallyLoaded = function(){}
-        window.brythonLoaded = function(ss) {
-          console.log("s")
-          window.brythonLoadedString = window.brythonLoadedString + ss
-          if ((Array.from(new Set(window.brythonLoadedString)).join("")).length > 2) {
-            window.brythonReallyLoaded()
-          }
-        }
-        `}} strategy="beforeInteractive"/> */}
-      {/* <Script src="/lib/brython.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."a"])}}/> */}
-      {/* <Script src="/lib/brython_stdlib.js" strategy="beforeInteractive" onReady={()=> {setBrLibsLoaded(old => [...old, ..."b"])}}/> */}
 
       {inDevEnvironment || <Script src="https://cdn.jsdelivr.net/gh/MP3Martin/jsRUNpy.js@1/jsRUNpy.min.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>} {/* prod */}
       {inDevEnvironment && <Script src="/lib/jsRUNpy.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>} {/* dev */}
