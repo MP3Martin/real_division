@@ -2,10 +2,21 @@ import Head from 'next/head';
 import '../styles/application.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/css.css'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 function MyApp({ Component, pageProps }) {
   return (
+    <ThemeProvider theme={darkTheme}>
     <>
+      <CssBaseline />
       <Head>
         <link
           rel="stylesheet"
@@ -20,6 +31,7 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <Component {...pageProps} />
     </>
+    </ThemeProvider>
   );
 }
 

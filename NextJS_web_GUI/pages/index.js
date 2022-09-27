@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Script from 'next/script';
-import {Accordion} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import {inDevEnvironment} from '../public/lib/DevEnv';
 
@@ -29,22 +28,6 @@ export default function Home() {
         <h1>
           Welcome
         </h1>
-
-        <Accordion defaultActiveKey="0">
-          <Accordion.Item eventKey="0">
-            <Accordion.Header>Test 1</Accordion.Header>
-            <Accordion.Body>
-              Lorem ipsum dolor sit amet...
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header>Test 2</Accordion.Header>
-            <Accordion.Body>
-              Duis aute irure dolor in reprehenderit in voluptate...
-            </Accordion.Body>
-          </Accordion.Item>
-        </Accordion>
-
       </main>
     </div>
   )
