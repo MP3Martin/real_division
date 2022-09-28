@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import '../styles/application.scss'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import '../styles/css.css'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,7 +13,6 @@ const darkTheme = createTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={darkTheme}>
-    <>
       <CssBaseline />
       <Head>
         <link
@@ -28,9 +25,14 @@ function MyApp({ Component, pageProps }) {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet" />
+
       </Head>
-      <Component {...pageProps} />
-    </>
+      <main>
+        <Component {...pageProps} />
+      </main>
     </ThemeProvider>
   );
 }
