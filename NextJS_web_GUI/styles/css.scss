@@ -1,0 +1,20 @@
+.titleTextTypography {
+    @media (max-width:500px) {
+        font-size: 1.4rem;
+        justify-self: left !important;
+    }
+
+    @media (max-width:280px) {
+        font-size: 0.9rem;
+        justify-self: left !important;
+    }
+
+    @media (max-width:199px) {
+        font-size: 0.61rem;
+        justify-self: left !important;
+    }
+}
+
+.titleTextSpan {
+    color: rgb(186, 217, 229);
+}

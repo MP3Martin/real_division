@@ -1,8 +1,8 @@
 import Head from 'next/head';
-import '../styles/css.css'
+import '../styles/css.scss'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-
+import NavBar from '../components/NavBar';
 
 const darkTheme = createTheme({
   palette: {
@@ -31,6 +31,7 @@ function MyApp({ Component, pageProps }) {
 
       </Head>
       <main>
+        <NavBar />
         <Component {...pageProps} />
       </main>
     </ThemeProvider>

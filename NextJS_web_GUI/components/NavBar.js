@@ -26,7 +26,7 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton> */}
-            <Typography variant="h4" component="div" style={{"justify-self": "center"}}>
+            <Typography variant="h4" component="div" style={{"justify-self": "center"}} className="titleTextTypography">
                 <TitleText />
             </Typography>
             <NavBarRightIcons />
