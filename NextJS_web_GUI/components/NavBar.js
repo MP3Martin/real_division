@@ -9,7 +9,6 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import NavBarRightIcons from './NavBarRightIcons';
 
-
 import TitleText from './TitleText';
 
 export default function NavBar() {
@@ -26,10 +25,14 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton> */}
-            <Typography variant="h4" component="div" style={{"justify-self": "center"}} className="titleTextTypography">
-                <TitleText />
-            </Typography>
-            <NavBarRightIcons />
+            {/* <FadeIn className="titleTextTypographyFadeIn"> */}
+                <Typography variant="h4" component="div" style={{"justify-self": "center"}} className="titleTextTypography">
+                    <TitleText />
+                </Typography>
+            {/* </FadeIn> */}
+                <div className="navBarRightIcons" style={{"justify-self": "end", "position": "absolute", "margin-right": "1rem"}}>
+                  <NavBarRightIcons />
+                </div>
           {/* <Box display="flex" flexDirection="column" > */}
           {/* </Box> */}
         </Toolbar>
