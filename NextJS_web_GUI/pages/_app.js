@@ -24,14 +24,14 @@ function MyApp({ Component, pageProps }) {
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <LoadingOverlay
-        active={isLoading}
-        spinner
-        text="Loading the page..."
-        fadeSpeed={400}
-      >
+    <LoadingOverlay
+      active={isLoading}
+      spinner
+      text="Loading the page..."
+      fadeSpeed={400}
+    >
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
         <div style={{ height: "100vh" }}>
           <main style={{ display: isMainVisible, height: "100%" }}>
             {/* {isMainVisible && ( */}
@@ -42,26 +42,26 @@ function MyApp({ Component, pageProps }) {
             {/* )} */}
           </main>
         </div>
-      </LoadingOverlay>
-      <Head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-        />
+        <Head>
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
 
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-    </ThemeProvider>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+      </ThemeProvider>
+    </LoadingOverlay>
   );
 }
 
