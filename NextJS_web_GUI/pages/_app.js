@@ -24,44 +24,73 @@ function MyApp({ Component, pageProps }) {
   });
 
   return (
-    <LoadingOverlay
-      active={isLoading}
-      spinner
-      text="Loading the page..."
-      fadeSpeed={400}
-    >
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <div style={{ height: "100vh" }}>
-          <main style={{ display: isMainVisible, height: "100%" }}>
-            {/* {isMainVisible && ( */}
-            <>
-              <NavBar />
-              <Component {...pageProps} />
-            </>
-            {/* )} */}
-          </main>
-        </div>
-        <Head>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
+    <>
+      {isLoading ? (
+        <>
+          <style>{`
+            body {
+              overflow: hidden;
+            }
+          `}</style>
+        </>
+      ) : (
+        <>
+          <style>{`
+            body {
+              overflow: revert !important;
+            }
+          `}</style>
+        </>
+      )}
+      <LoadingOverlay
+        active={isLoading}
+        spinner
+        text="Loading the page..."
+        fadeSpeed={400}
+        styles={{
+          overlay: (base) => ({
+            ...base,
+            background: 'rgba(0, 0, 0, 0.05)'
+          })
+        }}
+      >
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <div style={{ height: "100vh" }}>
+            <main style={{ display: isMainVisible, height: "100%" }}>
+              {/* {isMainVisible && ( */}
+              <>
+                <NavBar />
+                <Component {...pageProps} />
+              </>
+              {/* )} */}
+            </main>
+          </div>
+          <Head>
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            />
 
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          />
+            <link
+              rel="stylesheet"
+              href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            />
 
-          <link rel="preconnect" href="https://fonts.googleapis.com" />
-          <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-          <link
-            href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
-      </ThemeProvider>
-    </LoadingOverlay>
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link
+              rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossorigin
+            />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+              rel="stylesheet"
+            />
+          </Head>
+        </ThemeProvider>
+      </LoadingOverlay>
+    </>
   );
 }
 
