@@ -3,8 +3,8 @@
 import {React, Component, useState, useEffect} from 'react';
 
 const useDeviceSize = () => {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(999);
+  const [height, setHeight] = useState(999);
 
   const handleWindowResize = () => {
     setWidth(window.innerWidth);

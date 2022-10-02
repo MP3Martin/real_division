@@ -4,24 +4,24 @@
 
 .titleTextTypography {
     @media (max-width:590px) {
-        font-size: 1.4rem;
+        font-size: 1.4rem !important;
         justify-self: left !important;
     }
 
     @media (max-width:340px) {
-        font-size: 1.4rem;
+        font-size: 1.4rem !important;
         justify-self: left !important;
     }
 
     @media (max-width:299px) {
-        font-size: 1.2rem;
+        font-size: 1.2rem !important;
         justify-self: left !important;
     }
 
     @media (max-width:254px) {
-        font-size: 0.8rem;
-        word-spacing: 9999px;
-        white-space: pre-line;
+        font-size: 0.8rem !important;
+        word-spacing: 9999px !important;
+        white-space: pre-line !important;
         justify-self: left !important;
     }
 }
