@@ -28,11 +28,29 @@ $global-animation-delay: 0.6;
   color: rgb(186, 217, 229);
 }
 
+.titleTextTypography {
+  opacity: 0;
+  animation-delay: #{$global-animation-delay}s !important;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
+  animation: fadeInSlideDown 0.7s forwards;
+}
+
+@keyframes fadeInSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%) scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%) scale(1);
+  }
+}
+
 /* START OF animate rigth navbar icons */
 @for $i from 0 through 10 {
   .navBarRightIcons > * > :nth-child(#{$i}n) {
     $delay-between: 0.12;
-    $delay: 0.2;
+    $delay: 0.5;
     animation-delay: #{(($i * $delay-between) - $delay-between + $delay) +
       $global-animation-delay}s;
   }
@@ -44,10 +62,10 @@ $global-animation-delay: 0.6;
 
 .navBarRightIcons > * > * {
   animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
-  animation: fadeIn 0.6s forwards;
+  animation: fadeInSlideRight 0.6s forwards;
 }
 
-@keyframes fadeIn {
+@keyframes fadeInSlideRight {
   0% {
     opacity: 0;
     transform: translateX(-10%);

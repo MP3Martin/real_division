@@ -1,4 +1,4 @@
-import { React, Component, useState, useEffect, Suspense } from "react";
+import { React, useState, useEffect, Suspense } from "react";
 import dynamic from "next/dynamic";
 import "../styles/css.scss";
 import LoadingOverlay from "react-loading-overlay";
