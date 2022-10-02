@@ -1,5 +1,6 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/MP3Martin/real_division/badge)](#/)
 [<img src="https://github.com/MP3Martin/real_division/workflows/Build%20Tkinter%20GUI/badge.svg">](#/)
+[<img src="https://github.com/MP3Martin/real_division/workflows/Build%20Next.js%20GUI/badge.svg">](#/)
 [<img src="https://img.shields.io/github/license/MP3Martin/real_division">](#/)
 [<img src="https://img.shields.io/github/stars/MP3Martin/real_division">](#/)
 [<img src="https://img.shields.io/github/forks/MP3Martin/real_division">](#/)
