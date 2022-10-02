@@ -14,13 +14,13 @@ const darkTheme = createTheme({
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setLoading] = useState(true);
-  const [isMainVisible, setMainVisible] = useState(false);
+  const [isMainVisible, setMainVisible] = useState("none");
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 10);
-    setMainVisible(true);
+    // setTimeout(() => {
+    setLoading(false);
+    // }, 10);
+    setMainVisible("revert");
   });
 
   return (
@@ -32,14 +32,16 @@ function MyApp({ Component, pageProps }) {
         text="Loading the page..."
         fadeSpeed={200}
       >
-        <main style={{ height: "100vh", "animation-delay": "5s" }}>
-          {isMainVisible && (
+        <div style={{ height: "100vh" }}>
+          <main style={{ display: isMainVisible, height: "100%" }}>
+            {/* {isMainVisible && ( */}
             <>
               <NavBar />
               <Component {...pageProps} />
             </>
-          )}
-        </main>
+            {/* )} */}
+          </main>
+        </div>
       </LoadingOverlay>
       <Head>
         <link
