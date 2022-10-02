@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import Constants from '../constants.json'
 
 import GitHubIcon from '@mui/icons-material/GitHub';
+import useDeviceSize from '../hooks/useDeviceSize'
 
 const StyledWrapper = styled.div`
     
@@ -15,13 +16,12 @@ function NavBarRightIcons(props){
         return "large"
     }
 
-    // the following line exists thanks to https://remotestack.io/react-js-detect-window-width-and-height-tutorial/
-    const[windowDimenion,detectHW]=useState({winWidth:window.innerWidth,winHeight:window.innerHeight}),detectSize=()=>{detectHW({winWidth:window.innerWidth,winHeight:window.innerHeight})};useEffect((()=>(window.addEventListener("resize",detectSize),()=>{window.removeEventListener("resize",detectSize)})),[windowDimenion]);
+    const [width, height] = useDeviceSize();
 
     return(
         <StyledWrapper style={props.style}>
             {/* <div style={{"height": "52px", "width": "52px"}} /> */}
-            <IconButton size={iconButtonSize(windowDimenion.winWidth)} href={Constants.adress.github} target="_blank">
+            <IconButton size={iconButtonSize(width)} href={Constants.adress.github} target="_blank">
                 <GitHubIcon fontSize="inherit" />
             </IconButton>
 
