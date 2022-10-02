@@ -1,11 +1,15 @@
-import { React, Component, useState, useEffect } from "react";
-import Head from "next/head";
+import { React, Component, useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import "../styles/css.scss";
+import LoadingOverlay from "react-loading-overlay";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import NavBar from "../components/NavBar";
-import LoadingOverlay from "react-loading-overlay";
 import { WhisperSpinner } from "react-spinners-kit";
+import Head from "next/head";
+
+const MyAppTwo = dynamic(() => import("../components/_app"), {
+  suspense: true,
+});
 
 const darkTheme = createTheme({
   palette: {
@@ -15,6 +19,7 @@ const darkTheme = createTheme({
 
 function MyApp({ Component, pageProps }) {
   const [isLoading, setLoading] = useState(true);
+  const [isRootLoading, setRootLoading] = useState(true);
   const [isMainVisible, setMainVisible] = useState("none");
   const [isLoadingWait, setLoadingWait] = useState(true);
 
@@ -24,12 +29,30 @@ function MyApp({ Component, pageProps }) {
     // }, 10);
     setMainVisible("revert");
     // setTimeout(() => {
-      setLoadingWait(false);
+    setLoadingWait(false);
     // }, 0);
   });
 
   return (
     <>
+      <Head>
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+        />
+
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       {isLoadingWait ? (
         <>
           <style>{`
@@ -48,29 +71,21 @@ function MyApp({ Component, pageProps }) {
         </>
       )}
 
-      {isLoading ? (
-        <>
-          <style>{`
+      <>
+        <style>{`
             body {
               overflow: hidden;
             }
           `}</style>
-        </>
-      ) : (
-        <>
-          <style>{`
-            body {
-              overflow: revert !important;
-            }
-          `}</style>
-        </>
-      )}
+      </>
+
       <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
         <LoadingOverlay
-          active={isLoading}
+          active={isRootLoading}
           spinner={<WhisperSpinner size={70} color="#686769" loading={true} />}
           text="Loading the page..."
-          fadeSpeed={400}
+          fadeSpeed={500}
           styles={{
             overlay: (base) => ({
               ...base,
@@ -86,39 +101,18 @@ function MyApp({ Component, pageProps }) {
             }),
           }}
         >
-          <CssBaseline />
-          <div style={{ height: "100vh" }}>
-            <main style={{ display: isMainVisible, height: "100%" }}>
-              {/* {isMainVisible && ( */}
-              <>
-                <NavBar />
-                <Component {...pageProps} />
-              </>
-              {/* )} */}
-            </main>
-          </div>
-          <Head>
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-            />
-
-            <link
-              rel="stylesheet"
-              href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            />
-
-            <link rel="preconnect" href="https://fonts.googleapis.com" />
-            <link
-              rel="preconnect"
-              href="https://fonts.gstatic.com"
-              crossorigin
-            />
-            <link
-              href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap"
-              rel="stylesheet"
-            />
-          </Head>
+          {/* <Component {...pageProps} /> */}
+          {isLoading ? (
+            <></>
+          ) : (
+            <Suspense>
+              <MyAppTwo
+                prp={<Component {...pageProps} />}
+                prp2={pageProps}
+                setRootLoading={setRootLoading}
+              />
+            </Suspense>
+          )}
         </LoadingOverlay>
       </ThemeProvider>
     </>
