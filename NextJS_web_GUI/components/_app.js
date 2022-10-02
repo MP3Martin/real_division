@@ -38,7 +38,7 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
           {/* {isMainVisible && ( */}
           <>
             <NavBar />
-            <prp />
+            {prp}
           </>
           {/* )} */}
         </main>

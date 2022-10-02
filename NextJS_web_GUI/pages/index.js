@@ -24,7 +24,7 @@ export default function Home() {
       {inDevEnvironment && <Script src="/lib/jsRUNpy.js" strategy="afterInteractive" onLoad={()=> {setBrLibsLoaded(old => [...old, ..."c"])}}/>} {/* dev */}
       
       {/* <div style={{background: "red", height: "1000px", width: "50px"}}></div> */}
-      
+
     </div>
   )
 }
