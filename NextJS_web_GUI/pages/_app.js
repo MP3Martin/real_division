@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import NavBar from "../components/NavBar";
 import LoadingOverlay from "react-loading-overlay";
+import { WhisperSpinner } from "react-spinners-kit";
 
 const darkTheme = createTheme({
   palette: {
@@ -15,16 +16,38 @@ const darkTheme = createTheme({
 function MyApp({ Component, pageProps }) {
   const [isLoading, setLoading] = useState(true);
   const [isMainVisible, setMainVisible] = useState("none");
+  const [isLoadingWait, setLoadingWait] = useState(true);
 
   useEffect(() => {
     // setTimeout(() => {
     setLoading(false);
     // }, 10);
     setMainVisible("revert");
+    // setTimeout(() => {
+      setLoadingWait(false);
+    // }, 0);
   });
 
   return (
     <>
+      {isLoadingWait ? (
+        <>
+          <style>{`
+        ._loading_overlay_content {
+          opacity: 0;
+        }
+      `}</style>
+        </>
+      ) : (
+        <>
+          <style>{`
+            ._loading_overlay_content {
+              opacity: 1 !important;
+            }
+          `}</style>
+        </>
+      )}
+
       {isLoading ? (
         <>
           <style>{`
@@ -42,19 +65,27 @@ function MyApp({ Component, pageProps }) {
           `}</style>
         </>
       )}
-      <LoadingOverlay
-        active={isLoading}
-        spinner
-        text="Loading the page..."
-        fadeSpeed={400}
-        styles={{
-          overlay: (base) => ({
-            ...base,
-            background: 'rgba(0, 0, 0, 0.05)'
-          })
-        }}
-      >
-        <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={darkTheme}>
+        <LoadingOverlay
+          active={isLoading}
+          spinner={<WhisperSpinner size={70} color="#686769" loading={true} />}
+          text="Loading the page..."
+          fadeSpeed={400}
+          styles={{
+            overlay: (base) => ({
+              ...base,
+              background: "rgba(0, 0, 0, 0.2)",
+              height: "100vh",
+              "& > *": {
+                opacity: "1",
+              },
+              "& > :first-child > *": {
+                margin: "auto",
+                "margin-bottom": "1rem",
+              },
+            }),
+          }}
+        >
           <CssBaseline />
           <div style={{ height: "100vh" }}>
             <main style={{ display: isMainVisible, height: "100%" }}>
@@ -88,8 +119,8 @@ function MyApp({ Component, pageProps }) {
               rel="stylesheet"
             />
           </Head>
-        </ThemeProvider>
-      </LoadingOverlay>
+        </LoadingOverlay>
+      </ThemeProvider>
     </>
   );
 }
