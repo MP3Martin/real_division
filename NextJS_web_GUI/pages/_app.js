@@ -30,7 +30,7 @@ function MyApp({ Component, pageProps }) {
         active={isLoading}
         spinner
         text="Loading the page..."
-        fadeSpeed={200}
+        fadeSpeed={400}
       >
         <div style={{ height: "100vh" }}>
           <main style={{ display: isMainVisible, height: "100%" }}>
