@@ -24,6 +24,9 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
 
   return (
     <>
+      <Head>
+        <meta name="color-scheme" content="only dark" /> {/*😎*/}
+      </Head>
       <>
         <style>{`
             body {

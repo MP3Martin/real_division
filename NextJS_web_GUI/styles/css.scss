@@ -11,7 +11,7 @@ $global-animation-delay: 0.8;
     justify-self: left !important;
   }
 
-  @media (max-width: 299px) {
+  @media (max-width: 310px) {
     font-size: 1.2rem !important;
     justify-self: left !important;
   }
@@ -76,3 +76,10 @@ $global-animation-delay: 0.8;
   }
 }
 /* END OF animate rigth navbar icons */
+
+.indexInputOutputContainer {
+  // background-color: red;
+
+  margin-top: 1rem;
+  max-width: 90% !important;
+}
