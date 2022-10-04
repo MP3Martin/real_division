@@ -9,8 +9,8 @@ export default function Home() {
   const [brLibsLoaded, setBrLibsLoaded] = useState([]);
   useEffect(() => {
     if (brLibsLoaded.join("").length == 1) {
-      // All Brython scripts have loaded
       setBrLibsLoaded([])
+      // All Brython scripts have loaded
       void(0)
     }
   })

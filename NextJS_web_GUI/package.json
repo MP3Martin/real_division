@@ -25,6 +25,7 @@
     "raw-loader": "^4.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hooks-global-state": "^2.0.0",
     "react-loading-overlay": "^1.0.1",
     "react-spinners-kit": "^1.9.1",
     "styled-components": "^5.3.6",
