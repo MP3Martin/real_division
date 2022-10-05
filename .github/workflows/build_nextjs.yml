@@ -46,10 +46,12 @@ jobs:
           folder: NextJS_web_GUI/out
       
       - name: Sleep for 60 seconds
+        continue-on-error: true
         run: sleep 60s
         shell: bash
           
       - name: Purge cache
+        continue-on-error: true
         uses: jakejarvis/cloudflare-purge-action@master
         env:
           CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
