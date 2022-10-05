@@ -15,6 +15,7 @@
     "@emotion/sheet": "^1.2.0",
     "@emotion/styled": "^11.10.4",
     "@mui/icons-material": "^5.10.6",
+    "@mui/lab": "^5.0.0-alpha.102",
     "@mui/material": "^5.10.6",
     "@popperjs/core": "2.11.6",
     "@react-hook/window-size": "^3.1.1",

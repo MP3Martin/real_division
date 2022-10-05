@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import {inDevEnvironment} from '../public/lib/DevEnv';
 import Input from '../components/input/input'
 
+import { setGlobalState, useGlobalState } from '../hooks/globalState';
+
 export default function Home() {
 
   const [brLibsLoaded, setBrLibsLoaded] = useState([]);
@@ -11,7 +13,7 @@ export default function Home() {
     if (brLibsLoaded.join("").length == 1) {
       setBrLibsLoaded([])
       // All Brython scripts have loaded
-      void(0)
+      setGlobalState("isJsrunpyLoading", false)
     }
   })
 

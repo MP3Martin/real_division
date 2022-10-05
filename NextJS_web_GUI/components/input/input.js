@@ -5,6 +5,9 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 
 import { setGlobalState, useGlobalState } from '../../hooks/globalState';
+import CustomTextField from './customTextField';
+import LoadingButton from '@mui/lab/LoadingButton';
+import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
 
 function isCustomDigit(value) {
   value = value.replaceAll(".", "").replaceAll(",", "")
@@ -16,12 +19,14 @@ function Input(props) {
 
   const [input1val] = useGlobalState("input1")
   const [input2val] = useGlobalState("input2")
+  const [isJsrunpyLoading] = useGlobalState("isJsrunpyLoading")
 
-  function substringFrequency(e,n,t){let r,l=0;for(let u=0;u<e.length&&(r=e.indexOf(n,u),-1!=r);u++)u=1==n.length||1==t?r:r+1,l++;return l}
+  function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
 
-  const handleInputChange = (id) => (e) => {
+  const handleInputChange = (id, e) => {
     var passed = 0
     var value = e.target.value
+    const curPos = e.target.selectionStart - 1;
     var beforeValue = eval("input" + id + "val")
 
     //replacing
@@ -34,7 +39,16 @@ function Input(props) {
 
     // allow only one floating point
     if (substringFrequency(value, ".") > 1) {
-      passed++
+      var leftPoints = substringFrequency(value.substr(0, curPos), ".")
+      value = value.replaceAll(".", "")
+      value = value.split("")
+      value.splice(curPos - leftPoints, 0, ".")
+      value = value.join("")
+      if (leftPoints == 0) {
+        setTimeout(() => {
+          e.target.setSelectionRange(curPos + 1, curPos + 1)
+        }, 1)
+      }
     }
 
     //finish
@@ -48,13 +62,20 @@ function Input(props) {
       <Container className="indexInputOutputContainer" sx={{ border: 1, borderRadius: '10px', borderColor: theme.palette.grey[700] }} style={{ padding: "10px" }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <TextField label="Number 1" fullWidth variant="outlined" value={input1val} onChange={handleInputChange(1)} />
+            <CustomTextField label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+          </Grid>
+          <Grid item xs={12} style={{ display: "grid" }}>
+            <div style={{ justifySelf: "center", backgroundColor: theme.palette.grey[900], padding: "4px", paddingInline: "7px", borderRadius: "10px", color: "#7f9fa8" }}>Divided by</div>
           </Grid>
           <Grid item xs={12}>
-            <div>{input1val} and {input2val}</div>
+            <CustomTextField label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
           </Grid>
-          <Grid item xs={12}>
-            <TextField label="Number 2" fullWidth variant="outlined" value={input2val} onChange={handleInputChange(2)} />
+          <Grid item xs={12} style={{ display: "grid" }}>
+            <div style={{ justifySelf: "center" }}>
+              <LoadingButton size="normal" onClick={()=>{alert("This website is not finished, sorry.")}} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || false} loadingPosition="start" variant="contained">
+                Calculate
+              </LoadingButton>
+            </div>
           </Grid>
         </Grid>
       </Container>
