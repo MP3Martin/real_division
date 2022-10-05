@@ -68,7 +68,7 @@ function Input(props) {
             <div style={{ justifySelf: "center", backgroundColor: theme.palette.grey[900], padding: "4px", paddingInline: "7px", borderRadius: "10px", color: "#7f9fa8" }}>Divided by</div>
           </Grid>
           <Grid item xs={12}>
-            <CustomTextField label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+            <CustomTextField inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
           </Grid>
           <Grid item xs={12} style={{ display: "grid" }}>
             <div style={{ justifySelf: "center" }}>
