@@ -35,7 +35,7 @@ function Input(props) {
 
     //checking
     if (!isCustomDigit(value)) { passed++ }
-    if (value === "") { passed-- }
+    if (value.replaceAll(".", "") === "") { passed-- }
 
     // allow only one floating point
     if (substringFrequency(value, ".") > 1) {
