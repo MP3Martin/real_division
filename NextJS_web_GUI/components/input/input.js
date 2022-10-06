@@ -28,9 +28,30 @@ function Input(props) {
 
   function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
 
-  const handleEnterPress = (id, e) => {
+  const handleKeyPress = (id, e) => {
     var invertedID = () => { if (id == 2) { return 1 } else { return 2 } }
-    if (eval("input" + invertedID() + "val") == "") { eval("setFocus.inp" + invertedID() + "focus.current.focus()") }
+    if (e.key === 'Enter') {
+
+      if (eval("input" + invertedID() + "val") == "") { eval("setFocus.inp" + invertedID() + "focus.current.focus()") }
+
+      if (input1val != "" && input2val != "") {
+        document.getElementById("calc_button").click()
+      }
+    }
+
+    if (e.key === 'ArrowDown') {
+      if (id == 1) {
+        setFocus.inp2focus.current.focus();
+      }
+      e.preventDefault()
+    }
+
+    if (e.key === 'ArrowUp') {
+      if (id == 2) {
+        setFocus.inp1focus.current.focus();
+      }
+      e.preventDefault()
+    }
   }
 
   const handleInputChange = (id, e) => {
@@ -72,17 +93,17 @@ function Input(props) {
       <Container className="indexInputOutputContainer" sx={{ border: 1, borderRadius: '10px', borderColor: theme.palette.grey[700] }} style={{ padding: "10px" }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <CustomTextField inputRef={setFocus.inp1focus} onKeyPress={(e) => { if (e.key === 'Enter') { handleEnterPress(1, e) } }} inputProps={{ inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+            <CustomTextField inputRef={setFocus.inp1focus} onKeyDown={(e) => { handleKeyPress(1, e) }} onKeyUp={(e) => { handleKeyPress(1, e) }} onKeyPress={(e) => { handleKeyPress(1, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
           </Grid>
           <Grid item xs={12} style={{ display: "grid" }}>
             <div style={{ justifySelf: "center", backgroundColor: theme.palette.grey[900], padding: "4px", paddingInline: "7px", borderRadius: "10px", color: "#7f9fa8" }}>Divided by</div>
           </Grid>
           <Grid item xs={12}>
-            <CustomTextField inputRef={setFocus.inp2focus} onKeyPress={(e) => { if (e.key === 'Enter') { handleEnterPress(2, e) } }} inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+            <CustomTextField inputRef={setFocus.inp2focus} onKeyDown={(e) => { handleKeyPress(2, e) }} onKeyUp={(e) => { handleKeyPress(2, e) }} onKeyPress={(e) => { handleKeyPress(2, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
           </Grid>
           <Grid item xs={12} style={{ display: "grid" }}>
             <div style={{ justifySelf: "center" }}>
-              <LoadingButton size="normal" onClick={() => { alert("This website is not finished, sorry.") }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || false} loadingPosition="start" variant="contained">
+              <LoadingButton id="calc_button" size="normal" onClick={() => { alert("This website is not finished, sorry.") }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || false} loadingPosition="start" variant="contained">
                 Calculate
               </LoadingButton>
             </div>
