@@ -28,6 +28,13 @@ function Input(props) {
 
   function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
 
+  function isTouchDevice() {
+    if (!(("ontouchstart" in window) || (window.DocumentTouch && document instanceof DocumentTouch))) {
+        return false
+    }
+    return true
+  }
+
   const handleKeyPress = (id, e) => {
     var invertedID = () => { if (id == 2) { return 1 } else { return 2 } }
     if (e.key === 'Enter') {
@@ -35,7 +42,9 @@ function Input(props) {
       if (eval("input" + invertedID() + "val") == "") { eval("setFocus.inp" + invertedID() + "focus.current.focus()") }
 
       if (input1val != "" && input2val != "") {
-        document.getElementById("calc_button").click()
+        if (!isTouchDevice()) {
+          document.getElementById("calc_button").click()
+        }
       }
 
       e.preventDefault()
