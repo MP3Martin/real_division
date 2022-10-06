@@ -38,16 +38,21 @@ function Input(props) {
   const handleKeyPress = (id, e) => {
     var invertedID = () => { if (id == 2) { return 1 } else { return 2 } }
     if (e.key === 'Enter') {
+      var dontPrevent = 0;
 
       if (eval("input" + invertedID() + "val") == "") { eval("setFocus.inp" + invertedID() + "focus.current.focus()") }
 
       if (input1val != "" && input2val != "") {
         if (!isTouchDevice()) {
           document.getElementById("calc_button").click()
+        } else {
+          dontPrevent++;
         }
       }
 
-      e.preventDefault()
+      if (dontPrevent <= 0) {
+        e.preventDefault()
+      }
     }
 
     if (e.key === 'ArrowDown') {
