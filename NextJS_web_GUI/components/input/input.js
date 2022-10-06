@@ -37,6 +37,8 @@ function Input(props) {
       if (input1val != "" && input2val != "") {
         document.getElementById("calc_button").click()
       }
+
+      e.preventDefault()
     }
 
     if (e.key === 'ArrowDown') {
