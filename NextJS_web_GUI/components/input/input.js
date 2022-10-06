@@ -17,11 +17,21 @@ function isCustomDigit(value) {
 function Input(props) {
   const theme = useTheme();
 
+  const inp1focus = useRef(null);
+  const inp2focus = useRef(null);
+
+  const setFocus = { inp1focus: inp1focus, inp2focus: inp2focus }
+
   const [input1val] = useGlobalState("input1")
   const [input2val] = useGlobalState("input2")
   const [isJsrunpyLoading] = useGlobalState("isJsrunpyLoading")
 
   function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
+
+  const handleEnterPress = (id, e) => {
+    var invertedID = () => { if (id == 2) { return 1 } else { return 2 } }
+    if (eval("input" + invertedID() + "val") == "") { eval("setFocus.inp" + invertedID() + "focus.current.focus()") }
+  }
 
   const handleInputChange = (id, e) => {
     var passed = 0
@@ -62,17 +72,17 @@ function Input(props) {
       <Container className="indexInputOutputContainer" sx={{ border: 1, borderRadius: '10px', borderColor: theme.palette.grey[700] }} style={{ padding: "10px" }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <CustomTextField inputProps={{ inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+            <CustomTextField inputRef={setFocus.inp1focus} onKeyPress={(e) => { if (e.key === 'Enter') { handleEnterPress(1, e) } }} inputProps={{ inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
           </Grid>
           <Grid item xs={12} style={{ display: "grid" }}>
             <div style={{ justifySelf: "center", backgroundColor: theme.palette.grey[900], padding: "4px", paddingInline: "7px", borderRadius: "10px", color: "#7f9fa8" }}>Divided by</div>
           </Grid>
           <Grid item xs={12}>
-            <CustomTextField inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+            <CustomTextField inputRef={setFocus.inp2focus} onKeyPress={(e) => { if (e.key === 'Enter') { handleEnterPress(2, e) } }} inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
           </Grid>
           <Grid item xs={12} style={{ display: "grid" }}>
             <div style={{ justifySelf: "center" }}>
-              <LoadingButton size="normal" onClick={()=>{alert("This website is not finished, sorry.")}} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || false} loadingPosition="start" variant="contained">
+              <LoadingButton size="normal" onClick={() => { alert("This website is not finished, sorry.") }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || false} loadingPosition="start" variant="contained">
                 Calculate
               </LoadingButton>
             </div>
