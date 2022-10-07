@@ -1519,6 +1519,11 @@ csstype@^3.0.2, csstype@^3.1.0, csstype@^3.1.1:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
+custom-syntax-highlighter@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/custom-syntax-highlighter/-/custom-syntax-highlighter-1.0.1.tgz#405c592982267a3c0498533156e331d03a1ed9ea"
+  integrity sha512-XVQld4tzwWVI6OmhFzNHWCtoHt1ZUpByt51z5c4efeJvjLWu3oi76U0Riwfh8Cv1OqNCruMXf5aXwlxHGq/6eQ==
+
 damerau-levenshtein@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
