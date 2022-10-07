@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material';
 
 const CustomTextField = (props) => {
   const theme = useTheme();
-  return <TextField {...props} className={"allTextFields"} onChange={(e) => {
+  return <TextField {...props} enterKeyHint={"enter"} className={"allTextFields"} onChange={(e) => {
     const firstVal = e.target.value;
     const caretStart = e.target.selectionStart;
     const caretEnd = e.target.selectionEnd;
