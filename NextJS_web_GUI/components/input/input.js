@@ -117,11 +117,9 @@ function Input(props) {
 `__name__ = "different"
 ${code}
 return calc(a, b)`
-    
-    console.log(code)
 
     await window.jsRUNpy.run(code, { a: nums[0], b: nums[1] }).then((out) => {
-      setGlobalState("answer", out.toString())
+      setGlobalState("answer", [out.toString(), true])
     }).catch((e) => {
       alert(e)
     })
@@ -151,7 +149,7 @@ return calc(a, b)`
             </div>
           </Grid>
           <Grid item xs={12}>
-            <Output value={answer} />
+            <Output value={answer[0]} />
           </Grid>
         </Grid>
       </Container>

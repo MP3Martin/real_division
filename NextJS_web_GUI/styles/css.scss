@@ -91,4 +91,30 @@ $global-animation-delay: 0.8;
 
 .f24sd4268fds246fs4d65 {
   white-space: pre !important;
+  transition: max-height 0.2s cubic-bezier(.19,1,.22,1), opacity 0.4s cubic-bezier(.19,1,.22,1);
+}
+
+.oh1-firstnums {
+  color: rgb(119, 147, 255);
+}
+
+.oh1-answer {
+  color: rgb(176, 92, 41);
+}
+
+.oh1-miscchar {
+  color: rgb(219, 111, 111);
+  font-weight: 500;
+}
+
+.oh1-remainder {
+  color: rgb(47, 155, 38);
+}
+
+.oh1-alternating:nth-of-type(odd) {
+  color: rgb(213, 181, 12);
+}
+
+.oh1-alternating:nth-of-type(even) {
+  color: rgb(255, 64, 64);
 }

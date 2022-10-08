@@ -1,5 +1,6 @@
 import { React, Component, useState, useEffect, useRef } from "react";
 import highlight from 'custom-syntax-highlighter';
+import { setGlobalState, useGlobalState } from '../../hooks/globalState';
 
 import Box from '@mui/material/Box';
 
@@ -19,6 +20,11 @@ function replaceTokens(text, tokens, expr) {
     return out;
 }
 
+function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
+
+//thanks to https://stackoverflow.com/a/7958627/10518428
+var replaceNthMatch=function(r,e,t,n){var o,a;if(e.constructor===RegExp){if(-1===r.search(e))return r;if(0!==(o=r.split(e))[1].search(e))throw{name:"ArgumentError",message:"RegExp must have a capture group"}}else{if(e.constructor!==String)throw{name:"ArgumentError",message:"Must provide either a RegExp or String"};o=r.split(e),a=[];for(var s=0;s<o.length;s++)a.push(o[s]),s<o.length-1&&a.push(e);o=a}var i=2*t-1;return void 0===o[i]?r:("function"==typeof n&&(n=n(o[i])),o[i]=n,o.join(""))};
+
 function combinePatterns() {
     return new RegExp('(' + [].slice.call(arguments).map(function (e) {
         var e = e.toString()
@@ -27,6 +33,9 @@ function combinePatterns() {
 }
 
 const Output = (props) => {
+    const outputRef = useRef(null)
+    const [answer] = useGlobalState("answer")
+
     highlight({
         patterns: [
             // {
@@ -39,18 +48,39 @@ const Output = (props) => {
             return props.value
         },
         postProcess: string => {
+            //alternating lines
+            for (var i = 1; i < substringFrequency(string, "\n"); i++) {
+                string = string.replace(new RegExp(`((?:^[^\n]*\n?){${i}})(.*)`, "m"), "$1<span class='oh1-alternating'>$2</span>")
+            }
+
+            //remainder
+            string = string.replaceAll(/\((\d+)\)/g, "(<span class='oh1-remainder'>$1</span>)")
+
+            //first nums
+            string = replaceNthMatch(string, /(\d+)/, 1, function(val){return `<span class='oh1-firstnums'>${val}</span>`});
+            string = replaceNthMatch(string, /(\d+)/, 3, function(val){return `<span class='oh1-firstnums'>${val}</span>`});
+            string = replaceNthMatch(string, /(\d+)/, 5, function(val){return `<span class='oh1-answer'>${val}</span>`});
+
             //first line
             string = string.replace(/^.*/,function(m) {
                 return "<span class='oh1-firstline'>" + m + "</span>"
             });
+
             //add working line breaks
-            var string = string.replaceAll("\n", "<br>")
+            string = string.replaceAll("\n", "<br>")
+
+            //special chars
+            for (var i of [":", "(", ")", "="]) {
+              string = string.replaceAll(/([^>]+(?![^<]*\>))/g, (val)=>{return val.replaceAll(i, "<span class='oh1-miscchar'>" + i + "</span>")})
+            }
+
+            // console.log(outputRef)
             return string
-        }
+        },
     })
 
     return (
-        <Box className={"f24sd4268fds246fs4d65"} component="div" sx={{ overflow: 'auto', whiteSpace: 'nowrap', bgcolor: '#101010', color: 'grey.300', border: '1px solid', borderColor: 'grey.800', borderRadius: 2, fontSize: '0.875rem', fontWeight: '700', padding: '0.4rem', display: 'block' }}>
+        <Box className={"f24sd4268fds246fs4d65"} ref={outputRef} component="div" sx={{ overflow: 'auto', whiteSpace: 'nowrap', bgcolor: '#101010', color: 'grey.300', border: '1px solid', borderColor: 'grey.800', borderRadius: 2, fontSize: '0.875rem', fontWeight: '400', padding: '0.4rem', display: 'block', fontFamily: "'JetBrains Mono', monospace", opacity: (answer[1] ? 1 : 0), maxHeight: (answer[1] ? "100%" : "0%") }}>
             <></>
         </Box>
     );
