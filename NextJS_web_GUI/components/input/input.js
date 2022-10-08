@@ -10,14 +10,29 @@ import CustomTextField from './customTextField';
 import Output from './output';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
+import Constants from '../../constants.json';
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 function isCustomDigit(value) {
   value = value.replaceAll(".", "").replaceAll(",", "")
   return (/^\d+$/.test(value))
 }
 
-function Input(props) {
+fetch(Constants.adress.root + "/lib/real_division_core/__init__.py")
+.then((response) => response.text())
+.then((textContent) => {
+    setRdc(textContent);
+    console.log(rdc)
+  });
+
+  function Input(props) {
+  const [rdc, setRdc] = useState();
+
   const theme = useTheme();
+
 
   const inp1focus = useRef(null);
   const inp2focus = useRef(null);
@@ -27,6 +42,8 @@ function Input(props) {
   const [input1val] = useGlobalState("input1")
   const [input2val] = useGlobalState("input2")
   const [isJsrunpyLoading] = useGlobalState("isJsrunpyLoading")
+  const [isCalculating] = useGlobalState("isCalculating")
+  const [answer] = useGlobalState("answer")
 
   function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
 
@@ -99,6 +116,20 @@ function Input(props) {
     }
   }
 
+  const calculate = async (nums) => {
+    setGlobalState("isCalculating", true)
+
+    await window.jsRUNpy.run("a2 = float(a)\nb2 = float(b)\nreturn a2 + b2", { a: nums[0], b: nums[1] }).then((out) => {
+      setGlobalState("answer", out.toString())
+      console.log(out)
+    }).catch((e) => {
+      alert(e)
+    })
+
+    await sleep(300)
+    setGlobalState("isCalculating", false)
+  }
+
   return (
     <>
       <Container className="indexInputOutputContainer" sx={{ border: 1, borderRadius: '10px', borderColor: theme.palette.grey[700] }} style={{ padding: "10px" }}>
@@ -114,13 +145,13 @@ function Input(props) {
           </Grid>
           <Grid item xs={12} style={{ display: "grid" }}>
             <div style={{ justifySelf: "center" }}>
-              <LoadingButton id="calc_button" size="normal" onClick={() => { alert("This website is not finished, sorry.") }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || false} loadingPosition="start" variant="contained">
-                Calculate
+              <LoadingButton id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating} loadingPosition="start" variant="contained">
+                {isCalculating ? "Calculating..." : "Calculate"}
               </LoadingButton>
             </div>
           </Grid>
           <Grid item xs={12}>
-              <Output value={"This website is WORK IN PROGRESS!"}/>
+            <Output value={answer} />
           </Grid>
         </Grid>
       </Container>
