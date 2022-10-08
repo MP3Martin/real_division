@@ -6,5 +6,6 @@ const { setGlobalState, useGlobalState } = createGlobalState({
     isJsrunpyLoading: true,
     isCalculating: false,
     answer: "This website is WORK IN PROGRESS!",
+    rdc: "",
 });
 export { useGlobalState, setGlobalState };

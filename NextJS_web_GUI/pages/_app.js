@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { WhisperSpinner } from "react-spinners-kit";
 import Head from "next/head";
+import { setGlobalState, useGlobalState } from '../hooks/globalState';
 
 const MyAppTwo = dynamic(() => import("../components/_app"), {
   suspense: true,
@@ -32,6 +33,14 @@ function MyApp({ Component, pageProps }) {
     setLoadingWait(false);
     // }, 0);
   });
+
+  useEffect(()=>{
+    fetch("https://mp3martin.github.io/real-division-assets/__init__.py")
+      .then((response) => response.text())
+      .then((textContent) => {
+        setGlobalState("rdc", textContent);
+      });
+  }, [])
 
   return (
     <>

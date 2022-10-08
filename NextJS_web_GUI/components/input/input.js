@@ -21,18 +21,9 @@ function isCustomDigit(value) {
   return (/^\d+$/.test(value))
 }
 
-fetch("https://mp3martin.github.io/real-division-assets/__init__.py")
-  .then((response) => response.text())
-  .then((textContent) => {
-    setRdc(textContent);
-    console.log(rdc)
-  });
 
 function Input(props) {
-  const [rdc, setRdc] = useState();
-
   const theme = useTheme();
-
 
   const inp1focus = useRef(null);
   const inp2focus = useRef(null);
@@ -44,6 +35,7 @@ function Input(props) {
   const [isJsrunpyLoading] = useGlobalState("isJsrunpyLoading")
   const [isCalculating] = useGlobalState("isCalculating")
   const [answer] = useGlobalState("answer")
+  const [rdc] = useGlobalState("rdc")
 
   function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
 
@@ -119,9 +111,17 @@ function Input(props) {
   const calculate = async (nums) => {
     setGlobalState("isCalculating", true)
 
-    await window.jsRUNpy.run("a2 = float(a)\nb2 = float(b)\nreturn a2 + b2", { a: nums[0], b: nums[1] }).then((out) => {
+    var code = rdc
+    code = code.replaceAll("\\", "\\\\")
+    code =
+`__name__ = "different"
+${code}
+return calc(a, b)`
+    
+    console.log(code)
+
+    await window.jsRUNpy.run(code, { a: nums[0], b: nums[1] }).then((out) => {
       setGlobalState("answer", out.toString())
-      console.log(out)
     }).catch((e) => {
       alert(e)
     })
@@ -145,7 +145,7 @@ function Input(props) {
           </Grid>
           <Grid item xs={12} style={{ display: "grid" }}>
             <div style={{ justifySelf: "center" }}>
-              <LoadingButton id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating} loadingPosition="start" variant="contained">
+              <LoadingButton id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
                 {isCalculating ? "Calculating..." : "Calculate"}
               </LoadingButton>
             </div>
