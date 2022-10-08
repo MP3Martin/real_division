@@ -22,13 +22,13 @@ function isCustomDigit(value) {
 }
 
 fetch(Constants.adress.root + "/lib/real_division_core/__init__.py")
-.then((response) => response.text())
-.then((textContent) => {
+  .then((response) => response.text())
+  .then((textContent) => {
     setRdc(textContent);
     console.log(rdc)
   });
 
-  function Input(props) {
+function Input(props) {
   const [rdc, setRdc] = useState();
 
   const theme = useTheme();
