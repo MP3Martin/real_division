@@ -21,7 +21,7 @@ function isCustomDigit(value) {
   return (/^\d+$/.test(value))
 }
 
-fetch(Constants.adress.root + "/lib/real_division_core/__init__.py")
+fetch("https://mp3martin.github.io/real-division-assets/__init__.py")
   .then((response) => response.text())
   .then((textContent) => {
     setRdc(textContent);
