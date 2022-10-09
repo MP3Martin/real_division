@@ -15,7 +15,7 @@ import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
 import Constants from '../../constants.json';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
-import harlemText from '../../buidAssets/harlem.js'
+import RunHarlem from '../../buidAssets/harlem.js'
 
 
 function sleep(ms) {
@@ -118,7 +118,7 @@ function Input(props) {
 
   const calculate = async (nums) => {
     if (input1val == 151776 && input2val == 151776) {
-      eval(harlemText)
+      RunHarlem()
     }
     setGlobalState("isCalculating", true)
 
