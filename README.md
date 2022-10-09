@@ -18,7 +18,7 @@
 # Projects
 Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script
 :------------ | :-------------| :-------------| :-------------| :-------------| :-------------|
-State | :heavy_check_mark: |  :x: | :x: | :x: | :heavy_check_mark:
+State | :heavy_check_mark: |  :white_check_mark: | :x: | :x: | :heavy_check_mark:
 Automated build workflow | :heavy_check_mark: |  :heavy_check_mark: | :x: | :x: | *Not needed*
 Programming language | Python |  JavaScript + JSX + CSS | :x: | Python | Python
 Framework | Tkinter |  Next.js + MUI | :x: | *None* | *None*
