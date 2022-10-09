@@ -4,7 +4,7 @@ import "../styles/css.scss";
 import LoadingOverlay from "react-loading-overlay";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { WhisperSpinner } from "react-spinners-kit";
+import { JellyfishSpinner } from "react-spinners-kit";
 import Head from "next/head";
 import { setGlobalState, useGlobalState } from '../hooks/globalState';
 
@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }) {
   const [isRootLoading, setRootLoading] = useState(true);
   const [isMainVisible, setMainVisible] = useState("none");
   const [isLoadingWait, setLoadingWait] = useState(true);
+  const [dotsLoading] = useGlobalState("dotsLoading");
 
   useEffect(() => {
     // setTimeout(() => {
@@ -33,6 +34,23 @@ function MyApp({ Component, pageProps }) {
     setLoadingWait(false);
     // }, 0);
   });
+
+  // useEffect(()=>{
+  //   var empty = " "
+  //   setTimeout(()=>{
+  //     if (dotsLoading == empty + empty + empty || dotsLoading == "") {
+  //       setGlobalState("dotsLoading", "." + empty + empty)
+  //     } else if (dotsLoading == "." + empty + empty) {
+  //       setGlobalState("dotsLoading", ".." + empty)
+  //     } else if (dotsLoading == ".." + empty) {
+  //       setGlobalState("dotsLoading", "...")
+  //     } else if (dotsLoading == "...") {
+  //       setGlobalState("dotsLoading", "" + empty + empty + empty)
+  //     } else {
+  //       setGlobalState("dotsLoading", empty + empty + empty)
+  //     }
+  //   }, 100)
+  // }, [dotsLoading])
 
   useEffect(()=>{
     fetch("https://mp3martin.github.io/real-division-assets/__init__.py")
@@ -93,13 +111,13 @@ function MyApp({ Component, pageProps }) {
       <CssBaseline />
         <LoadingOverlay
           active={isRootLoading}
-          spinner={<WhisperSpinner size={70} color="#686769" loading={true} />}
+          spinner={<JellyfishSpinner size={70} color="#06E27E" loading={true} />}
           text="Loading the page..."
           fadeSpeed={500}
           styles={{
             overlay: (base) => ({
               ...base,
-              background: "rgba(0, 0, 0, 0.2)",
+              background: "rgba(0, 0, 0, 0.8)",
               height: "100vh",
               "& > *": {
                 opacity: "1",

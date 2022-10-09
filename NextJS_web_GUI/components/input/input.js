@@ -1,9 +1,11 @@
-import { React, Component, useState, useEffect, useRef } from "react";
+import { React, Component, useState, useEffect, useRef, forwardRef } from "react";
 import { useTheme } from '@mui/material';
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from '@mui/material/Box';
+import Tooltip from '@mui/material/Tooltip';
+import FadeIn from 'react-fade-in';
 
 import { setGlobalState, useGlobalState } from '../../hooks/globalState';
 import CustomTextField from './customTextField';
@@ -11,6 +13,9 @@ import Output from './output';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
 import Constants from '../../constants.json';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -28,14 +33,16 @@ function Input(props) {
   const inp1focus = useRef(null);
   const inp2focus = useRef(null);
 
-  const setFocus = { inp1focus: inp1focus, inp2focus: inp2focus }
-
   const [input1val] = useGlobalState("input1")
   const [input2val] = useGlobalState("input2")
   const [isJsrunpyLoading] = useGlobalState("isJsrunpyLoading")
   const [isCalculating] = useGlobalState("isCalculating")
   const [answer] = useGlobalState("answer")
   const [rdc] = useGlobalState("rdc")
+  const [inp1mounted] = useGlobalState("inp1mounted")
+  const [dotsLoading] = useGlobalState("dotsLoading");
+  const [inpError] = useGlobalState("inpError");
+  // const [showDelay, setShowDelay] = useState(false);
 
   function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
 
@@ -50,7 +57,7 @@ function Input(props) {
     var invertedID = () => { if (id == 2) { return 1 } else { return 2 } }
     if (e.key === 'Enter') {
 
-      if (eval("input" + invertedID() + "val") == "") { eval("setFocus.inp" + invertedID() + "focus.current.focus()") }
+      if (eval("input" + invertedID() + "val") == "") { eval("inp" + invertedID() + "focus.current.focus()") }
 
       if (input1val != "" && input2val != "") {
         document.getElementById("calc_button").click()
@@ -61,14 +68,14 @@ function Input(props) {
 
     if (e.key === 'ArrowDown') {
       if (id == 1) {
-        setFocus.inp2focus.current.focus();
+        inp2focus.current.focus();
       }
       e.preventDefault()
     }
 
     if (e.key === 'ArrowUp') {
       if (id == 2) {
-        setFocus.inp1focus.current.focus();
+        inp1focus.current.focus();
       }
       e.preventDefault()
     }
@@ -114,7 +121,7 @@ function Input(props) {
     var code = rdc
     code = code.replaceAll("\\", "\\\\")
     code =
-`__name__ = "different"
+      `__name__ = "different"
 ${code}
 return calc(a, b)`
 
@@ -126,33 +133,73 @@ return calc(a, b)`
 
     await sleep(300)
     setGlobalState("isCalculating", false)
+    setGlobalState("answerFirstTime", false)
   }
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     inp1focus.current.focus();
+  //   }, 100)
+  // }, [inp1mounted])
+
+  // useEffect(() => {
+  //   ReactTooltip.rebuild();
+  // });
+
+  const fadeInDelay = 20
 
   return (
     <>
-      <Container className="indexInputOutputContainer" sx={{ border: 1, borderRadius: '10px', borderColor: theme.palette.grey[700] }} style={{ padding: "10px" }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12}>
-            <CustomTextField inputRef={setFocus.inp1focus} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+      <Snackbar open={inpError[0]} autoHideDuration={0}>
+        <MuiAlert severity="error" sx={{ width: '100%' }}>
+          {inpError[1]}
+        </MuiAlert>
+      </Snackbar>
+      <FadeIn transitionDuration={400} delay={700}>
+        <span />
+        <Container className="indexInputOutputContainer" sx={{ border: 1, borderRadius: '10px', borderColor: theme.palette.grey[700] }} style={{ padding: "10px" }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <FadeIn delay={fadeInDelay} className="fadeinadddelay">
+                <span />
+                <CustomTextField customType={1} inputRef={inp1focus} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+              </FadeIn>
+            </Grid>
+            <Grid item xs={12} style={{ display: "grid" }}>
+              <FadeIn delay={fadeInDelay} className="fadeinadddelay fadeinDividedBy">
+                <span /> <span />
+                <div style={{ justifySelf: "center", backgroundColor: theme.palette.grey[900], padding: "4px", paddingInline: "7px", borderRadius: "10px", color: "#7f9fa8" }}>Divided by</div>
+              </FadeIn>
+            </Grid>
+            <Grid item xs={12}>
+              <FadeIn delay={fadeInDelay} className="fadeinadddelay">
+                <span /> <span /> <span />
+                <CustomTextField customType={2} inputRef={inp2focus} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+              </FadeIn>
+            </Grid>
+            <Grid item xs={12} style={{ display: "grid" }} >
+              <FadeIn delay={fadeInDelay} className="fadeinadddelay fadeinDividedBy">
+                <span /> <span /> <span /> <span />
+                <div style={{ justifySelf: "center" }}>
+                  <Tooltip title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : "")} placement="bottom" arrow disableInteractive>
+                    <span>
+                      <LoadingButton disabled={inpError[2]} id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
+                        {isCalculating ? `Calculating${dotsLoading}` : "Calculate"}
+                      </LoadingButton>
+                    </span>
+                  </Tooltip>
+                </div>
+              </FadeIn>
+            </Grid>
+            <Grid item xs={12}>
+              <FadeIn delay={fadeInDelay} className="fadeinadddelay">
+                <span /> <span /> <span /> <span /> <span />
+                <Output value={answer[0]} />
+              </FadeIn>
+            </Grid>
           </Grid>
-          <Grid item xs={12} style={{ display: "grid" }}>
-            <div style={{ justifySelf: "center", backgroundColor: theme.palette.grey[900], padding: "4px", paddingInline: "7px", borderRadius: "10px", color: "#7f9fa8" }}>Divided by</div>
-          </Grid>
-          <Grid item xs={12}>
-            <CustomTextField inputRef={setFocus.inp2focus} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
-          </Grid>
-          <Grid item xs={12} style={{ display: "grid" }}>
-            <div style={{ justifySelf: "center" }}>
-              <LoadingButton id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
-                {isCalculating ? "Calculating..." : "Calculate"}
-              </LoadingButton>
-            </div>
-          </Grid>
-          <Grid item xs={12}>
-            <Output value={answer[0]} />
-          </Grid>
-        </Grid>
-      </Container>
+        </Container>
+      </FadeIn>
     </>
   );
 }
