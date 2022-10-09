@@ -27,6 +27,11 @@ const CustomTextField = (props) => {
           setGlobalState("inpError", [inpError[0], inpError[1], true]); 
           e++
         }
+        if (thisValue === "0") {
+          setError([true, `Can't divide by zero!`]);
+          setGlobalState("inpError", [inpError[0], inpError[1], true]); 
+          e++
+        }
         if (input1val.replaceAll(".", "") == "" || input2val.replaceAll(".", "") == "") {
           setGlobalState("inpError", [inpError[0], inpError[1], true]);
           e++
