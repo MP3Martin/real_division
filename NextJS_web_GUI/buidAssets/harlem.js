@@ -1,4 +1,5 @@
-export default `function randNode() {
+export default function () {
+function randNode() {
 
  
     var tds = document.getElementsByTagName("*");
@@ -219,4 +220,4 @@ for (var i1 = 0; i1 < 2; i1++) {
 
 })();
 }
-`
+}
