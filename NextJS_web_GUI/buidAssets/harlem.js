@@ -212,7 +212,7 @@ for (var i1 = 0; i1 < 5; i1++) {
   for (i = 0; i < len / 3; i++) {
     // thisNode = allNodes[i];
 	  thisNode = randNode();
-		if (thisNode.nodeName.toLowerCase() != "svg") {
+		if (thisNode.nodeName != "svg") {
     allShakeableNodes.push(thisNode);
 }
   }
