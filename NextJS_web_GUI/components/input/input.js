@@ -181,7 +181,7 @@ return calc(a, b)`
               <FadeIn delay={fadeInDelay} className="fadeinadddelay fadeinDividedBy">
                 <span /> <span /> <span /> <span />
                 <div style={{ justifySelf: "center" }}>
-                  <Tooltip title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : "")} placement="bottom" arrow disableInteractive>
+                  <Tooltip title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : (inpError[2] ? "Enter valid input first" : ""))} placement="bottom" arrow disableInteractive>
                     <span>
                       <LoadingButton disabled={inpError[2]} id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
                         {isCalculating ? `Calculating${dotsLoading}` : "Calculate"}
