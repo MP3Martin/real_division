@@ -52,7 +52,7 @@ const OutputOptions = (props) => {
             }}
         >
             <IconButton size="small" onClick={()=>{handleMakefntsizeBiggerSmaller(-100)}}>
-              <TextDecreaseIcon fontSize="small" />
+              <TextDecreaseIcon fontSize="smaller" />
             </IconButton>
             <Slider
                 // defaultValue={875}
