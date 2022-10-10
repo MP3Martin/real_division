@@ -1,6 +1,7 @@
 $global-animation-delay: 0.6;
 
 .titleTextTypography {
+  transition: font-size 0.1s ease-out;
   @media (max-width: 590px) {
     font-size: 1.4rem !important;
     justify-self: left !important;
@@ -89,6 +90,14 @@ $global-animation-delay: 0.6;
   background-color: rgba(255, 255, 255, 0.04);
 }
 
+.allTextFields {
+  transition: padding-bottom 0.16s ease-out;
+}
+
+.allTextFieldsError {
+  padding-bottom: 0.3rem !important;
+}
+
 .f24sd4268fds246fs4d65 {
   white-space: pre !important;
   overflow: hidden;
@@ -134,4 +143,17 @@ $global-animation-delay: 0.6;
   font-size: 0.82rem !important;
   height: 0;
   margin-top: 0;
+}
+
+.snzjgfdnghjkfsnghjf > * {
+  align-self: center;
+}
+
+@media (max-width: 900px) {
+  .f42d4f1d14f5d1d45 {
+    display: grid !important;
+  }
+  .outoptionschild {
+    margin-inline: auto !important;
+  }
 }

@@ -39,6 +39,7 @@ const Output = (props) => {
   const [outputHeight] = useGlobalState("outputHeight")
   const [answerFirstTime] = useGlobalState("answerFirstTime")
   const [isCalculating] = useGlobalState("isCalculating")
+  const [outputTextSize] = useGlobalState("outputTextSize")
 
   highlight({
     patterns: [
@@ -90,7 +91,7 @@ const Output = (props) => {
       // initial={0}
       style={{ transition: "height 0.4s cubic-bezier(.17,.84,.44,1) 0s" }}
     >
-      <Box className={"f24sd4268fds246fs4d65"} ref={outputRef} component="div" sx={{ /*overflow: "auto"*//*(!isAnimating ? "auto" : "hidden !important"),*/ whiteSpace: 'nowrap', bgcolor: '#101010', color: 'grey.300', border: '1px solid', borderColor: 'grey.800', borderRadius: 2, fontSize: '0.875rem', fontWeight: '400', padding: '0.4rem', display: 'block', fontFamily: "'JetBrains Mono', monospace" }}>
+      <Box className={"f24sd4268fds246fs4d65"} ref={outputRef} component="div" sx={{ /*overflow: "auto"*//*(!isAnimating ? "auto" : "hidden !important"),*/ whiteSpace: 'nowrap', bgcolor: '#101010', color: 'grey.300', border: '1px solid', borderColor: 'grey.800', borderRadius: 2, fontSize: (outputTextSize / 1000) + 'rem', fontWeight: '400', padding: '0.4rem', display: 'block', fontFamily: "'JetBrains Mono', monospace" }}>
         <></>
       </Box>
     </AutoHeight>

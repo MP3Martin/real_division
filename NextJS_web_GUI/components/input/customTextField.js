@@ -15,7 +15,7 @@ const CustomTextField = (props) => {
   useEffect(()=>{
     if(thisRef) {
       var thisValue = thisRef.value
-      console.log(thisValue)
+      // console.log(thisValue)
       function clearERR(){
         setError([false, ""]);
           setGlobalState("inpError", [false, inpError[1], false]);
@@ -47,7 +47,7 @@ const CustomTextField = (props) => {
     }
   }, [input1val, input2val])
 
-  return <TextField {...props} enterKeyHint={"enter"} error={error[0]} helperText={error[1]} className={"allTextFields"} onChange={(e) => {
+  return <TextField {...props} enterKeyHint={"enter"} error={error[0]} helperText={error[1]} className={"allTextFields" + (error[0] ? " allTextFieldsError" : "")} onChange={(e) => {
     setThisRef(e.target);
     const firstVal = e.target.value;
     const caretStart = e.target.selectionStart;

@@ -9,6 +9,7 @@ import FadeIn from 'react-fade-in';
 
 import { setGlobalState, useGlobalState } from '../../hooks/globalState';
 import CustomTextField from './customTextField';
+import OutputOptions from './outputOptions'
 import Output from './output';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
@@ -166,7 +167,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span />
-                <CustomTextField customType={1} inputRef={inp1focus} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+                <CustomTextField customType={1} inputRef={inp1focus} name="noAutoFill" onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }}>
@@ -178,26 +179,39 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span /> <span /> <span />
-                <CustomTextField customType={2} inputRef={inp2focus} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+                <CustomTextField customType={2} inputRef={inp2focus} name="noAutoFill" onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }} >
               <FadeIn delay={fadeInDelay} className="fadeinadddelay fadeinDividedBy">
                 <span /> <span /> <span /> <span />
-                <div style={{ justifySelf: "center" }}>
-                  <Tooltip title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : (inpError[2] ? "Enter valid input first" : ""))} placement="bottom" arrow disableInteractive>
-                    <span>
-                      <LoadingButton disabled={inpError[2]} id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
-                        {isCalculating ? `Calculating${dotsLoading}` : "Calculate"}
-                      </LoadingButton>
-                    </span>
-                  </Tooltip>
+                <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }} className={"f42d4f1d14f5d1d45"}>
+                  <div style={{ display: "flex" }} className={"snzjgfdnghjkfsnghjf"}>
+                    <Tooltip title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : (inpError[2] ? "Enter valid input first" : ""))} placement="bottom" arrow disableInteractive>
+                      <span className={"outoptionschild"}>
+                        <LoadingButton disabled={inpError[2]} id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
+                          {isCalculating ? `Calculating${dotsLoading}` : "Calculate"}
+                        </LoadingButton>
+                      </span>
+                    </Tooltip>
+                  </div>
+                  <div style={{ display: "flex" }} className={"outoptionschild"}>
+                    <OutputOptions />
+                  </div>
                 </div>
               </FadeIn>
             </Grid>
+            {/* <Grid item xs={12} style={{ display: "grid" }}>
+              <FadeIn delay={fadeInDelay} className="fadeinadddelay fadeinDividedBy">
+                <span /> <span /> <span /> <span /> <span />
+                <div style={{ justifySelf: "center" }}>
+                  <OutputOptions />
+                </div>
+              </FadeIn>
+            </Grid> */}
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
-                <span /> <span /> <span /> <span /> <span />
+                <span /> <span /> <span /> <span /> <span /> <span />
                 <Output value={answer[0]} />
               </FadeIn>
             </Grid>
