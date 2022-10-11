@@ -70,7 +70,7 @@ const OutputOptions = (props) => {
             <Button variant="contained" size="small" color="secondary" onClick={() => {
                 navigator.clipboard.writeText(answer[0]);
                 setCopiedOpen(true);
-            }}>COPY</Button>
+            }}><span style={{fontSize: "0.8rem", lineHeight: 1.2}}>COPY<br />RESULT</span></Button>
         </Box>
 
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>

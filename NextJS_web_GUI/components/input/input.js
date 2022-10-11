@@ -17,6 +17,12 @@ import Constants from '../../constants.json';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import RunHarlem from '../../buidAssets/harlem.js'
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import Typography from '@mui/material/Typography';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import useDeviceSize from '../../hooks/useDeviceSize';
 
 
 function sleep(ms) {
@@ -35,6 +41,8 @@ function Input(props) {
   const inp1focus = useRef(null);
   const inp2focus = useRef(null);
 
+  const [winWidth, winHeight] = useDeviceSize();
+
   const [input1val] = useGlobalState("input1")
   const [input2val] = useGlobalState("input2")
   const [isJsrunpyLoading] = useGlobalState("isJsrunpyLoading")
@@ -44,7 +52,16 @@ function Input(props) {
   const [inp1mounted] = useGlobalState("inp1mounted")
   const [dotsLoading] = useGlobalState("dotsLoading");
   const [inpError] = useGlobalState("inpError");
+  const [outputOptionsHaveAcordicon] = useGlobalState("outputOptionsHaveAcordicon");
   // const [showDelay, setShowDelay] = useState(false);
+
+  useEffect(()=>{
+    if (winWidth <= 900) {
+      setGlobalState("outputOptionsHaveAcordicon", true)
+    } else {
+      setGlobalState("outputOptionsHaveAcordicon", false)
+    }
+  }, [winWidth])
 
   function substringFrequency(e, n, t) { let r, l = 0; for (let u = 0; u < e.length && (r = e.indexOf(n, u), -1 != r); u++)u = 1 == n.length || 1 == t ? r : r + 1, l++; return l }
 
@@ -82,6 +99,11 @@ function Input(props) {
       e.preventDefault()
     }
   }
+
+  var randName = 1;
+  useEffect(()=>{
+    randName = Number((Math.random()).toString().replaceAll(".", ""));
+  }, [])
 
   const handleInputChange = (id, e) => {
     var passed = 0
@@ -151,7 +173,7 @@ return calc(a, b)`
   //   ReactTooltip.rebuild();
   // });
 
-  const fadeInDelay = 20
+  const fadeInDelay = 25
 
   return (
     <>
@@ -160,14 +182,14 @@ return calc(a, b)`
           {inpError[1]}
         </MuiAlert>
       </Snackbar>
-      <FadeIn transitionDuration={400} delay={700}>
+      <FadeIn transitionDuration={400} delay={850}>
         <span />
         <Container className="indexInputOutputContainer" sx={{ border: 1, borderRadius: '10px', borderColor: theme.palette.grey[700] }} style={{ padding: "10px" }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span />
-                <CustomTextField customType={1} inputRef={inp1focus} name="noAutoFill" onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+                <CustomTextField customType={1} inputRef={inp1focus} name={randName * 3} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }}>
@@ -179,7 +201,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span /> <span /> <span />
-                <CustomTextField customType={2} inputRef={inp2focus} name="noAutoFill" onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+                <CustomTextField customType={2} inputRef={inp2focus} name={randName * 2} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }} >
@@ -196,7 +218,19 @@ return calc(a, b)`
                     </Tooltip>
                   </div>
                   <div style={{ display: "flex" }} className={"outoptionschild"}>
-                    <OutputOptions />
+                    {outputOptionsHaveAcordicon ? <>
+                      <Accordion>
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                        >
+                          <Typography>More options</Typography>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <OutputOptions />
+                        </AccordionDetails>
+                      </Accordion>
+                    </> : <><OutputOptions /></>
+                    }
                   </div>
                 </div>
               </FadeIn>

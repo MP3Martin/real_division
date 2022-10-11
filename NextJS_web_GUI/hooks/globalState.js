@@ -14,5 +14,6 @@ const { setGlobalState, useGlobalState } = createGlobalState({
     //1. - showError, 2. - errorReason, 3. - disableAnswerButton
     inpError: [false, "", true],
     outputTextSize: 875,
+    outputOptionsHaveAcordicon: false,
 });
 export { useGlobalState, setGlobalState };

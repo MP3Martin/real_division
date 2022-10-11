@@ -50,7 +50,7 @@ $global-animation-delay: 0.6;
 /* START OF animate rigth navbar icons */
 @for $i from 0 through 10 {
   .navBarRightIcons > * > :nth-child(#{$i}n) {
-    $delay-between: 0.12;
+    $delay-between: 0.18;
     $delay: 0.3;
     animation-delay: #{(($i * $delay-between) - $delay-between + $delay) +
       $global-animation-delay}s;
@@ -63,7 +63,7 @@ $global-animation-delay: 0.6;
 
 .navBarRightIcons > * > * {
   animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
-  animation: fadeInSlideRight 0.6s forwards;
+  animation: fadeInSlideRight 1s forwards;
 }
 
 @keyframes fadeInSlideRight {
@@ -136,7 +136,7 @@ $global-animation-delay: 0.6;
 }
 
 .fadeinadddelay > * {
-  transition-delay: 1.42s !important;
+  transition-delay: 1.62s !important;
 }
 
 .MuiFormHelperText-root.Mui-error {
@@ -155,5 +155,21 @@ $global-animation-delay: 0.6;
   }
   .outoptionschild {
     margin-inline: auto !important;
+  }
+}
+
+.infoDialogInnerDiv {
+  h3 {
+    text-decoration: underline;
+    &:after {
+      content: '\00a0\00a0\00a0'
+    }
+    &:before {
+      content: '\00a0'
+    }
+  }
+  p {
+    // margin-left: 1rem;
+    line-height: 1.4;
   }
 }
