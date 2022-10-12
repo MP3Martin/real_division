@@ -209,7 +209,7 @@ return calc(a, b)`
                 <span /> <span /> <span /> <span />
                 <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }} className={"f42d4f1d14f5d1d45"}>
                   <div style={{ display: "flex" }} className={"snzjgfdnghjkfsnghjf"}>
-                    <Tooltip title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : (inpError[2] ? "Enter valid input first" : ""))} placement="bottom" arrow disableInteractive>
+                    <Tooltip enterTouchDelay={0} title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : (inpError[2] ? "Enter valid input first" : ""))} placement="bottom" arrow disableInteractive>
                       <span className={"outoptionschild"}>
                         <LoadingButton disabled={inpError[2]} id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
                           {isCalculating ? `Calculating${dotsLoading}` : "Calculate"}
