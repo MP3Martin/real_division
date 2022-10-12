@@ -106,13 +106,13 @@ function NavBarRightIcons(props) {
               <p>
                 <ul>
               <li>
-                Framework: Next.js - React
+                <b>Framework:</b> Next.js - React
                 </li>
                 <li>
-                UI Library: MUI
+                <b>UI Library:</b> MUI
                 </li>
                 <li>
-                Styling: scss
+                <b>Styling:</b> scss
                 </li>
                 </ul>
               </p>
