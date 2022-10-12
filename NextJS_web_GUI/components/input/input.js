@@ -189,7 +189,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span />
-                <CustomTextField customType={1} inputRef={inp1focus} name={randName * 3} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+                <CustomTextField customType={1} inputRef={inp1focus} name={Math.random()} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }}>
@@ -201,7 +201,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span /> <span /> <span />
-                <CustomTextField customType={2} inputRef={inp2focus} name={randName * 2} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+                <CustomTextField customType={2} inputRef={inp2focus} name={Math.random()} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }} >
