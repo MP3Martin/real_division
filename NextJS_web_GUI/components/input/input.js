@@ -41,6 +41,8 @@ function Input(props) {
   const inp1focus = useRef(null);
   const inp2focus = useRef(null);
 
+  const [inpErrors, setInpErrors] = useState({one: false, two: false})
+
   const [winWidth, winHeight] = useDeviceSize();
 
   const [input1val] = useGlobalState("input1")
@@ -189,7 +191,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span />
-                <CustomTextField customType={1} inputRef={inp1focus} name={randName * 3} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+                <CustomTextField setError={(l)=>{setInpErrors({...inpErrors, one: l})}} customType={1} inputRef={inp1focus} name={randName * 3} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }}>
@@ -201,7 +203,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span /> <span /> <span />
-                <CustomTextField customType={2} inputRef={inp2focus} name={randName * 2} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+                <CustomTextField setError={(l)=>{setInpErrors({...inpErrors, two: l})}} customType={2} inputRef={inp2focus} name={randName * 2} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }} >
@@ -209,9 +211,9 @@ return calc(a, b)`
                 <span /> <span /> <span /> <span />
                 <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }} className={"f42d4f1d14f5d1d45"}>
                   <div style={{ display: "flex" }} className={"snzjgfdnghjkfsnghjf"}>
-                    <Tooltip enterTouchDelay={0} title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : (inpError[2] ? "Enter valid input first" : ""))} placement="bottom" arrow disableInteractive>
+                    <Tooltip enterTouchDelay={0} title={isJsrunpyLoading || rdc == "" ? `jsRUNpy library is downloading${dotsLoading}` : (isCalculating ? `The answer is being calculated${dotsLoading}` : ((inpError[2] || input1val == "" || input2val == "" || inpErrors.one || inpErrors.two) ? "Enter valid input first" : ""))} placement="bottom" arrow disableInteractive>
                       <span className={"outoptionschild"}>
-                        <LoadingButton disabled={inpError[2]} id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
+                        <LoadingButton disabled={inpError[2] || input1val == "" || input2val == "" || inpErrors.one || inpErrors.two} id="calc_button" size="normal" onClick={() => { calculate([input1val, input2val]) }} startIcon={<CalculateRoundedIcon />} loading={isJsrunpyLoading || isCalculating || rdc == ""} loadingPosition="start" variant="contained">
                           {isCalculating ? `Calculating${dotsLoading}` : "Calculate"}
                         </LoadingButton>
                       </span>

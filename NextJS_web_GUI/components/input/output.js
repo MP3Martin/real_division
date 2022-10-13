@@ -41,48 +41,52 @@ const Output = (props) => {
   const [isCalculating] = useGlobalState("isCalculating")
   const [outputTextSize] = useGlobalState("outputTextSize")
 
-  highlight({
-    patterns: [
-      // {
-      //     name: 'oh1-test',
-      //     match: [/(E)/]
-      // }
-    ],
-    selector: ".f24sd4268fds246fs4d65",
-    preProcess: string => {
-      return props.value
-    },
-    postProcess: string => {
-      //alternating lines
-      for (var i = 1; i < substringFrequency(string, "\n"); i++) {
-        string = string.replace(new RegExp(`((?:^[^\n]*\n?){${i}})(.*)`, "m"), "$1<span class='oh1-alternating'>$2</span>")
-      }
+  const parseAndHighlight = (string) => {
+    //alternating lines
+    for (var i = 1; i < substringFrequency(string, "\n"); i++) {
+      string = string.replace(new RegExp(`((?:^[^\n]*\n?){${i}})(.*)`, "m"), "$1<span class='oh1-alternating'>$2</span>")
+    }
 
-      //remainder
-      string = string.replaceAll(/\((\d+)\)/g, "(<span class='oh1-remainder'>$1</span>)")
+    //remainder
+    string = string.replaceAll(/\((\d+)\)/g, "(<span class='oh1-remainder'>$1</span>)")
 
-      //first nums
-      string = replaceNthMatch(string, /(\d+)/, 1, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
-      string = replaceNthMatch(string, /(\d+)/, 3, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
-      string = replaceNthMatch(string, /(\d+)/, 5, function (val) { return `<span class='oh1-answer'>${val}</span>` });
+    //first nums
+    string = replaceNthMatch(string, /(\d+)/, 1, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
+    string = replaceNthMatch(string, /(\d+)/, 3, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
+    string = replaceNthMatch(string, /(\d+)/, 5, function (val) { return `<span class='oh1-answer'>${val}</span>` });
 
-      //first line
-      string = string.replace(/^.*/, function (m) {
-        return "<span class='oh1-firstline'>" + m + "</span>"
-      });
+    //first line
+    string = string.replace(/^.*/, function (m) {
+      return "<span class='oh1-firstline'>" + m + "</span>"
+    });
 
-      //add working line breaks
-      string = string.replaceAll("\n", "<br>")
+    //add working line breaks
+    string = string.replaceAll("\n", "<br>")
 
-      //special chars
-      for (var i of [":", "(", ")", "="]) {
-        string = string.replaceAll(/([^>]+(?![^<]*\>))/g, (val) => { return val.replaceAll(i, "<span class='oh1-miscchar'>" + i + "</span>") })
-      }
+    //special chars
+    for (var i of [":", "(", ")", "="]) {
+      string = string.replaceAll(/([^>]+(?![^<]*\>))/g, (val) => { return val.replaceAll(i, "<span class='oh1-miscchar'>" + i + "</span>") })
+    }
 
-      // console.log(outputRef)
-      return string
-    },
-  })
+    // console.log(outputRef)
+    return string
+  }
+
+  // highlight({
+  //   patterns: [
+  //     // {
+  //     //     name: 'oh1-test',
+  //     //     match: [/(E)/]
+  //     // }
+  //   ],
+  //   selector: ".f24sd4268fds246fs4d65",
+  //   preProcess: string => {
+  //     return props.value
+  //   },
+  //   postProcess: string => {
+      
+  //   },
+  // })
 
   return (
     <AutoHeight
@@ -92,7 +96,7 @@ const Output = (props) => {
       style={{ transition: "height 0.4s cubic-bezier(.17,.84,.44,1) 0s" }}
     >
       <Box className={"f24sd4268fds246fs4d65"} ref={outputRef} component="div" sx={{ /*overflow: "auto"*//*(!isAnimating ? "auto" : "hidden !important"),*/ whiteSpace: 'nowrap', bgcolor: '#101010', color: 'grey.300', border: '1px solid', borderColor: 'grey.800', borderRadius: 2, fontSize: (outputTextSize / 1000) + 'rem', fontWeight: '400', padding: '0.4rem', display: 'block', fontFamily: "'JetBrains Mono', monospace" }}>
-        <></>
+      <div dangerouslySetInnerHTML={{ __html: parseAndHighlight(props.value) }} />
       </Box>
     </AutoHeight>
   );

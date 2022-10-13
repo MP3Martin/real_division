@@ -114,6 +114,9 @@ function NavBarRightIcons(props) {
                 <li>
                 <b>Styling:</b> scss
                 </li>
+                <li>
+                <b>The cool thing:</b> There is an actual python code running in your browser<>&nbsp;</>-<>&nbsp;</>using <a href="//github.com/MP3Martin/jsRUNpy.js" target="_blank" style={{color: theme.palette.primary.dark}}>jsRUNpy.js</a> (<a href="//github.com/brython-dev/brython" target="_blank" style={{color: theme.palette.primary.dark}}>Brython</a> but executed by js)
+                </li>
                 </ul>
               </p>
             </div>
