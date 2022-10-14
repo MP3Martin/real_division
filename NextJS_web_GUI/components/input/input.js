@@ -219,7 +219,7 @@ return calc(a, b)`
                       </span>
                     </Tooltip>
                   </div>
-                  <div style={{ display: "flex" }} className={"outoptionschild"}>
+                  <div style={{ display: "flex", gap: "inherit" }} className={"outoptionschild"}>
                     {outputOptionsHaveAcordicon ? <>
                       <Accordion>
                         <AccordionSummary
