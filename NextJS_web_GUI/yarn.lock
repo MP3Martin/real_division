@@ -1577,11 +1577,6 @@ csstype@^3.0.2, csstype@^3.1.0, csstype@^3.1.1:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.1.tgz#841b532c45c758ee546a11d5bd7b7b473c8c30b9"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
 
-custom-syntax-highlighter@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/custom-syntax-highlighter/-/custom-syntax-highlighter-1.0.1.tgz#405c592982267a3c0498533156e331d03a1ed9ea"
-  integrity sha512-XVQld4tzwWVI6OmhFzNHWCtoHt1ZUpByt51z5c4efeJvjLWu3oi76U0Riwfh8Cv1OqNCruMXf5aXwlxHGq/6eQ==
-
 damerau-levenshtein@^1.0.8:
   version "1.0.8"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
@@ -3030,11 +3025,6 @@ react-fade-in@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-fade-in/-/react-fade-in-2.0.1.tgz#b4bcd7dac63d6857ebcd68facbff2f5f9616278f"
   integrity sha512-oqS/WT4znaXEHmL+yo0IDUDY7uC9K4RP35j1SdRUEBspR09B2iIC0i8oJ28tPOr6Ez/L2aktF9p89j+DbsTVNw==
 
-react-fast-compare@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
-  integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
-
 react-height-transition@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-height-transition/-/react-height-transition-1.0.0.tgz#c3cd4be71917645b34a037faa98a9a5eea237356"
@@ -3092,13 +3082,6 @@ react-shadowed-double-scrollbar@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/react-shadowed-double-scrollbar/-/react-shadowed-double-scrollbar-1.0.5.tgz#a2ad321b2e4872c66352631b357d5d89c758df43"
   integrity sha512-/gB/gOkaqk/3e2hIyDznDyyPVptanJFCrWSL/XPQDB4K+sT7ZCdEqAB0vs45MXa8FKsyCGWd7cFdEaPBX9i+YA==
-
-react-snowfall@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-snowfall/-/react-snowfall-1.2.1.tgz#68cab6a1d05aa7c3211bce96a3a97977ca7dc57f"
-  integrity sha512-d2UR3nDq3F0DJGaTfJ0QNbBo76UZHtT9wHFj+ePxAl4FgSxWBhxB/Bjn06f5iDBwhgwiZ7CZmv3lwfNvjo6a+w==
-  dependencies:
-    react-fast-compare "^3.2.0"
 
 react-spinners-kit@^1.9.1:
   version "1.9.1"

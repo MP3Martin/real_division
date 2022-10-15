@@ -21,7 +21,6 @@
     "@react-hook/window-size": "^3.1.1",
     "bootstrap": "^5.2.1",
     "brython": "^3.10.6",
-    "custom-syntax-highlighter": "^1.0.1",
     "framer-motion": "^7.5.3",
     "jshint": "^2.13.5",
     "next": "^12.3.1",

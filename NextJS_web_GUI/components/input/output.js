@@ -1,5 +1,4 @@
 import { React, Component, useState, useEffect, useRef } from "react";
-import highlight from 'custom-syntax-highlighter';
 import { setGlobalState, useGlobalState } from '../../hooks/globalState';
 import AutoHeight from 'react-auto-height'
 
@@ -71,22 +70,6 @@ const Output = (props) => {
     // console.log(outputRef)
     return string
   }
-
-  // highlight({
-  //   patterns: [
-  //     // {
-  //     //     name: 'oh1-test',
-  //     //     match: [/(E)/]
-  //     // }
-  //   ],
-  //   selector: ".f24sd4268fds246fs4d65",
-  //   preProcess: string => {
-  //     return props.value
-  //   },
-  //   postProcess: string => {
-
-  //   },
-  // })
 
   return (
     <AutoHeight
