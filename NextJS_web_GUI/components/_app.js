@@ -62,7 +62,7 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
 
   return (
     <>
-      <div style={{ position: "fixed", height: "100vh", width: "100vw", zIndex: -1 }} className={"bgParticlesWrapper"}>
+      <div style={{ position: "fixed", height: "150vh", width: "100vw", zIndex: -1 }} className={"bgParticlesWrapper"}>
         {enableSnowBG &&
           <ParticleBackground settings={bgSettings} />
         }
