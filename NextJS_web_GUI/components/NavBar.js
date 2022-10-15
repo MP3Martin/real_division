@@ -14,9 +14,9 @@ import TitleText from './TitleText';
 export default function NavBar() {
   return (
     // <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" style={{"max-height": "64px"}}>
-        <Toolbar style={{"display": "grid"}}>
-          {/* <IconButton
+    <AppBar position="static" style={{ "max-height": "64px" }}>
+      <Toolbar style={{ "display": "grid" }}>
+        {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -25,18 +25,18 @@ export default function NavBar() {
           >
             <MenuIcon />
           </IconButton> */}
-            {/* <FadeIn className="titleTextTypographyFadeIn"> */}
-                <Typography variant="h4" component="div" style={{"justify-self": "center"}} className="titleTextTypography">
-                    <TitleText />
-                </Typography>
-            {/* </FadeIn> */}
-                <div className="navBarRightIcons" style={{"justify-self": "end", "position": "absolute", "margin-right": "1rem"}}>
-                  <NavBarRightIcons />
-                </div>
-          {/* <Box display="flex" flexDirection="column" > */}
-          {/* </Box> */}
-        </Toolbar>
-      </AppBar>
+        {/* <FadeIn className="titleTextTypographyFadeIn"> */}
+        <Typography variant="h4" component="div" style={{ "justify-self": "center" }} className="titleTextTypography">
+          <TitleText />
+        </Typography>
+        {/* </FadeIn> */}
+        <div className="navBarRightIcons" style={{ "justify-self": "end", "position": "absolute", "margin-right": "1rem" }}>
+          <NavBarRightIcons />
+        </div>
+        {/* <Box display="flex" flexDirection="column" > */}
+        {/* </Box> */}
+      </Toolbar>
+    </AppBar>
     // </Box>
   );
 }

@@ -41,7 +41,7 @@ function Input(props) {
   const inp1focus = useRef(null);
   const inp2focus = useRef(null);
 
-  const [inpErrors, setInpErrors] = useState({one: false, two: false})
+  const [inpErrors, setInpErrors] = useState({ one: false, two: false })
 
   const [winWidth, winHeight] = useDeviceSize();
 
@@ -57,7 +57,7 @@ function Input(props) {
   const [outputOptionsHaveAcordicon] = useGlobalState("outputOptionsHaveAcordicon");
   // const [showDelay, setShowDelay] = useState(false);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (winWidth <= 900) {
       setGlobalState("outputOptionsHaveAcordicon", true)
     } else {
@@ -103,7 +103,7 @@ function Input(props) {
   }
 
   var randName = 1;
-  useEffect(()=>{
+  useEffect(() => {
     randName = Number((Math.random()).toString().replaceAll(".", ""));
   }, [])
 
@@ -191,7 +191,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span />
-                <CustomTextField setError={(l)=>{setInpErrors({...inpErrors, one: l})}} customType={1} inputRef={inp1focus} name={Math.random()} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
+                <CustomTextField setError={(l) => { setInpErrors({ ...inpErrors, one: l }) }} customType={1} inputRef={inp1focus} name={Math.random()} onKeyDown={(e) => { handleKeyPress(1, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 1" fullWidth variant="outlined" value={input1val} onChange={(e) => { handleInputChange(1, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }}>
@@ -203,7 +203,7 @@ return calc(a, b)`
             <Grid item xs={12}>
               <FadeIn delay={fadeInDelay} className="fadeinadddelay">
                 <span /> <span /> <span />
-                <CustomTextField setError={(l)=>{setInpErrors({...inpErrors, two: l})}} customType={2} inputRef={inp2focus} name={Math.random()} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
+                <CustomTextField setError={(l) => { setInpErrors({ ...inpErrors, two: l }) }} customType={2} inputRef={inp2focus} name={Math.random()} onKeyDown={(e) => { handleKeyPress(2, e) }} inputProps={{ autoComplete: "none", inputMode: 'numeric' }} label="Number 2" fullWidth variant="outlined" value={input2val} onChange={(e) => { handleInputChange(2, e) }} />
               </FadeIn>
             </Grid>
             <Grid item xs={12} style={{ display: "grid" }} >

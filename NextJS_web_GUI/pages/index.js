@@ -20,11 +20,7 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>NextJS app with react-bootstrap</title>
-      </Head>
-
-        {/* <Script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js" onLoad={()=>{
+      {/* <Script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js" onLoad={()=>{
           var egg = new Egg("up,up", function() {
             alert("never")
           }).listen();

@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps }) {
   //   }, 100)
   // }, [dotsLoading])
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch("https://mp3martin.github.io/real-division-assets/__init__.py")
       .then((response) => response.text())
       .then((textContent) => {
@@ -63,6 +63,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
+        <title>Real Division</title>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -108,7 +109,7 @@ function MyApp({ Component, pageProps }) {
       </>
 
       <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+        <CssBaseline />
         <LoadingOverlay
           active={isRootLoading}
           spinner={<JellyfishSpinner size={70} color="#06E27E" loading={true} />}

@@ -14,43 +14,43 @@ const CustomTextField = (props) => {
   const [inpError] = useGlobalState("inpError")
   const [thisRef, setThisRef] = useState(null)
 
-  useEffect(()=>{
-    if(thisRef) {
+  useEffect(() => {
+    if (thisRef) {
       var thisValue = thisRef.value
       // console.log(thisValue)
-      function clearERR(){
+      function clearERR() {
         setError([false, ""]);
         setGlobalState("inpError", [false, inpError[1], false]);
       }
-       var e = 0;
-       clearERR()
-        if (thisValue.startsWith(".") || thisValue.endsWith(".")) {
-          setError([true, `Number can't start / end with "."!`]);
-          setGlobalState("inpError", [inpError[0], inpError[1], true]); 
+      var e = 0;
+      clearERR()
+      if (thisValue.startsWith(".") || thisValue.endsWith(".")) {
+        setError([true, `Number can't start / end with "."!`]);
+        setGlobalState("inpError", [inpError[0], inpError[1], true]);
+        e++
+      }
+      try {
+        if (Number(input1val) < Number(input2val)) {
+          setGlobalState("inpError", [true, "First number must be bigger", true]);
           e++
         }
-        try {
-          if (Number(input1val) < Number(input2val)) {
-            setGlobalState("inpError", [true, "First number must be bigger", true]);
-            e++
-          }
-          if (allOne(thisValue.replaceAll(".", "")) == true && thisValue.replaceAll(".", "")[0] === "0") {
-            setError([true, `Can't divide by zero!`]);
-            setGlobalState("inpError", [inpError[0], inpError[1], true]); 
-            e++
-          }
-        } catch (e) {}
-        if (thisValue.length > 308) {
-          setError([true, `The number is too long!`]);
-          setGlobalState("inpError", [inpError[0], inpError[1], true]); 
+        if (allOne(thisValue.replaceAll(".", "")) == true && thisValue.replaceAll(".", "")[0] === "0") {
+          setError([true, `Can't divide by zero!`]);
+          setGlobalState("inpError", [inpError[0], inpError[1], true]);
           e++
         }
-        if (e <= 0) {
-          clearERR()
-          props.setError && props.setError(false)
-        } else {
-          props.setError && props.setError(true)
-        }
+      } catch (e) { }
+      if (thisValue.length > 308) {
+        setError([true, `The number is too long!`]);
+        setGlobalState("inpError", [inpError[0], inpError[1], true]);
+        e++
+      }
+      if (e <= 0) {
+        clearERR()
+        props.setError && props.setError(false)
+      } else {
+        props.setError && props.setError(true)
+      }
     }
   }, [thisRef && thisRef.value])
 

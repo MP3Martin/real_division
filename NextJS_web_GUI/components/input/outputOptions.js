@@ -56,26 +56,26 @@ const OutputOptions = (props) => {
                 // height: '2.4rem',
             }}
         >
-            <IconButton size="small" onClick={()=>{handleMakefntsizeBiggerSmaller(-100)}}>
-              <TextDecreaseIcon fontSize="smaller" />
+            <IconButton size="small" onClick={() => { handleMakefntsizeBiggerSmaller(-100) }}>
+                <TextDecreaseIcon fontSize="smaller" />
             </IconButton>
             <Slider
                 // defaultValue={875}
                 value={outputTextSize}
-                onChange={(event, newValue)=>{setGlobalState("outputTextSize", newValue)}}
+                onChange={(event, newValue) => { setGlobalState("outputTextSize", newValue) }}
                 step={30}
                 min={FONT_SIZE_SLIDER.min}
                 max={FONT_SIZE_SLIDER.max}
-                sx={{minWidth: "4rem", maxWidth: "7rem"}}
+                sx={{ minWidth: "4rem", maxWidth: "7rem" }}
             />
-            <IconButton size="small" onClick={()=>{handleMakefntsizeBiggerSmaller(+100)}}>
-              <TextIncreaseIcon fontSize="small" />
+            <IconButton size="small" onClick={() => { handleMakefntsizeBiggerSmaller(+100) }}>
+                <TextIncreaseIcon fontSize="small" />
             </IconButton>
-            <Divider orientation="vertical" variant="middle" flexItem sx={{marginLeft: "2px !important", marginRight: "0.5rem !important"}}/>
+            <Divider orientation="vertical" variant="middle" flexItem sx={{ marginLeft: "2px !important", marginRight: "0.5rem !important" }} />
             <Button variant="contained" size="small" color="secondary" onClick={() => {
                 navigator.clipboard.writeText(answer[0]);
                 setCopiedOpen(true);
-            }}><span style={{fontSize: "0.8rem", lineHeight: 1.2}}>COPY<br />RESULT</span></Button>
+            }}><span style={{ fontSize: "0.8rem", lineHeight: 1.2 }}>COPY<br />RESULT</span></Button>
         </Box>
         <Box
             sx={{
@@ -100,7 +100,7 @@ const OutputOptions = (props) => {
                 marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
             }}
         >
-          <FormControlLabel control={<Checkbox checked={enableSnowBG} onChange={()=>{setGlobalState("enableSnowBG", !enableSnowBG)}} />} label="Enable cool background" />
+            <FormControlLabel control={<Checkbox checked={enableSnowBG} onChange={() => { setGlobalState("enableSnowBG", !enableSnowBG) }} />} label="Enable cool background" />
         </Box>
 
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>

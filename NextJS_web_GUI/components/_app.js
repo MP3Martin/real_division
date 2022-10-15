@@ -36,11 +36,11 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
   //         setAlternatingSnowflakeSpeed(0.0)
   //       }, 50)
   //     }, 1000);
-  
+
   //     return () => clearInterval(interval);
   //   }, 2000)
   // }, []);
-  
+
   const bgSettings = {
     particle: {
       particleCount: isNotDesktop ? 80 : 150,
@@ -62,11 +62,11 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
 
   return (
     <>
-        <div style={{position: "fixed", height: "100vh", width: "100vw", zIndex: -1}} className={"bgParticlesWrapper"}>
-      {enableSnowBG &&
+      <div style={{ position: "fixed", height: "100vh", width: "100vw", zIndex: -1 }} className={"bgParticlesWrapper"}>
+        {enableSnowBG &&
           <ParticleBackground settings={bgSettings} />
         }
-          </div>
+      </div>
 
       <Head>
         <meta name="color-scheme" content="only dark" /> {/*😎*/}

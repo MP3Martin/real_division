@@ -44,43 +44,43 @@ function NavBarRightIcons(props) {
 
   return (
     <>
-    <StyledWrapper style={props.style}>
-      {/* <div style={{"height": "52px", "width": "52px"}} /> */}
-      <IconButton
-        size={iconButtonSize(width)}
-        onClick={handleInfoDialogOpen}
-      >
-        <InfoIcon fontSize="inherit" />
-      </IconButton>
+      <StyledWrapper style={props.style}>
+        {/* <div style={{"height": "52px", "width": "52px"}} /> */}
+        <IconButton
+          size={iconButtonSize(width)}
+          onClick={handleInfoDialogOpen}
+        >
+          <InfoIcon fontSize="inherit" />
+        </IconButton>
 
-      <IconButton
-        size={iconButtonSize(width)}
-        href={Constants.adress.github}
-        target="_blank"
-      >
-        <GitHubIcon fontSize="inherit" />
-      </IconButton>
-    </StyledWrapper>
+        <IconButton
+          size={iconButtonSize(width)}
+          href={Constants.adress.github}
+          target="_blank"
+        >
+          <GitHubIcon fontSize="inherit" />
+        </IconButton>
+      </StyledWrapper>
 
-    <Dialog
+      <Dialog
         open={infoDialogOpen}
         onClose={handleInfoDialogClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title" style={{fontSize: "2.4rem", marginInline: "auto"}}>
+        <DialogTitle id="alert-dialog-title" style={{ fontSize: "2.4rem", marginInline: "auto" }}>
           Info
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            <div style={{lineHeight: 0}} className="infoDialogInnerDiv">
+            <div style={{ lineHeight: 0 }} className="infoDialogInnerDiv">
               <h3>
                 Basic info
               </h3>
               <p>
                 <ul>
                   <li>
-                    Made by <a href="//mp3martin.xyz" target="_blank" style={{color: theme.palette.primary.dark}}>MP3Martin</a>. <br />
+                    Made by <a href="//mp3martin.xyz" target="_blank" style={{ color: theme.palette.primary.dark }}>MP3Martin</a>. <br />
                   </li>
                   <li>
                     Using at school: At your own risk.
@@ -92,12 +92,12 @@ function NavBarRightIcons(props) {
               </h3>
               <p>
                 <ul>
-              <li>
-                Use arrow keys to switch between number inputs (pc only).
-                </li>
-                <li>
-                Use enter key to calculate without needing to use your mouse (pc only).
-                </li>
+                  <li>
+                    Use arrow keys to switch between number inputs (pc only).
+                  </li>
+                  <li>
+                    Use enter key to calculate without needing to use your mouse (pc only).
+                  </li>
                 </ul>
               </p>
               <h3>
@@ -105,18 +105,18 @@ function NavBarRightIcons(props) {
               </h3>
               <p>
                 <ul>
-              <li>
-                <b>Framework:</b> Next.js - React
-                </li>
-                <li>
-                <b>UI Library:</b> MUI
-                </li>
-                <li>
-                <b>Styling:</b> scss
-                </li>
-                <li>
-                <b>The cool thing:</b> There is an actual python code running in your browser<>&nbsp;</>-<>&nbsp;</>using <a href="//github.com/MP3Martin/jsRUNpy.js" target="_blank" style={{color: theme.palette.primary.dark}}>jsRUNpy.js</a> (<a href="//github.com/brython-dev/brython" target="_blank" style={{color: theme.palette.primary.dark}}>Brython</a> but executed by js)
-                </li>
+                  <li>
+                    <b>Framework:</b> Next.js - React
+                  </li>
+                  <li>
+                    <b>UI Library:</b> MUI
+                  </li>
+                  <li>
+                    <b>Styling:</b> scss
+                  </li>
+                  <li>
+                    <b>The cool thing:</b> There is an actual python code running in your browser<>&nbsp;</>-<>&nbsp;</>using <a href="//github.com/MP3Martin/jsRUNpy.js" target="_blank" style={{ color: theme.palette.primary.dark }}>jsRUNpy.js</a> (<a href="//github.com/brython-dev/brython" target="_blank" style={{ color: theme.palette.primary.dark }}>Brython</a> but executed by js)
+                  </li>
                 </ul>
               </p>
             </div>

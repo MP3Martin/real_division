@@ -1,6 +1,6 @@
 // made by https://stackoverflow.com/users/12924484/ismoil-shokirov @ https://stackoverflow.com/a/68509243/10518428
 
-import {React, Component, useState, useEffect} from 'react';
+import { React, Component, useState, useEffect } from 'react';
 
 const useDeviceSize = () => {
   const [width, setWidth] = useState(999);
