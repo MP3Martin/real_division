@@ -221,7 +221,7 @@ return calc(a, b)`
                   </div>
                   <div style={{ display: "flex", gap: "inherit" }} className={"outoptionschild"}>
                     {outputOptionsHaveAcordicon ? <>
-                      <Accordion>
+                      <Accordion className={"outoptionschildacordicon"}>
                         <AccordionSummary
                           expandIcon={<ExpandMoreIcon />}
                         >

@@ -193,3 +193,14 @@ $global-animation-delay: 0.6;
 .MuiAccordionDetails-root {
   display: grid;
 }
+
+.outoptionschildacordicon {
+  // max-width: 80vw;
+  // & * {
+  //   max-width: 80vw;
+  // }
+}
+
+.outoptionschildacordicon > * {
+  max-width: 80vw;
+}

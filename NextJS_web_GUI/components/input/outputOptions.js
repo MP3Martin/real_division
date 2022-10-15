@@ -95,7 +95,7 @@ const OutputOptions = (props) => {
                 },
                 maxHeight: '3rem',
                 alignSelf: "center",
-                minWidth: "16.4rem",
+                width: "16.4rem",
                 justifySelf: "center",
                 marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
             }}

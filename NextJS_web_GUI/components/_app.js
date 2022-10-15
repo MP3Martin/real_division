@@ -55,7 +55,7 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
     },
     opacity: {
       minOpacity: 0.01,
-      maxOpacity: 0.4,
+      maxOpacity: 0.3,
       opacityTransitionTime: 10000
     }
   }
