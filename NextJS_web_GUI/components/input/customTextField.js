@@ -29,7 +29,7 @@ const CustomTextField = (props) => {
         setGlobalState("inpError", [inpError[0], inpError[1], true]);
         e++
       }
-      try {
+      if (input1val !== "" && input2val !== "") {
         if (Number(input1val) < Number(input2val)) {
           setGlobalState("inpError", [true, "First number must be bigger", true]);
           e++
@@ -39,7 +39,7 @@ const CustomTextField = (props) => {
           setGlobalState("inpError", [inpError[0], inpError[1], true]);
           e++
         }
-      } catch (e) { }
+      }
       if (thisValue.length > 308) {
         setError([true, `The number is too long!`]);
         setGlobalState("inpError", [inpError[0], inpError[1], true]);

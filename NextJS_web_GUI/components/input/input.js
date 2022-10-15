@@ -1,9 +1,7 @@
-import { React, Component, useState, useEffect, useRef, forwardRef } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { useTheme } from '@mui/material';
 import Container from "@mui/material/Container";
-import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
-import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import FadeIn from 'react-fade-in';
 
@@ -13,7 +11,6 @@ import OutputOptions from './outputOptions'
 import Output from './output';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CalculateRoundedIcon from '@mui/icons-material/CalculateRounded';
-import Constants from '../../constants.json';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import RunHarlem from '../../buidAssets/harlem.js'
@@ -31,7 +28,7 @@ function sleep(ms) {
 
 function isCustomDigit(value) {
   value = value.replaceAll(".", "").replaceAll(",", "")
-  return (/^\d+$/.test(value))
+  return /^\d+$/.test(value);
 }
 
 
