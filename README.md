@@ -26,7 +26,7 @@ Framework | Tkinter |  Next.js + MUI | :x: | *None* | *None*
 (:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
 
 ## Why this project exists / What i learned
-This project was created to show that you can write **small core script** and use it in many **platforms** / **frameworks** _(even **Python** in **JS**)_.
+This project was created to show that you can write **small core script** and use it in many **platforms** / **frameworks** _(even **Python** in **WEB Browser**)_.
 
 #### How this project affected me:
 * I learned
