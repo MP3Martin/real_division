@@ -16,5 +16,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
     outputTextSize: 875,
     outputOptionsHaveAcordicon: false,
     enableSnowBG: true,
+    darkMode: true,
+    enableAnimations: true,
 });
 export { useGlobalState, setGlobalState };

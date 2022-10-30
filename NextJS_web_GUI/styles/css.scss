@@ -1,3 +1,7 @@
+:root {
+  --nbri-are-small: 0.8;
+}
+
 $global-animation-delay: 0.6;
 
 .titleTextTypography {
@@ -197,12 +201,12 @@ $global-animation-delay: 0.6;
   display: grid;
 }
 
-.outoptionschildacordicon {
-  // max-width: 80vw;
-  // & * {
-  //   max-width: 80vw;
-  // }
-}
+// .outoptionschildacordicon {
+//   // max-width: 80vw;
+//   // & * {
+//   //   max-width: 80vw;
+//   // }
+// }
 
 .outoptionschildacordicon > * {
   max-width: 80vw;
@@ -215,4 +219,17 @@ $global-animation-delay: 0.6;
     rgba(255, 255, 255, 0.04),
     rgba(255, 255, 255, 0.04)
   ) !important;
+}
+
+.navBarRightIconsParent:hover {
+  .navBarRightIconsChild:not(:hover) {
+    scale: var(--nbri-are-small) !important;
+  }
+}
+.navBarRightIconsChild:hover {
+  scale: 1.1 !important;
+}
+
+.navBarRightIconsChild {
+  transition-property: background-color, scale !important;
 }

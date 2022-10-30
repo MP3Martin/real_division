@@ -24,6 +24,7 @@ const OutputOptions = (props) => {
     const [copiedOpen, setCopiedOpen] = useState(false)
     const [outputTextSize] = useGlobalState("outputTextSize")
     const [enableSnowBG] = useGlobalState("enableSnowBG")
+    const [enableAnimations] = useGlobalState("enableAnimations")
 
     function handleMakefntsizeBiggerSmaller(offset) {
         const newVal = outputTextSize + offset
@@ -101,6 +102,31 @@ const OutputOptions = (props) => {
             }}
         >
             <FormControlLabel control={<Checkbox checked={enableSnowBG} onChange={() => { setGlobalState("enableSnowBG", !enableSnowBG) }} />} label="Enable cool background" />
+        </Box>
+        <Box
+            sx={{
+                display: 'flex',
+                alignItems: 'center',
+                width: 'fit-content',
+                border: (theme) => `1px solid ${theme.palette.divider}`,
+                borderRadius: 1,
+                // paddingInline: "0.4rem",
+                bgcolor: 'background.paper',
+                color: 'text.secondary',
+                '& svg': {
+                    m: 1.5,
+                },
+                '& hr': {
+                    mx: 0.5,
+                },
+                maxHeight: '3rem',
+                alignSelf: "center",
+                width: "16.4rem",
+                justifySelf: "center",
+                marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
+            }}
+        >
+            <FormControlLabel control={<Checkbox checked={enableAnimations} onChange={() => { setGlobalState("enableAnimations", !enableAnimations) }} />} label="Enable animations" />
         </Box>
 
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>

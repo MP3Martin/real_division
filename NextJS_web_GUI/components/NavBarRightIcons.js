@@ -1,4 +1,5 @@
-import { React, Component, useState, useEffect } from "react";
+import { React, Component, useState, useEffect, Children, cloneElement } from "react";
+import { setGlobalState, useGlobalState } from '../hooks/globalState';
 import { useTheme } from '@mui/material';
 import styled from "styled-components";
 import IconButton from "@mui/material/IconButton";
@@ -6,6 +7,9 @@ import Constants from "../constants.json";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import InfoIcon from '@mui/icons-material/Info';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+
 import useDeviceSize from "../hooks/useDeviceSize";
 
 import Dialog from '@mui/material/Dialog';
@@ -19,6 +23,7 @@ const StyledWrapper = styled.div``;
 
 function NavBarRightIcons(props) {
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+  const [darkMode] = useGlobalState("darkMode");
   const handleInfoDialogOpen = () => {
     setInfoDialogOpen(true);
   };
@@ -26,6 +31,10 @@ function NavBarRightIcons(props) {
   const handleInfoDialogClose = () => {
     setInfoDialogOpen(false);
   };
+
+  const handleThemeChange = () => {
+    setGlobalState("darkMode", !darkMode)
+  }
 
   function iconButtonSize(width) {
     switch (true) {
@@ -44,9 +53,10 @@ function NavBarRightIcons(props) {
 
   return (
     <>
-      <StyledWrapper style={props.style}>
+      <StyledWrapper style={props.style} className={"navBarRightIconsParent"}>
         {/* <div style={{"height": "52px", "width": "52px"}} /> */}
         <IconButton
+          className={"navBarRightIconsChild"}
           size={iconButtonSize(width)}
           onClick={handleInfoDialogOpen}
         >
@@ -54,11 +64,22 @@ function NavBarRightIcons(props) {
         </IconButton>
 
         <IconButton
+          className={"navBarRightIconsChild"}
           size={iconButtonSize(width)}
           href={Constants.adress.github}
           target="_blank"
         >
           <GitHubIcon fontSize="inherit" />
+        </IconButton>
+
+        <IconButton
+          className={"navBarRightIconsChild"}
+          size={iconButtonSize(width)}
+          onClick={handleThemeChange}
+        >
+          {darkMode ?
+            <Brightness7Icon fontSize="inherit" /> : <Brightness4Icon fontSize="inherit" />
+          }
         </IconButton>
       </StyledWrapper>
 

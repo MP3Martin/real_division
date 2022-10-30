@@ -13,6 +13,8 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
   const [alternatingSnowflakeSpeed, setAlternatingSnowflakeSpeed] = useState(0);
   const [isNotDesktop] = useGlobalState("outputOptionsHaveAcordicon");
   const [enableSnowBG] = useGlobalState("enableSnowBG")
+  const [darkMode] = useGlobalState("darkMode");
+  const [enableAnimations] = useGlobalState("enableAnimations");
 
   useEffect(() => {
     // setTimeout(() => {
@@ -70,13 +72,40 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
 
       <Head>
         <meta name="color-scheme" content="only dark" /> {/*😎*/}
+        <script src={"/index.js"} />
       </Head>
       <>
         <style>{`
             body {
               overflow: revert !important;
             }
+            :root { 
+              transition: filter 0.5s ease-out;
+            }
           `}</style>
+        {
+          darkMode ? <></> : <style>{`
+            :root { 
+              background-color: #fefefe;
+              filter: invert(100%);
+            }
+             
+            *:not(.f42d4f1d14f5d1d45 *) { 
+              background-color: inherit;
+            }
+            
+            img:not([src*=".svg"]), video {  
+              filter: invert(100%);
+            }
+          `}</style>
+        }
+        {
+          enableAnimations ? <></> : <style>{`
+            * {
+              transition: none !important;
+            }
+          `}</style>
+        }
       </>
 
       {/* <CssBaseline /> */}
