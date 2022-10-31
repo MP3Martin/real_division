@@ -22,7 +22,6 @@ const OutputOptions = (props) => {
     }
     const [answer] = useGlobalState("answer")
     const [copiedOpen, setCopiedOpen] = useState(false)
-    const [notSupportedOpen] = useGlobalState("notSupportedOpen")
     const [outputTextSize] = useGlobalState("outputTextSize")
     const [enableSnowBG] = useGlobalState("enableSnowBG")
     const [enableAnimations] = useGlobalState("enableAnimations")
@@ -133,12 +132,6 @@ const OutputOptions = (props) => {
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>
             <MuiAlert elevation={10} variant="filled" severity="success" onClose={() => { setCopiedOpen(false) }}>
                 Successfully copied the result!
-            </MuiAlert>
-        </Snackbar>
-
-        <Snackbar open={notSupportedOpen} autoHideDuration={1500} onClose={() => { setGlobalState("notSupportedOpen", false) }}>
-            <MuiAlert elevation={10} variant="filled" severity="error" onClose={() => { setGlobalState("notSupportedOpen", false) }}>
-                Not supported!
             </MuiAlert>
         </Snackbar>
     </>)
