@@ -49,6 +49,7 @@ function Input(props) {
   const [answer] = useGlobalState("answer")
   const [rdc] = useGlobalState("rdc")
   const [inp1mounted] = useGlobalState("inp1mounted")
+  const [notSupportedOpen] = useGlobalState("notSupportedOpen")
   const [dotsLoading] = useGlobalState("dotsLoading");
   const [inpError] = useGlobalState("inpError");
   const [outputOptionsHaveAcordicon] = useGlobalState("outputOptionsHaveAcordicon");
@@ -179,6 +180,11 @@ return calc(a, b)`
       <Snackbar open={inpError[0]} autoHideDuration={0}>
         <MuiAlert severity="error" sx={{ width: '100%' }}>
           {inpError[1]}
+        </MuiAlert>
+      </Snackbar>
+      <Snackbar open={notSupportedOpen} autoHideDuration={1500} onClose={() => { setGlobalState("notSupportedOpen", false) }}>
+        <MuiAlert elevation={10} variant="filled" severity="error" onClose={() => { setGlobalState("notSupportedOpen", false) }}>
+          Not supported!
         </MuiAlert>
       </Snackbar>
       <FadeIn transitionDuration={400} delay={850}>

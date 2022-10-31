@@ -19,15 +19,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-
 const StyledWrapper = styled.div``;
 
 function NavBarRightIcons(props) {
   const [infoDialogOpen, setInfoDialogOpen] = useState(false);
   const [darkMode] = useGlobalState("darkMode");
-  const [notSupportedOpen] = useGlobalState("notSupportedOpen")
   const handleInfoDialogOpen = () => {
     setInfoDialogOpen(true);
   };
@@ -154,12 +150,6 @@ function NavBarRightIcons(props) {
           </Button>
         </DialogActions>
       </Dialog>
-
-      <Snackbar open={notSupportedOpen} autoHideDuration={1500} onClose={() => { setGlobalState("notSupportedOpen", false) }}>
-        <MuiAlert elevation={10} variant="filled" severity="error" onClose={() => { setGlobalState("notSupportedOpen", false) }}>
-          Not supported!
-        </MuiAlert>
-      </Snackbar>
     </>
   );
 }
