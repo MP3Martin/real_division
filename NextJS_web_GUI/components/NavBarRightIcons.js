@@ -33,7 +33,8 @@ function NavBarRightIcons(props) {
   };
 
   const handleThemeChange = () => {
-    setGlobalState("darkMode", !darkMode)
+    // setGlobalState("darkMode", !darkMode)
+    setGlobalState("notSupportedOpen", true);
   }
 
   function iconButtonSize(width) {

@@ -79,19 +79,18 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
             body {
               overflow: revert !important;
             }
-            :root { 
+            /*:root { 
               transition: filter 0.5s ease-out;
-            }
+            }*/
           `}</style>
         {
-          darkMode ? <></> : <style>{`
-            :root { 
-              background-color: #fefefe;
+          darkMode ? <></> : <style id={"dsdhenfjsbkguzfgu"}>{`
+            :not(.MuiDialog-paper *) {
               filter: invert(100%);
             }
              
             *:not(.f42d4f1d14f5d1d45 *) { 
-              background-color: inherit;
+              
             }
             
             img:not([src*=".svg"]), video {  

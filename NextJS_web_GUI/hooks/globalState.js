@@ -18,5 +18,6 @@ const { setGlobalState, useGlobalState } = createGlobalState({
     enableSnowBG: true,
     darkMode: true,
     enableAnimations: true,
+    notSupportedOpen: false,
 });
 export { useGlobalState, setGlobalState };
