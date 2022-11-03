@@ -1,3 +1,5 @@
+//TODO: add https://medium.com/ringcentral-developers/use-react-hooks-with-storage-as-global-state-management-f2945492aade
+
 import { createGlobalState } from 'react-hooks-global-state';
 
 const { setGlobalState, useGlobalState } = createGlobalState({
