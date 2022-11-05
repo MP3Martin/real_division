@@ -1,5 +1,3 @@
-//TODO: add https://medium.com/ringcentral-developers/use-react-hooks-with-storage-as-global-state-management-f2945492aade
-
 import { createGlobalState } from 'react-hooks-global-state';
 
 const { setGlobalState, useGlobalState } = createGlobalState({
@@ -17,9 +15,9 @@ const { setGlobalState, useGlobalState } = createGlobalState({
     inpError: [false, "", true],
     outputTextSize: 875,
     outputOptionsHaveAcordicon: false,
-    enableSnowBG: true,
+    // enableSnowBG: true,
+    // enableAnimations: true,
     darkMode: true,
-    enableAnimations: true,
     notSupportedOpen: false,
 });
 export { useGlobalState, setGlobalState };

@@ -37,7 +37,7 @@
     "react-shadowed-double-scrollbar": "^1.0.5",
     "react-spinners-kit": "^1.9.1",
     "styled-components": "^5.3.6",
-    "use-global-storage": "^0.1.0",
+    "usehooks-ts": "^2.9.1",
     "webpack": "^5.74.0"
   },
   "devDependencies": {

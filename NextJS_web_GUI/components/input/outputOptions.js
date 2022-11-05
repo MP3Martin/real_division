@@ -1,5 +1,6 @@
 import { React, Component, useState, useEffect, useRef, createRef } from "react";
 import { setGlobalState, useGlobalState } from '../../hooks/globalState';
+import { useLocalStorage } from 'usehooks-ts'
 
 import TextIncreaseIcon from '@mui/icons-material/TextIncrease';
 import TextDecreaseIcon from '@mui/icons-material/TextDecrease';
@@ -23,8 +24,8 @@ const OutputOptions = (props) => {
     const [answer] = useGlobalState("answer")
     const [copiedOpen, setCopiedOpen] = useState(false)
     const [outputTextSize] = useGlobalState("outputTextSize")
-    const [enableSnowBG] = useGlobalState("enableSnowBG")
-    const [enableAnimations] = useGlobalState("enableAnimations")
+    const [enableSnowBG, setEnableSnowBG] = useLocalStorage("enableSnowBG", true)
+    const [enableAnimations, setEnableAnimations] = useLocalStorage("enableAnimations", true)
 
     function handleMakefntsizeBiggerSmaller(offset) {
         const newVal = outputTextSize + offset
@@ -101,7 +102,7 @@ const OutputOptions = (props) => {
                 marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
             }}
         >
-            <FormControlLabel control={<Checkbox checked={enableSnowBG} onChange={() => { setGlobalState("enableSnowBG", !enableSnowBG) }} />} label="Enable cool background" />
+            <FormControlLabel control={<Checkbox checked={enableSnowBG} onChange={() => { setEnableSnowBG(!enableSnowBG) }} />} label="Enable cool background" />
         </Box>
         <Box
             sx={{
@@ -126,7 +127,7 @@ const OutputOptions = (props) => {
                 marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
             }}
         >
-            <FormControlLabel control={<Checkbox checked={enableAnimations} onChange={() => { setGlobalState("enableAnimations", !enableAnimations) }} />} label="Enable animations" />
+            <FormControlLabel control={<Checkbox checked={enableAnimations} onChange={() => { setEnableAnimations(!enableAnimations) }} />} label="Enable animations" />
         </Box>
 
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>

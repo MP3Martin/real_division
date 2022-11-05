@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import { setGlobalState, useGlobalState } from '../hooks/globalState';
+import { useLocalStorage } from 'usehooks-ts'
 // import CssBaseline from "@mui/material/CssBaseline";
 import NavBar from "../components/NavBar";
 
@@ -12,9 +13,9 @@ function MyAppTwo({ prp, prp2, setRootLoading }) {
   const [isLoadingWait, setLoadingWait] = useState(true);
   const [alternatingSnowflakeSpeed, setAlternatingSnowflakeSpeed] = useState(0);
   const [isNotDesktop] = useGlobalState("outputOptionsHaveAcordicon");
-  const [enableSnowBG] = useGlobalState("enableSnowBG")
+  const [enableSnowBG, setEnableSnowBG] = useLocalStorage("enableSnowBG", true)
+  const [enableAnimations, setEnableAnimations] = useLocalStorage("enableAnimations", true)
   const [darkMode] = useGlobalState("darkMode");
-  const [enableAnimations] = useGlobalState("enableAnimations");
 
   useEffect(() => {
     // setTimeout(() => {
