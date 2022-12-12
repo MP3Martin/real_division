@@ -114,9 +114,9 @@ const OutputOptions = (props) => {
             <FormControlLabel control={<Checkbox checked={enableAnimations} onChange={() => { setEnableAnimations(!enableAnimations) }} />} label="Animations" />
         </Box>
         <Box
-            sx={outputOptionsDefaultBox("12.8rem")}
+            sx={outputOptionsDefaultBox("11.2rem")}
         >
-            <FormControlLabel control={<Checkbox checked={enableDecimalNumbers} onChange={() => { setEnableDecimalNumbers(!enableDecimalNumbers) }} />} label="Decimal numbers" />
+            <FormControlLabel control={<Checkbox checked={enableDecimalNumbers} onChange={() => { setEnableDecimalNumbers(!enableDecimalNumbers) }} />} label="Decimal result" />
         </Box>
 
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>
