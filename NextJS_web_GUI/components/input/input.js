@@ -56,7 +56,7 @@ function Input(props) {
   // const [showDelay, setShowDelay] = useState(false);
 
   useEffect(() => {
-    if (winWidth <= 1108) {
+    if (winWidth <= 1173) {
       setGlobalState("outputOptionsHaveAcordicon", true)
     } else {
       setGlobalState("outputOptionsHaveAcordicon", false)

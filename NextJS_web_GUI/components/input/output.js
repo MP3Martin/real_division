@@ -1,6 +1,7 @@
 import { React, Component, useState, useEffect, useRef } from "react";
 import { setGlobalState, useGlobalState } from '../../hooks/globalState';
 import AutoHeight from 'react-auto-height'
+import { useLocalStorage } from 'usehooks-ts'
 
 import Box from '@mui/material/Box';
 
@@ -40,6 +41,8 @@ const Output = (props) => {
   const [isCalculating] = useGlobalState("isCalculating")
   const [outputTextSize] = useGlobalState("outputTextSize")
 
+  const [enableDecimalNumbers, setEnableDecimalNumbers] = useLocalStorage("enableDecimalNumbers", false)
+
   const parseAndHighlight = (string) => {
     //alternating lines
     for (var i = 1; i < substringFrequency(string, "\n"); i++) {
@@ -47,12 +50,24 @@ const Output = (props) => {
     }
 
     //remainder
-    string = string.replaceAll(/\((\d+)\)/g, "(<span class='oh1-remainder'>$1</span>)")
+    if (!enableDecimalNumbers) {
+      string = string.replaceAll(/\((\d+)\)/g, "(<span class='oh1-remainder'>$1</span>)")
+    } else {
+      string = string.replaceAll(/\((\d+)\)/g, "(<span class='oh1-remainder'></span>)")
+      string = string.replace(` (<span class='oh1-remainder'></span>)`, "")
+    }
 
     //first nums
-    string = replaceNthMatch(string, /(\d+)/, 1, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
-    string = replaceNthMatch(string, /(\d+)/, 3, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
-    string = replaceNthMatch(string, /(\d+)/, 5, function (val) { return `<span class='oh1-answer'>${val}</span>` });
+    if (!enableDecimalNumbers) {
+      string = replaceNthMatch(string, /(\d+)/, 1, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
+      string = replaceNthMatch(string, /(\d+)/, 3, function (val) { return `<span class='oh1-firstnums'>${val}</span>` });
+      string = replaceNthMatch(string, /(\d+)/, 5, function (val) { return `<span class='oh1-answer'>${val}</span>` });
+    } else {
+      var finalNums = [];
+      string = replaceNthMatch(string, /(\d+)/, 1, function (val) { finalNums.push(val); return `<span class='oh1-firstnums'>${val}</span>` });
+      string = replaceNthMatch(string, /(\d+)/, 3, function (val) { finalNums.push(val); return `<span class='oh1-firstnums'>${val}</span>` });
+      string = replaceNthMatch(string, /(\d+)/, 5, function (val) { return `<span class='oh1-answer'>${finalNums[0] / finalNums[1]}</span>` });
+    }
 
     //first line
     string = string.replace(/^.*/, function (m) {

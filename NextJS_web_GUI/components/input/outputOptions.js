@@ -49,6 +49,7 @@ const OutputOptions = (props) => {
     const [outputTextSize] = useGlobalState("outputTextSize")
     const [enableSnowBG, setEnableSnowBG] = useLocalStorage("enableSnowBG", true)
     const [enableAnimations, setEnableAnimations] = useLocalStorage("enableAnimations", true)
+    const [enableDecimalNumbers, setEnableDecimalNumbers] = useLocalStorage("enableDecimalNumbers", false)
 
     function handleMakefntsizeBiggerSmaller(offset) {
         const newVal = outputTextSize + offset
@@ -111,6 +112,11 @@ const OutputOptions = (props) => {
             sx={outputOptionsDefaultBox("10rem")}
         >
             <FormControlLabel control={<Checkbox checked={enableAnimations} onChange={() => { setEnableAnimations(!enableAnimations) }} />} label="Animations" />
+        </Box>
+        <Box
+            sx={outputOptionsDefaultBox("12.8rem")}
+        >
+            <FormControlLabel control={<Checkbox checked={enableDecimalNumbers} onChange={() => { setEnableDecimalNumbers(!enableDecimalNumbers) }} />} label="Decimal numbers" />
         </Box>
 
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>
