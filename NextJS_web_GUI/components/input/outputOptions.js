@@ -15,6 +15,29 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 const OutputOptions = (props) => {
+    const outputOptionsDefaultBox = (width) => {
+        return ({
+            display: 'flex',
+            alignItems: 'center',
+            width: 'fit-content',
+            border: (theme) => `1px solid ${theme.palette.divider}`,
+            borderRadius: 1,
+            bgcolor: 'background.paper',
+            color: 'text.secondary',
+            '& svg': {
+                m: 1.5,
+            },
+            '& hr': {
+                mx: 0.5,
+            },
+            maxHeight: '3rem',
+            alignSelf: "center",
+            width: outputOptionsHaveAcordicon ? "16.4rem" : width,
+            justifySelf: "center",
+            marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
+        })
+    }
+
     const [outputOptionsHaveAcordicon] = useGlobalState("outputOptionsHaveAcordicon");
 
     const FONT_SIZE_SLIDER = {
@@ -80,54 +103,14 @@ const OutputOptions = (props) => {
             }}><span style={{ fontSize: "0.8rem", lineHeight: 1.2 }}>COPY<br />RESULT</span></Button>
         </Box>
         <Box
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                width: 'fit-content',
-                border: (theme) => `1px solid ${theme.palette.divider}`,
-                borderRadius: 1,
-                // paddingInline: "0.4rem",
-                bgcolor: 'background.paper',
-                color: 'text.secondary',
-                '& svg': {
-                    m: 1.5,
-                },
-                '& hr': {
-                    mx: 0.5,
-                },
-                maxHeight: '3rem',
-                alignSelf: "center",
-                width: "16.4rem",
-                justifySelf: "center",
-                marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
-            }}
+            sx={outputOptionsDefaultBox("12.4rem")}
         >
-            <FormControlLabel control={<Checkbox checked={enableSnowBG} onChange={() => { setEnableSnowBG(!enableSnowBG) }} />} label="Enable cool background" />
+            <FormControlLabel control={<Checkbox checked={enableSnowBG} onChange={() => { setEnableSnowBG(!enableSnowBG) }} />} label="Star background" />
         </Box>
         <Box
-            sx={{
-                display: 'flex',
-                alignItems: 'center',
-                width: 'fit-content',
-                border: (theme) => `1px solid ${theme.palette.divider}`,
-                borderRadius: 1,
-                // paddingInline: "0.4rem",
-                bgcolor: 'background.paper',
-                color: 'text.secondary',
-                '& svg': {
-                    m: 1.5,
-                },
-                '& hr': {
-                    mx: 0.5,
-                },
-                maxHeight: '3rem',
-                alignSelf: "center",
-                width: "16.4rem",
-                justifySelf: "center",
-                marginTop: outputOptionsHaveAcordicon ? "0.2rem" : "revert",
-            }}
+            sx={outputOptionsDefaultBox("10rem")}
         >
-            <FormControlLabel control={<Checkbox checked={enableAnimations} onChange={() => { setEnableAnimations(!enableAnimations) }} />} label="Enable animations" />
+            <FormControlLabel control={<Checkbox checked={enableAnimations} onChange={() => { setEnableAnimations(!enableAnimations) }} />} label="Animations" />
         </Box>
 
         <Snackbar open={copiedOpen} autoHideDuration={1500} onClose={() => { setCopiedOpen(false) }}>
