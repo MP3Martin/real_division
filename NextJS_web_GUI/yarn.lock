@@ -3526,7 +3526,7 @@ tsconfig-paths@^3.14.1:
   integrity sha512-fxDhWnFSLt3VuTwtvJt5fpwxBHg5AdKWMsgcPOOIilyjymcYVZoCQF8fvFRezCNfblEXmi+PcM1eYHeOAgXCOQ==
   dependencies:
     "@types/json5" "^0.0.29"
-    json5 "^1.0.1"
+    json5 "^1.0.2"
     minimist "^1.2.6"
     strip-bom "^3.0.0"
 
