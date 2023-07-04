@@ -38,15 +38,12 @@
     "react-spinners-kit": "^1.9.1",
     "styled-components": "^5.3.6",
     "usehooks-ts": "^2.9.1",
-    "webpack": "^5.74.0"
+    "webpack": "^5.76.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-top-level-await": "^7.14.5",
     "eslint": "8.23.1",
     "eslint-config-next": "12.3.0",
     "sass": "^1.55.0"
-  },
-  "resolutions": {
-    "webpack": "5.21.2"
   }
 }
