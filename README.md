@@ -18,12 +18,12 @@
 ## Projects
 Project | Tkinter GUI | Web UI | Terminal UI | PyPI package | Core calculation script
 :------------ | :-------------| :-------------| :-------------| :-------------| :-------------|
-State | :heavy_check_mark: |  :heavy_check_mark: | :x: | :x: | :heavy_check_mark:
-Automated build workflow | :heavy_check_mark: |  :heavy_check_mark: | :x: | :x: | *Not needed*
+State | ✔️ |  ✔️ | :x: | :x: | ✔️
+Automated build workflow | ✔️ |  ✔️ | :x: | :x: | *Not needed*
 Programming language | Python |  JavaScript + JSX + CSS | :x: | Python | Python
 Framework | Tkinter |  Next.js + MUI | :x: | *None* | *None*
 
-(:heavy_check_mark: - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
+(✔️ - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
 
 ## Why this project exists / What i learned
 This project was created to show that you can write **small core script** and use it in many **platforms** / **frameworks** _(even **Python** in **WEB Browser**)_.
