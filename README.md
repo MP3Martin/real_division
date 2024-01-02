@@ -37,4 +37,4 @@ This project was created to show that you can write **small core script** and us
   * Cool css fade in animations
   * Page loading that actually works (doesn't show up for 0.1 seconds after the page is fully loaded)
 * I created
-  * [<img src="https://camo.githubusercontent.com/b079fe922f00c4b86f1b724fbc2e8141c468794ce8adbc9b7456e5e1ad09c622/68747470733a2f2f6564656e742e6769746875622e696f2f537570657254696e7949636f6e732f696d616765732f7376672f6769746875622e737667" alt="gh" width="18"/>](https://github.com/MP3Martin/jsRUNpy.js) **[MP3Martin/jsRUNpy.js](https://github.com/MP3Martin/jsRUNpy.js)**
+  * [<img src="https://github.com/MP3Martin/real_division/assets/60501493/2e6dd607-91bb-4b29-aad5-a7e8dc849f77" alt="gh" width="18"/>](https://github.com/MP3Martin/jsRUNpy.js) **[MP3Martin/jsRUNpy.js](https://github.com/MP3Martin/jsRUNpy.js)**
