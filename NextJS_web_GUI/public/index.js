@@ -2,7 +2,7 @@ root = document.documentElement
 
 notHoveringAnyNBRI = () => { return Array.from(document.querySelectorAll(".navBarRightIconsChild:hover")).length == 0 }
 
-addEventListener('mousemove', (event) => {
+addEventListener('mousemove', () => {
   if (notHoveringAnyNBRI()) {
     setTimeout(() => {
       if (notHoveringAnyNBRI()) {
