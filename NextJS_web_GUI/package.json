@@ -19,7 +19,7 @@
     "@mui/material": "^5.15.15",
     "@popperjs/core": "2.11.6",
     "@react-hook/window-size": "^3.1.1",
-    "bootstrap": "^5.2.1",
+    "bootstrap": "^5.3.3",
     "brython": "^3.12.3",
     "framer-motion": "^7.10.3",
     "jshint": "^2.13.5",
