@@ -38,7 +38,7 @@
     "react-spinners-kit": "^1.9.1",
     "styled-components": "^5.3.6",
     "usehooks-ts": "^2.16.0",
-    "webpack": "^5.74.0"
+    "webpack": "^5.91.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-top-level-await": "^7.14.5",
