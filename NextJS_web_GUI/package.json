@@ -36,7 +36,7 @@
     "react-particle-backgrounds": "^1.0.2",
     "react-shadowed-double-scrollbar": "^1.0.5",
     "react-spinners-kit": "^1.9.1",
-    "styled-components": "^5.3.6",
+    "styled-components": "^5.3.11",
     "usehooks-ts": "^2.16.0",
     "webpack": "^5.74.0"
   },
