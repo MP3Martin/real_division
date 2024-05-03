@@ -22,7 +22,7 @@
     "bootstrap": "^5.3.3",
     "brython": "^3.12.3",
     "framer-motion": "^7.10.3",
-    "jshint": "^2.13.5",
+    "jshint": "^2.13.6",
     "next": "^12.3.4",
     "raw-loader": "^4.0.2",
     "react": "18.2.0",
