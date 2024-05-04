@@ -31,7 +31,7 @@
     "react-dom": "18.2.0",
     "react-fade-in": "^2.0.1",
     "react-height-transition": "^1.0.0",
-    "react-hooks-global-state": "^2.0.0",
+    "react-hooks-global-state": "^2.1.0",
     "react-loading-overlay": "^1.0.1",
     "react-particle-backgrounds": "^1.0.2",
     "react-shadowed-double-scrollbar": "^1.0.5",
