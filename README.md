@@ -25,16 +25,16 @@ Framework | Tkinter |  Next.js + MUI | :x: | *None* | *None*
 
 (✔️ - **totally done**, updated rarely | :white_check_mark: - **done**, but will be **updated** | :x: - **not done**)
 
-## Why this project exists / What i learned
+## Why does this project exist / What i've learned
 This project was created to show that you can write **small core script** and use it in many **platforms** / **frameworks** _(even **Python** in **WEB Browser**)_.
 
 #### How this project affected me:
-* I learned
+* I've learned
   * React `useEffect`, `useState`, `Component` and most of React's core functionality
   * Next.js `next/dynamic`
   * RegEx
   * SCSS
   * Cool css fade in animations
   * Page loading that actually works (doesn't show up for 0.1 seconds after the page is fully loaded)
-* I created
+* I've created
   * [<img src="https://github.com/MP3Martin/real_division/assets/60501493/2e6dd607-91bb-4b29-aad5-a7e8dc849f77" alt="gh" width="18"/>](https://github.com/MP3Martin/jsRUNpy.js) **[MP3Martin/jsRUNpy.js](https://github.com/MP3Martin/jsRUNpy.js)**
