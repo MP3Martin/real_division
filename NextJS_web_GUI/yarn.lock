@@ -3056,10 +3056,10 @@ react-animate-height@^3.2.3:
   resolved "https://registry.yarnpkg.com/react-animate-height/-/react-animate-height-3.2.3.tgz#90929aadac1bd1851cb6a685acc105b50ccfda8c"
   integrity sha512-R6DSvr7ud07oeCixScyvXWEMJY/Mt2+GyOWC1KMaRc69gOBw+SsCg4TJmrp4rKUM1hyd6p+YKw90brjPH93Y2A==
 
-react-auto-height@^1.1.6:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/react-auto-height/-/react-auto-height-1.1.6.tgz#79e892955a0c733f7eb924a5d5972cf4ff722c31"
-  integrity sha512-dPrGo/YYqeH7hM40r8BtmBTdqgefgkRgkArCMchFPBi3qr+xUJ2xDV90d2otnflrxdxjH2t5KYWrts55We0MEQ==
+react-auto-height@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-auto-height/-/react-auto-height-1.2.1.tgz#338f8e654d9a12d752011bd460ff946f443a35c7"
+  integrity sha512-Ad1xI3dXBYF0LVhMV0eE5KJNHYkOWzuE0Wx78rDvGBK79lRxSUamogP3HbmStP1FLQ2vbO2PX5cbLwolsZRg1A==
 
 react-dom@18.2.0:
   version "18.2.0"
