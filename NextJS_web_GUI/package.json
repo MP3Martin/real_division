@@ -23,7 +23,7 @@
     "brython": "^3.12.3",
     "framer-motion": "^7.10.3",
     "jshint": "^2.13.6",
-    "next": "^12.3.4",
+    "next": "^14.2.10",
     "raw-loader": "^4.0.2",
     "react": "18.2.0",
     "react-animate-height": "^3.2.3",
