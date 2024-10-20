@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Disable debug
       uses: jacobtomlinson/gha-find-replace@v2
       with:
@@ -19,7 +19,7 @@ jobs:
           debug_enabled = False
           print("Made by MP3Martin\nWorking thanks to Tkinter and PyInstaller")
         regex: false
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: gui-py-without-debug
         path: Tkinter_GUI/gui.py
@@ -33,7 +33,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2    
-    - uses: actions/download-artifact@v2
+    - uses: actions/download-artifact@v3
       with:
         name: gui-py-without-debug
     - uses: actions/setup-python@v2
@@ -89,7 +89,7 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: geekyeggo/delete-artifact@v1
         with:
           name: gui-py-without-debug
