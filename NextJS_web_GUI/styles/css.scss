@@ -61,9 +61,6 @@ $global-animation-delay: 0.6;
 
 .navBarRightIcons > * > * {
   opacity: 0;
-}
-
-.navBarRightIcons > * > * {
   animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
   animation: fadeInSlideRight 1s forwards;
 }
