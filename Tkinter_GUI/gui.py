@@ -9,7 +9,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 try:
     import real_division_core as rdc
-except:
+except Exception:
     #import failed
     sys.path.pop()
     import real_division_core as rdc
@@ -254,7 +254,7 @@ master = tk.Tk()
 try:
     master.tk.call("source", str(themePath))
     master.tk.call("set_theme", "dark")
-except:
+except Exception:
     print("Could not load the theme :/")
     master.after(500, lambda: messagebox.showerror("Error", "Could not load the theme :(\nYou can still use this program."))
 
@@ -281,7 +281,7 @@ def is_num(text):
     try:
         num = int(text)
         return True
-    except:
+    except Exception:
         return False
 
 def is_num_second(test_str):
@@ -558,7 +558,7 @@ master.bind("<Control-Key-A>", select_all)
 def copy_selected(event):
     try:
         selected_text = event.widget.get(tk.SEL_FIRST, tk.SEL_LAST)
-    except:
+    except Exception:
         selected_text = "None"
     selected_text = str(selected_text)
     widget = str(event.widget).replace(".!frame.!","")
@@ -597,7 +597,7 @@ master.bind("<Escape>", deselect_selected)
 def custom_paste(event):
     try:
         event.widget.delete("sel.first", "sel.last")
-    except:
+    except Exception:
         pass
     event.widget.insert("insert", event.widget.clipboard_get())
     return "break"
