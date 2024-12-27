@@ -29,9 +29,9 @@ $global-animation-delay: 0.6;
   }
 
   opacity: 0;
+  animation: fadeInSlideDown 0.7s forwards;
   animation-delay: #{$global-animation-delay}s !important;
   animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
-  animation: fadeInSlideDown 0.7s forwards;
 }
 
 .titleTextSpan {
@@ -61,8 +61,8 @@ $global-animation-delay: 0.6;
 
 .navBarRightIcons > * > * {
   opacity: 0;
-  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
   animation: fadeInSlideRight 1s forwards;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
 }
 
 @keyframes fadeInSlideRight {
@@ -178,9 +178,9 @@ $global-animation-delay: 0.6;
 
 .bgParticlesWrapper {
   opacity: 0;
+  animation: fadeInbgParticlesWrapper 2s forwards;
   animation-delay: #{$global-animation-delay}s !important;
   animation-timing-function: ease-out !important;
-  animation: fadeInbgParticlesWrapper 2s forwards;
 }
 
 @keyframes fadeInbgParticlesWrapper {
