@@ -27,17 +27,15 @@ $global-animation-delay: 0.6;
     white-space: pre-line !important;
     justify-self: left !important;
   }
-}
 
-.titleTextSpan {
-  color: rgb(186, 217, 229);
-}
-
-.titleTextTypography {
   opacity: 0;
   animation-delay: #{$global-animation-delay}s !important;
   animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1) !important;
   animation: fadeInSlideDown 0.7s forwards;
+}
+
+.titleTextSpan {
+  color: rgb(186, 217, 229);
 }
 
 @keyframes fadeInSlideDown {
